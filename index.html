@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://static.wixstatic.com" rel="preconnect" crossorigin="anonymous">
+  <link href="https://static.wixstatic.com" rel="dns-preconnect" crossorigin="anonymous">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>1x1 pixel</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="wrapper">
+
+  <aside class="sitebar">
+    <fieldset class="fields">
+      <label class="field__box">
+        Color:
+        <input type="text" id="inputColor" class="field" placeholder="color" value="356211">
+      </label>
+      <label class="field__box">
+        Opacity:
+        <input type="number" id="inputAlpha" class="field" placeholder="alpha" value="255" max="255" min="0" step="0">
+      </label>
+      <button type="button" id="buttonCreate" class="btn">
+        Create
+      </button>
+    </fieldset>
+  </aside>
+
+  <main class="content">
+    <h1>One Pixel PNG</h1>
+    <div id="outputImage" class="output_image"></div>
+  </main>
+
+  <script src="js/scripts.js"></script>
+</body>
+
+</html>

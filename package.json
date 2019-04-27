@@ -1,0 +1,13 @@
+{
+  "name": "1x1",
+  "version": "1.0.0",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html -p 3000",
+    "build": "parcel build index.html"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.3"
+  },
+  "license": "MIT"
+}
