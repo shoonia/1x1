@@ -1,6 +1,7 @@
 import { getById } from './util';
 import inputBind from './inputBind';
 import toOutputData from './output';
+import colors from './colors';
 
 var inputColor = getById('inputColor');
 
@@ -28,6 +29,14 @@ function fetchDataUrl(color, alpha) {
 function getDataUrl() {
   var color = inputColor.value.replace(/[^0-9a-z]/gi, '');
   var alpha = numberAlpha.value;
+
+  if (colors[color]) {
+    color = colors[color];
+  }
+
+  if (color.length < 6) {
+    color += color;
+  }
 
   fetchDataUrl(color, alpha).then(toOutputData);
 }
