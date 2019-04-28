@@ -1,9 +1,9 @@
 export default function inputBind(x, y) {
-  x.addEventListener('change', function () {
+  x.addEventListener('input', function () {
     y.value = x.value;
   });
 
-  y.addEventListener('change', function () {
+  y.addEventListener('input', function () {
     x.value = y.value;
   });
 }

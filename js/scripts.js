@@ -39,6 +39,11 @@ function createBlobURL(array) {
   return URL.createObjectURL(blob);
 }
 
+function clipboard(event) {
+  event.target.select();
+  document.execCommand('copy');
+}
+
 function getDataUrl() {
   var color = inputColor.value.replace(/[^0-9a-z]/gi, '');
   var alpha = numberAlpha.value;
@@ -60,3 +65,7 @@ inputBind(rangeRed, numberRed);
 inputBind(rangeGreen, numberGreen);
 inputBind(rangeBlue, numberBlue);
 inputBind(rangeAlpha, numberAlpha);
+
+outputDataURL.addEventListener('click', clipboard);
+outputBase64.addEventListener('click', clipboard);
+outputBuffer.addEventListener('click', clipboard);

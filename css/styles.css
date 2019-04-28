@@ -1,3 +1,5 @@
+@import './range.css';
+
 *,
 *::after,
 *::before {
@@ -6,6 +8,18 @@
 
 :root {
   font-family: 'Courier New', Courier, monospace;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #ccc;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+  color: #ccc;
+}
+
+:-ms-input-placeholder { /* IE 10+ */
+  color: #ccc;
 }
 
 .wrapper {
@@ -51,6 +65,10 @@
   user-select: none;
 }
 
+.field__output {
+  cursor: copy;
+}
+
 .content {
   position: relative;
   margin-left: 305px;
@@ -61,9 +79,8 @@
   height: 200px;
   background-repeat: repeat;
   background-color: transparent;
-  background-image: -webkit-linear-gradient(45deg, #bbb 25%, transparent 25%, transparent 75%, #bbb 75%, #bbb), -webkit-linear-gradient(45deg, #bbb 25%, transparent 25%, transparent 75%, #bbb 75%, #bbb);
-  background-image: linear-gradient(45deg, #bbb 25%, transparent 25%, transparent 75%, #bbb 75%, #bbb), linear-gradient(45deg, #bbb 25%, transparent 25%, transparent 75%, #bbb 75%, #bbb);
   background-position: 0 0, 10px 10px;
   -webkit-background-size: 21px 21px;
   background-size: 21px 21px;
+  border: 3px solid #eee;
 }
