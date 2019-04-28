@@ -1,8 +1,6 @@
+import { getById } from './util';
 import inputBind from './inputBind';
-
-function getById(id) {
-  return document.getElementById(id);
-}
+import toOutputData from './output';
 
 var inputColor = getById('inputColor');
 
@@ -18,11 +16,6 @@ var numberBlue = getById('numberBlue');
 var rangeAlpha = getById('rangeAlpha');
 var numberAlpha = getById('numberAlpha');
 
-var outputImage = getById('outputImage');
-var outputDataURL = getById('outputDataURL');
-var outputBase64 = getById('outputBase64');
-var outputBuffer = getById('outputBuffer');
-
 var buttonsCreate = document.querySelectorAll('.buttonsCreate');
 
 function fetchDataUrl(color, alpha) {
@@ -32,29 +25,11 @@ function fetchDataUrl(color, alpha) {
     });
 }
 
-function createBlobURL(array) {
-  var byteArray = new Uint8Array(array);
-  var blob = new Blob([byteArray], { type: 'image/png' });
-
-  return URL.createObjectURL(blob);
-}
-
-function clipboard(event) {
-  event.target.select();
-  document.execCommand('copy');
-}
-
 function getDataUrl() {
   var color = inputColor.value.replace(/[^0-9a-z]/gi, '');
   var alpha = numberAlpha.value;
 
-  fetchDataUrl(color, alpha)
-    .then(function (data) {
-      outputImage.style.backgroundImage = 'url(' + createBlobURL(data.buffer) + ')';
-      outputDataURL.value = 'data:image/png;base64,' + data.title;
-      outputBase64.value = data.title;
-      outputBuffer.value = JSON.stringify(data.buffer);
-    });
+  fetchDataUrl(color, alpha).then(toOutputData);
 }
 
 [].forEach.call(buttonsCreate, function (button) {
@@ -65,7 +40,3 @@ inputBind(rangeRed, numberRed);
 inputBind(rangeGreen, numberGreen);
 inputBind(rangeBlue, numberBlue);
 inputBind(rangeAlpha, numberAlpha);
-
-outputDataURL.addEventListener('click', clipboard);
-outputBase64.addEventListener('click', clipboard);
-outputBuffer.addEventListener('click', clipboard);

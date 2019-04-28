@@ -4,8 +4,8 @@
   "description": "One Pixel PNG Generator",
   "main": "index.html",
   "scripts": {
-    "start": "parcel index.html -p 3000",
-    "build": "parcel build index.html --public-url ./ --no-source-maps",
+    "start": "parcel src/index.html -p 3000",
+    "build": "parcel build src/index.html --public-url ./ --no-source-maps",
     "deploy": "gh-pages -d ./dist"
   },
   "devDependencies": {
