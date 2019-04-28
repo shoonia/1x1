@@ -13,3 +13,13 @@ export function rgbToHex(int) {
 
   return 2 > hex.length ? ('0' + hex) : hex;
 }
+
+export function bindInputs(x, y) {
+  x.addEventListener('input', function () {
+    y.value = x.value;
+  });
+
+  y.addEventListener('input', function () {
+    x.value = y.value;
+  });
+}

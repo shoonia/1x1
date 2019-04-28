@@ -1,51 +1,86 @@
-import { getById } from './util';
-import inputBind from './inputBind';
+import { getById, rgbToHex, bindInputs } from './util';
 import toOutputData from './output';
 import colors from './colors';
+import { fetchData } from './api';
 
 var inputColor = getById('inputColor');
-
 var rangeRed = getById('rangeRed');
 var numberRed = getById('numberRed');
-
 var rangeGreen = getById('rangeGreen');
 var numberGreen = getById('numberGreen');
-
 var rangeBlue = getById('rangeBlue');
 var numberBlue = getById('numberBlue');
-
 var rangeAlpha = getById('rangeAlpha');
 var numberAlpha = getById('numberAlpha');
-
 var buttonsCreate = document.querySelectorAll('.buttonsCreate');
 
-function fetchDataUrl(color, alpha) {
-  return fetch('https://shoonia.wixsite.com/1x1-pixel/_functions/create/' + color + '/' + alpha)
-    .then(function (response) {
-      return response.json();
-    });
+function getDataUrl() {
+  var hax = inputColor.value;
+  var alpha = rgbToHex(rangeAlpha.value);
+
+  fetchData(hax + alpha).then(toOutputData);
 }
 
-function getDataUrl() {
+function changeHaxInput() {
   var color = inputColor.value.replace(/[^0-9a-z]/gi, '');
-  var alpha = numberAlpha.value;
 
   if (colors[color]) {
     color = colors[color];
   }
 
-  if (color.length < 6) {
+  if (color.length === 3) {
     color += color;
   }
 
-  fetchDataUrl(color, alpha).then(toOutputData);
+  if (inputColor.value !== color) {
+    inputColor.value = color;
+  }
+
+  if (color.length !== 6) {
+    return;
+  }
+
+  var r = parseInt(color.slice(0, 2), 16);
+  var g = parseInt(color.slice(2, 4), 16);
+  var b = parseInt(color.slice(4), 16);
+
+  rangeRed.value = r;
+  numberRed.value = r;
+  rangeGreen.value = g;
+  numberGreen.value = g;
+  rangeBlue.value = b;
+  numberBlue.value = b;
 }
+
+function changeRGBAInput() {
+  var r = rgbToHex(rangeRed.value);
+  var g = rgbToHex(rangeGreen.value);
+  var b = rgbToHex(rangeBlue.value);
+
+  inputColor.value = r + g + b;
+}
+
+inputColor.addEventListener('change', changeHaxInput);
+
+[
+  rangeRed,
+  numberRed,
+  rangeGreen,
+  numberGreen,
+  rangeBlue,
+  numberBlue,
+].forEach(function (input) {
+  input.addEventListener('change', changeRGBAInput);
+});
 
 [].forEach.call(buttonsCreate, function (button) {
   button.addEventListener('click', getDataUrl);
 });
 
-inputBind(rangeRed, numberRed);
-inputBind(rangeGreen, numberGreen);
-inputBind(rangeBlue, numberBlue);
-inputBind(rangeAlpha, numberAlpha);
+bindInputs(rangeRed, numberRed);
+bindInputs(rangeGreen, numberGreen);
+bindInputs(rangeBlue, numberBlue);
+bindInputs(rangeAlpha, numberAlpha);
+
+changeHaxInput();
+getDataUrl();

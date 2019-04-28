@@ -69,6 +69,7 @@
   height: 200px;
   background-repeat: repeat;
   background-color: transparent;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNM3eD5HwAFPwJf7c4bugAAAABJRU5ErkJggg==);
   background-position: 0 0, 10px 10px;
   background-size: 21px 21px;
   border: 3px solid #eee;

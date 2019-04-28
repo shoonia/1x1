@@ -22,6 +22,10 @@ outputBase64.addEventListener('click', clipboard);
 outputBuffer.addEventListener('click', clipboard);
 
 export default function (data) {
+  if (data.error) {
+    return;
+  }
+
   outputImage.style.backgroundImage = 'url(' + createBlobURL(data.buffer) + ')';
   outputDataURL.value = 'data:image/png;base64,' + data.title;
   outputBase64.value = data.title;
