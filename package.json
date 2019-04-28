@@ -1,13 +1,17 @@
 {
   "name": "1x1",
   "version": "1.0.0",
+  "description": "One Pixel PNG Generator",
   "main": "index.html",
   "scripts": {
     "start": "parcel index.html -p 3000",
-    "build": "parcel build index.html --public-url ./ --no-source-maps"
+    "build": "parcel build index.html --public-url ./ --no-source-maps",
+    "deploy": "gh-pages -d ./dist"
   },
   "devDependencies": {
+    "gh-pages": "^2.0.1",
     "parcel-bundler": "^1.12.3"
   },
+  "author": "Alexander Zaytsev zaytsev126@gmail.com",
   "license": "MIT"
 }
