@@ -10,24 +10,14 @@
   font-family: 'Courier New', Courier, monospace;
 }
 
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: #ccc;
-}
-
-::-moz-placeholder { /* Firefox 19+ */
-  color: #ccc;
-}
-
-:-ms-input-placeholder { /* IE 10+ */
+::placeholder { /* IE 10+ */
   color: #ccc;
 }
 
 .wrapper {
   background-color: #fff;
-  background-image: -webkit-linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee), -webkit-linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee);
   background-image: linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee), linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee);
   background-position: 0 0, 10px 10px;
-  -webkit-background-size: 21px 21px;
   background-size: 21px 21px;
 }
 
@@ -80,7 +70,6 @@
   background-repeat: repeat;
   background-color: transparent;
   background-position: 0 0, 10px 10px;
-  -webkit-background-size: 21px 21px;
   background-size: 21px 21px;
   border: 3px solid #eee;
 }

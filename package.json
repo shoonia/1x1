@@ -9,8 +9,11 @@
     "deploy": "gh-pages -d ./dist"
   },
   "devDependencies": {
+    "autoprefixer": "^9.5.1",
+    "cssnano": "^4.1.10",
     "gh-pages": "^2.0.1",
-    "parcel-bundler": "^1.12.3"
+    "parcel-bundler": "^1.12.3",
+    "postcss-input-range": "^4.0.0"
   },
   "author": "Alexander Zaytsev zaytsev126@gmail.com",
   "license": "MIT"

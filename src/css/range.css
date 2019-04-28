@@ -1,5 +1,4 @@
 .range {
-  -webkit-appearance: none;
   appearance: none;
   width: 100%;
   margin: 4.3px 0;
@@ -10,59 +9,19 @@
   outline: none;
 }
 
-/* TRACK */
-.range::-webkit-slider-runnable-track {
+.range::range-track {
   background-color: #ddd;
   height: 5px;
   cursor: pointer;
 }
 
-.range::-moz-range-track {
-  background-color: #ddd;
-  height: 5px;
-  cursor: pointer;
-}
-
-.range::-ms-track {
-  background-color: #ddd;
-  height: 5px;
-  cursor: pointer;
-}
-
-/* THUMB */
-.range::-webkit-slider-thumb {
+.range::range-thumb {
   border: 1px solid #222;
   height: 20px;
   width: 15px;
   border-radius: 3px;
   background: #fff;
   cursor: pointer;
-  -webkit-appearance: none;
-  appearance: none;
-  margin-top: -8px;
-}
-
-
-.range::-moz-range-thumb {
-  border: 1px solid #222;
-  height: 20px;
-  width: 15px;
-  border-radius: 3px;
-  background: #fff;
-  cursor: pointer;
-  -webkit-appearance: none;
-  appearance: none;
-  margin-top: -8px;
-}
-
-.range::-ms-thumb {
-  border: 1px solid #222;
-  height: 20px;
-  width: 15px;
-  border-radius: 3px;
-  background: #fff;
-  cursor: pointer;
-  -webkit-appearance: none;
   appearance: none;
   margin-top: -8px;
 }
