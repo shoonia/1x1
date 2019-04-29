@@ -22,7 +22,10 @@ function getDataUrl() {
 }
 
 function changeHaxInput() {
-  var color = inputColor.value.replace(/[^0-9a-z]/gi, '');
+  var color = inputColor.value
+    .trim()
+    .replace(/[^0-9a-z]/gi, '')
+    .toLowerCase();
 
   if (colors[color]) {
     color = colors[color];
