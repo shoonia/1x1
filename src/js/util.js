@@ -16,10 +16,10 @@ export function rgbToHex(int) {
 
 export function bindInputs(x, y) {
   x.addEventListener('input', function () {
-    y.value = x.value;
+    y.value = x.value || '0';
   });
 
   y.addEventListener('input', function () {
-    x.value = y.value;
+    x.value = y.value || '0';
   });
 }

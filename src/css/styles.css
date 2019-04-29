@@ -35,6 +35,8 @@
 
 .fields {
   border: none;
+  padding: 0;
+  margin: 0;
 }
 
 .field__box {
@@ -59,6 +61,14 @@
   cursor: copy;
 }
 
+.btn {
+  width: 100%;
+  font-size: 1em;
+  padding: 5px 15px;
+  border-radius: 4px;
+  user-select: none;
+}
+
 .content {
   position: relative;
   margin-left: 305px;
@@ -69,7 +79,6 @@
   height: 200px;
   background-repeat: repeat;
   background-color: transparent;
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNM3eD5HwAFPwJf7c4bugAAAABJRU5ErkJggg==);
   background-position: 0 0, 10px 10px;
   background-size: 21px 21px;
   border: 3px solid #eee;

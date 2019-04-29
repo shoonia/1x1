@@ -1,8 +1,10 @@
 .range {
   appearance: none;
   width: 100%;
-  margin: 4.3px 0;
-  margin-bottom: 1em;
+  height: 20px;
+  margin-top: .2em;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .range:focus {
@@ -13,14 +15,15 @@
   background-color: #ddd;
   height: 5px;
   cursor: pointer;
+  border-radius: 10px;
 }
 
 .range::range-thumb {
-  border: 1px solid #222;
+  box-shadow: 0 0 1px 1px #555;
   height: 20px;
-  width: 15px;
-  border-radius: 3px;
-  background: #fff;
+  width: 20px;
+  border-radius: 100px;
+  background-color: #fff;
   cursor: pointer;
   appearance: none;
   margin-top: -8px;

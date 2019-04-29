@@ -1,6 +1,6 @@
 {
   "name": "1x1",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Online Base64 Encode One Pixel Transparent PNG Generator",
   "main": "index.html",
   "scripts": {
