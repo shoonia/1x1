@@ -14,6 +14,9 @@ var rangeAlpha = getById('rangeAlpha');
 var numberAlpha = getById('numberAlpha');
 var buttonsCreate = document.querySelectorAll('.buttonsCreate');
 
+var NOT_ALPHANUMERIC = /[^0-9a-z]/gi;
+var NOT_HEXADECIMAL = /[^0-9a-f]/gi;
+
 function getDataUrl() {
   var hax = inputColor.value;
   var alpha = rgbToHex(rangeAlpha.value);
@@ -24,35 +27,34 @@ function getDataUrl() {
 function changeHaxInput() {
   var color = inputColor.value
     .trim()
-    .replace(/[^0-9a-z]/gi, '')
-    .toLowerCase();
+    .toLowerCase()
+    .replace(NOT_ALPHANUMERIC, '')
 
   if (colors[color]) {
     color = colors[color];
   }
 
-  if (color.length === 3) {
+  if (NOT_HEXADECIMAL.test(color)) {
+    return;
+  }
+
+  if (3 === color.length) {
     color += color;
+  }
+
+  if (6 !== color.length) {
+    return false;
   }
 
   if (inputColor.value !== color) {
     inputColor.value = color;
   }
 
-  if (color.length !== 6) {
-    return;
-  }
+  rangeRed.value = numberRed.value = parseInt(color.slice(0, 2), 16);
+  rangeGreen.value = numberGreen.value = parseInt(color.slice(2, 4), 16);
+  rangeBlue.value = numberBlue.value = parseInt(color.slice(4), 16);
 
-  var r = parseInt(color.slice(0, 2), 16);
-  var g = parseInt(color.slice(2, 4), 16);
-  var b = parseInt(color.slice(4), 16);
-
-  rangeRed.value = r;
-  numberRed.value = r;
-  rangeGreen.value = g;
-  numberGreen.value = g;
-  rangeBlue.value = b;
-  numberBlue.value = b;
+  return true;
 }
 
 function changeRGBAInput() {
@@ -64,6 +66,14 @@ function changeRGBAInput() {
 }
 
 inputColor.addEventListener('change', changeHaxInput);
+
+inputColor.addEventListener('keypress', function (event) {
+  if (13 === event.keyCode) {
+    if (changeHaxInput()) {
+      getDataUrl();
+    }
+  }
+});
 
 [
   rangeRed,
