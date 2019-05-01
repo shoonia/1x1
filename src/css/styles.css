@@ -10,8 +10,13 @@
   font-family: 'Courier New', Courier, monospace;
 }
 
-::placeholder { /* IE 10+ */
+::placeholder {
   color: #ccc;
+}
+
+::selection {
+  background-color: #176CED;
+  color: #fff;
 }
 
 .wrapper {
@@ -77,9 +82,17 @@
 
 .output_image {
   height: 200px;
+  min-width: 200px;
   background-repeat: repeat;
   background-color: transparent;
   background-position: 0 0, 10px 10px;
   background-size: 21px 21px;
   border: 3px solid #eee;
+}
+
+.link {
+  color: #176CED;
+  font-size: 1.1em;
+  font-weight: bold;
+  background-color: #fff;
 }

@@ -17,14 +17,12 @@ var buttonsCreate = document.querySelectorAll('.buttonsCreate');
 var NOT_ALPHANUMERIC = /[^0-9a-z]/gi;
 var NOT_HEXADECIMAL = /[^0-9a-f]/gi;
 
-function getDataUrl() {
-  var hax = inputColor.value;
-  var alpha = rgbToHex(rangeAlpha.value);
-
-  fetchData(hax + alpha).then(toOutputData);
+function getDataUrl(hex8) {
+  fetchData(hex8).then(toOutputData);
 }
 
-function changeHaxInput() {
+function createHex8() {
+  var alpha = rgbToHex(rangeAlpha.value);
   var color = inputColor.value
     .trim()
     .toLowerCase()
@@ -35,7 +33,7 @@ function changeHaxInput() {
   }
 
   if (NOT_HEXADECIMAL.test(color)) {
-    return;
+    return '';
   }
 
   if (3 === color.length) {
@@ -43,7 +41,7 @@ function changeHaxInput() {
   }
 
   if (6 !== color.length) {
-    return false;
+    return '';
   }
 
   if (inputColor.value !== color) {
@@ -54,7 +52,15 @@ function changeHaxInput() {
   rangeGreen.value = numberGreen.value = parseInt(color.slice(2, 4), 16);
   rangeBlue.value = numberBlue.value = parseInt(color.slice(4), 16);
 
-  return true;
+  return color + alpha;
+}
+
+function createImage() {
+  var hex = createHex8();
+
+  if (hex) {
+    getDataUrl(hex);
+  }
 }
 
 function changeRGBAInput() {
@@ -65,13 +71,11 @@ function changeRGBAInput() {
   inputColor.value = r + g + b;
 }
 
-inputColor.addEventListener('change', changeHaxInput);
+inputColor.addEventListener('change', createHex8);
 
 inputColor.addEventListener('keypress', function (event) {
   if (13 === event.keyCode) {
-    if (changeHaxInput()) {
-      getDataUrl();
-    }
+    createImage();
   }
 });
 
@@ -87,13 +91,11 @@ inputColor.addEventListener('keypress', function (event) {
 });
 
 [].forEach.call(buttonsCreate, function (button) {
-  button.addEventListener('click', getDataUrl);
+  button.addEventListener('click', createImage);
 });
 
 bindInputs(rangeRed, numberRed);
 bindInputs(rangeGreen, numberGreen);
 bindInputs(rangeBlue, numberBlue);
 bindInputs(rangeAlpha, numberAlpha);
-
-changeHaxInput();
-getDataUrl();
+createImage();
