@@ -22,7 +22,6 @@ function getDataUrl(hex8) {
 }
 
 function createHex8() {
-  var alpha = rgbToHex(rangeAlpha.value);
   var color = inputColor.value
     .trim()
     .toLowerCase()
@@ -33,6 +32,7 @@ function createHex8() {
   }
 
   if (NOT_HEXADECIMAL.test(color)) {
+    inputColor.focus();
     return '';
   }
 
@@ -41,6 +41,7 @@ function createHex8() {
   }
 
   if (6 !== color.length) {
+    inputColor.focus();
     return '';
   }
 
@@ -52,7 +53,7 @@ function createHex8() {
   rangeGreen.value = numberGreen.value = parseInt(color.slice(2, 4), 16);
   rangeBlue.value = numberBlue.value = parseInt(color.slice(4), 16);
 
-  return color + alpha;
+  return color + rgbToHex(rangeAlpha.value);
 }
 
 function createImage() {
