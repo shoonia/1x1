@@ -16,7 +16,7 @@ var buttonsCreate = document.querySelectorAll('.buttonsCreate');
 var NOT_ALPHANUMERIC = /[^0-9a-z]/gi;
 var NOT_HEXADECIMAL = /[^0-9a-f]/gi;
 
-function createHex8() {
+function changeColor() {
   var color = inputColor.value
     .trim()
     .toLowerCase()
@@ -48,28 +48,22 @@ function createHex8() {
   rangeGreen.value = numberGreen.value = parseInt(color.slice(2, 4), 16);
   rangeBlue.value = numberBlue.value = parseInt(color.slice(4), 16);
 
-  return color + rgbToHex(rangeAlpha.value);
+  toOutputData(color + rgbToHex(rangeAlpha.value));
 }
 
-function createImage() {
-  var hex8 = createHex8();
-
-  if (hex8) {
-    toOutputData(hex8);
-  }
-}
-
-function changeRGBAInput() {
+function changeRGBA() {
   var r = rgbToHex(rangeRed.value);
   var g = rgbToHex(rangeGreen.value);
   var b = rgbToHex(rangeBlue.value);
   var a = rgbToHex(rangeAlpha.value);
 
   inputColor.value = r + g + b;
+
   toOutputData(r + g + b + a);
 }
 
-var debounceChangeRGBAInput = debounce(changeRGBAInput, 100);
+var debounceChangeRGBA = debounce(changeRGBA, 100);
+var debounceChangeColor = debounce(changeColor, 100);
 
 [
   rangeRed,
@@ -81,17 +75,17 @@ var debounceChangeRGBAInput = debounce(changeRGBAInput, 100);
   rangeAlpha,
   numberAlpha
 ].forEach(function (input) {
-  input.addEventListener('change', debounceChangeRGBAInput);
+  input.addEventListener('change', debounceChangeRGBA);
 });
 
-inputColor.addEventListener('change', createImage);
+inputColor.addEventListener('change', debounceChangeColor);
 
 [].forEach.call(buttonsCreate, function (button) {
-  button.addEventListener('click', createImage);
+  button.addEventListener('click', debounceChangeColor);
 });
 
 bindInputs(rangeRed, numberRed);
 bindInputs(rangeGreen, numberGreen);
 bindInputs(rangeBlue, numberBlue);
 bindInputs(rangeAlpha, numberAlpha);
-createImage();
+changeColor();

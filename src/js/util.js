@@ -32,4 +32,3 @@ export function debounce(fn, ms) {
     timer = setTimeout(fn, ms);
   }
 };
-

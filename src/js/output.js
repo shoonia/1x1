@@ -41,5 +41,5 @@ export default function (hex8) {
   outputDataURL.value = dataURL;
   outputBase64.value = dataURL.slice(22);
   download.href = dataURL;
-  download.download = '1x1#' + dataURL + '.png';
+  download.download = '1x1#' + hex8 + '.png';
 }
