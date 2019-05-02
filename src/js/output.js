@@ -10,12 +10,7 @@ function clipboard(event) {
   document.execCommand('copy');
 }
 
-function setBackground(blob) {
-  var url = URL.createObjectURL(blob);
-  outputImage.style.backgroundImage = 'url(' + url + ')';
-}
-
-function createCanvas(hex8) {
+function createDataURL(color) {
   var canvas = document.createElement('canvas');
   var ctx = canvas.getContext('2d');
 
@@ -23,23 +18,22 @@ function createCanvas(hex8) {
   canvas.height = 1;
 
   ctx.rect(0, 0, 1, 1);
-  ctx.fillStyle = '#' + hex8;
+  ctx.fillStyle = color;
   ctx.fill();
 
-  return canvas;
+  return canvas.toDataURL('image/png');;
 }
 
 outputDataURL.addEventListener('click', clipboard);
 outputBase64.addEventListener('click', clipboard);
 
 export default function (hex8) {
-  var canvas = createCanvas(hex8);
-  var dataURL = canvas.toDataURL('image/png');
-
-  canvas.toBlob(setBackground);
+  var color = '#' + hex8;
+  var dataURL = createDataURL(color);
 
   outputDataURL.value = dataURL;
   outputBase64.value = dataURL.slice(22);
+  outputImage.style.backgroundColor = color;
   download.href = dataURL;
-  download.download = '1x1#' + hex8 + '.png';
+  download.download = '1x1' + color + '.png';
 }
