@@ -1,7 +1,6 @@
 import { getById, rgbToHex, bindInputs } from './util';
 import toOutputData from './output';
 import colors from './colors';
-import { fetchData } from './api';
 
 var inputColor = getById('inputColor');
 var rangeRed = getById('rangeRed');
@@ -16,10 +15,6 @@ var buttonsCreate = document.querySelectorAll('.buttonsCreate');
 
 var NOT_ALPHANUMERIC = /[^0-9a-z]/gi;
 var NOT_HEXADECIMAL = /[^0-9a-f]/gi;
-
-function getDataUrl(hex8) {
-  fetchData(hex8).then(toOutputData);
-}
 
 function createHex8() {
   var color = inputColor.value
@@ -57,10 +52,10 @@ function createHex8() {
 }
 
 function createImage() {
-  var hex = createHex8();
+  var hex8 = createHex8();
 
-  if (hex) {
-    getDataUrl(hex);
+  if (hex8) {
+    toOutputData(hex8);
   }
 }
 
@@ -72,7 +67,7 @@ function changeRGBAInput() {
   inputColor.value = r + g + b;
 }
 
-inputColor.addEventListener('change', createHex8);
+inputColor.addEventListener('change', createImage);
 
 inputColor.addEventListener('keypress', function (event) {
   if (13 === event.keyCode) {

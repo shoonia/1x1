@@ -3,7 +3,6 @@ import { getById } from './util';
 var outputImage = getById('outputImage');
 var outputDataURL = getById('outputDataURL');
 var outputBase64 = getById('outputBase64');
-var outputBuffer = getById('outputBuffer');
 var download = getById('download');
 
 function clipboard(event) {
@@ -11,28 +10,36 @@ function clipboard(event) {
   document.execCommand('copy');
 }
 
-function createBlobURL(array) {
-  var byteArray = new Uint8Array(array);
-  var blob = new Blob([byteArray], { type: 'image/png' });
+function setBackground(blob) {
+  var url = URL.createObjectURL(blob);
+  outputImage.style.backgroundImage = 'url(' + url + ')';
+}
 
-  return URL.createObjectURL(blob);
+function createCanvas(hex8) {
+  var canvas = document.createElement('canvas');
+  var ctx = canvas.getContext('2d');
+
+  canvas.width = 1;
+  canvas.height = 1;
+
+  ctx.rect(0, 0, 1, 1);
+  ctx.fillStyle = '#' + hex8;
+  ctx.fill();
+
+  return canvas;
 }
 
 outputDataURL.addEventListener('click', clipboard);
 outputBase64.addEventListener('click', clipboard);
-outputBuffer.addEventListener('click', clipboard);
 
-export default function (data) {
-  if (data.error) {
-    return;
-  }
+export default function (hex8) {
+  var canvas = createCanvas(hex8);
+  var dataURL = canvas.toDataURL('image/png');
 
-  var dataURL = 'data:image/png;base64,' + data.title;
+  canvas.toBlob(setBackground);
 
-  outputImage.style.backgroundImage = 'url(' + createBlobURL(data.buffer) + ')';
   outputDataURL.value = dataURL;
-  outputBase64.value = data.title;
-  outputBuffer.value = JSON.stringify(data.buffer);
+  outputBase64.value = dataURL.slice(22);
   download.href = dataURL;
-  download.download = '1x1#' + data._id + '.png';
+  download.download = '1x1#' + dataURL + '.png';
 }
