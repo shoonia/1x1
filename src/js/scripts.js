@@ -1,4 +1,4 @@
-import { getById, rgbToHex, bindInputs } from './util';
+import { getById, rgbToHex, bindInputs, debounce } from './util';
 import toOutputData from './output';
 import colors from './colors';
 
@@ -63,17 +63,13 @@ function changeRGBAInput() {
   var r = rgbToHex(rangeRed.value);
   var g = rgbToHex(rangeGreen.value);
   var b = rgbToHex(rangeBlue.value);
+  var a = rgbToHex(rangeAlpha.value);
 
   inputColor.value = r + g + b;
+  toOutputData(r + g + b + a);
 }
 
-inputColor.addEventListener('change', createImage);
-
-inputColor.addEventListener('keypress', function (event) {
-  if (13 === event.keyCode) {
-    createImage();
-  }
-});
+var debounceChangeRGBAInput = debounce(changeRGBAInput, 100);
 
 [
   rangeRed,
@@ -82,9 +78,13 @@ inputColor.addEventListener('keypress', function (event) {
   numberGreen,
   rangeBlue,
   numberBlue,
+  rangeAlpha,
+  numberAlpha
 ].forEach(function (input) {
-  input.addEventListener('change', changeRGBAInput);
+  input.addEventListener('change', debounceChangeRGBAInput);
 });
+
+inputColor.addEventListener('change', createImage);
 
 [].forEach.call(buttonsCreate, function (button) {
   button.addEventListener('click', createImage);

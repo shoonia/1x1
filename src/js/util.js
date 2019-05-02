@@ -23,3 +23,13 @@ export function bindInputs(x, y) {
     x.value = y.value || '0';
   });
 }
+
+export function debounce(fn, ms) {
+  var timer;
+
+  return function () {
+    clearTimeout(timer);
+    timer = setTimeout(fn, ms);
+  }
+};
+
