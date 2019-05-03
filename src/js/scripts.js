@@ -11,7 +11,7 @@ var rangeBlue = getById('rangeBlue');
 var numberBlue = getById('numberBlue');
 var rangeAlpha = getById('rangeAlpha');
 var numberAlpha = getById('numberAlpha');
-var buttonsCreate = document.querySelectorAll('.buttonsCreate');
+var buttonCreate = getById('buttonCreate');
 
 var NOT_ALPHANUMERIC = /[^0-9a-z]/gi;
 var NOT_HEXADECIMAL = /[^0-9a-f]/gi;
@@ -27,8 +27,7 @@ function changeColor() {
   }
 
   if (NOT_HEXADECIMAL.test(color)) {
-    inputColor.focus();
-    return '';
+    return inputColor.focus();
   }
 
   if (3 === color.length) {
@@ -36,8 +35,7 @@ function changeColor() {
   }
 
   if (6 !== color.length) {
-    inputColor.focus();
-    return '';
+    return inputColor.focus();
   }
 
   if (inputColor.value !== color) {
@@ -79,10 +77,7 @@ var debounceChangeColor = debounce(changeColor, 100);
 });
 
 inputColor.addEventListener('change', debounceChangeColor);
-
-[].forEach.call(buttonsCreate, function (button) {
-  button.addEventListener('click', debounceChangeColor);
-});
+buttonCreate.addEventListener('click', debounceChangeColor);
 
 bindInputs(rangeRed, numberRed);
 bindInputs(rangeGreen, numberGreen);
