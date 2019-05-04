@@ -1,5 +1,5 @@
-export function getById(id) {
-  return document.getElementById(id);
+export function id($) {
+  return document.getElementById($);
 }
 
 export function rgbToHex(int) {

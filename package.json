@@ -1,8 +1,8 @@
 {
   "name": "1x1",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Online Base64 Encode One Pixel Transparent PNG Generator",
-  "main": "index.html",
+  "main": "src/index.html",
   "scripts": {
     "start": "parcel src/index.html -p 3000",
     "build": "parcel build src/index.html --public-url ./ --no-source-maps",
@@ -15,6 +15,11 @@
     "parcel-bundler": "^1.12.3",
     "postcss-input-range": "^4.0.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shoonia/1x1"
+  },
+  "homepage": "https://shoonia.github.io/1x1/",
   "author": "Alexander Zaytsev zaytsev126@gmail.com",
   "license": "MIT"
 }

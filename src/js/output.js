@@ -1,9 +1,9 @@
-import { getById } from './util';
+import { id } from './util';
 
-var outputImage = getById('outputImage');
-var outputDataURL = getById('outputDataURL');
-var outputBase64 = getById('outputBase64');
-var download = getById('download');
+var outputImage = id('outputImage');
+var outputDataURL = id('outputDataURL');
+var outputBase64 = id('outputBase64');
+var download = id('download');
 
 function clipboard(event) {
   event.target.select();

@@ -1,17 +1,17 @@
-import { getById, rgbToHex, bindInputs, debounce } from './util';
+import { id, rgbToHex, bindInputs, debounce } from './util';
 import toOutputData from './output';
 import colors from './colors';
 
-var inputColor = getById('inputColor');
-var rangeRed = getById('rangeRed');
-var numberRed = getById('numberRed');
-var rangeGreen = getById('rangeGreen');
-var numberGreen = getById('numberGreen');
-var rangeBlue = getById('rangeBlue');
-var numberBlue = getById('numberBlue');
-var rangeAlpha = getById('rangeAlpha');
-var numberAlpha = getById('numberAlpha');
-var buttonCreate = getById('buttonCreate');
+var inputColor = id('inputColor');
+var rangeRed = id('rangeRed');
+var numberRed = id('numberRed');
+var rangeGreen = id('rangeGreen');
+var numberGreen = id('numberGreen');
+var rangeBlue = id('rangeBlue');
+var numberBlue = id('numberBlue');
+var rangeAlpha = id('rangeAlpha');
+var numberAlpha = id('numberAlpha');
+var buttonCreate = id('buttonCreate');
 
 var NOT_ALPHANUMERIC = /[^0-9a-z]/gi;
 var NOT_HEXADECIMAL = /[^0-9a-f]/gi;
