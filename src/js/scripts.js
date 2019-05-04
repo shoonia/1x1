@@ -1,6 +1,7 @@
 import { id, rgbToHex, bindInputs, debounce } from './util';
 import toOutputData from './output';
 import colors from './colors';
+import ga from './ga';
 
 var inputColor = id('inputColor');
 var rangeRed = id('rangeRed');
@@ -84,3 +85,4 @@ bindInputs(rangeGreen, numberGreen);
 bindInputs(rangeBlue, numberBlue);
 bindInputs(rangeAlpha, numberAlpha);
 changeColor();
+ga();
