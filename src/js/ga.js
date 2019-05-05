@@ -15,4 +15,3 @@ function getCID() {
 export default function () {
   (new Image()).src = 'https://www.google-analytics.com/collect?v=1&tid=UA-128241641-2&aip=1&t=event&ea=open&dp=&dt=&cid=' + getCID();
 }
-

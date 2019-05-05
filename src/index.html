@@ -27,10 +27,10 @@
   <aside class="sitebar">
     <fieldset class="fields">
       <legend>
-        <h2 class="fields__title">HEX</h2>
+        <span class="fields__title">HEX</span>
       </legend>
       <label class="field__box">
-        <div>Color:</div>
+        <span>Color:</span>
         <input type="text" id="inputColor" class="field" placeholder="color" value="65B049">
       </label>
       <button type="button" id="buttonCreate" class="btn">
@@ -39,32 +39,32 @@
     </fieldset>
     <fieldset class="fields">
       <legend>
-        <h2 class="fields__title">RGBA</h2>
+        <span class="fields__title">RGBA</span>
       </legend>
       <label class="field__box">
-        <div>Red:</div>
-        <input type="range" id="rangeRed" class="range" placeholder="red" value="255" max="255" min="0" step="1">
-        <input type="number" id="numberRed" class="field field__number" placeholder="red" value="255" max="255" min="0"
-          step="1">
+        <span>Red:</span>
+        <input type="range" id="rangeRed" class="range" value="255" max="255" min="0" step="1">
       </label>
+      <input type="number" id="numberRed" class="field field__number" placeholder="red" value="255" max="255" min="0"
+        step="1">
       <label class="field__box">
-        <div>Green:</div>
-        <input type="range" id="rangeGreen" class="range" placeholder="green" value="255" max="255" min="0" step="1">
-        <input type="number" id="numberGreen" class="field field__number" placeholder="green" value="255" max="255"
-          min="0" step="1">
+        <span>Green:</span>
+        <input type="range" id="rangeGreen" class="range" value="255" max="255" min="0" step="1">
       </label>
+      <input type="number" id="numberGreen" class="field field__number" placeholder="green" value="255" max="255"
+        min="0" step="1">
       <label class="field__box">
-        <div>Blue:</div>
-        <input type="range" id="rangeBlue" class="range" placeholder="blue" value="255" max="255" min="0" step="1">
-        <input type="number" id="numberBlue" class="field field__number" placeholder="blue" value="255" max="255"
-          min="0" step="1">
+        <span>Blue:</span>
+        <input type="range" id="rangeBlue" class="range" value="255" max="255" min="0" step="1">
       </label>
+      <input type="number" id="numberBlue" class="field field__number" placeholder="blue" value="255" max="255" min="0"
+        step="1">
       <label class="field__box">
-        <div>Alpha (Opacity):</div>
-        <input type="range" id="rangeAlpha" class="range" placeholder="alpha" value="255" max="255" min="0" step="1">
-        <input type="number" id="numberAlpha" class="field field__number" placeholder="alpha" value="255" max="255"
-          min="0" step="1">
+        <span>Alpha (Opacity):</span>
+        <input type="range" id="rangeAlpha" class="range" value="255" max="255" min="0" step="1">
       </label>
+      <input type="number" id="numberAlpha" class="field field__number" placeholder="alpha" value="255" max="255"
+        min="0" step="1">
     </fieldset>
   </aside>
 
@@ -75,38 +75,36 @@
     <div id="outputImage" class="output__image"></div>
     <fieldset class="fields">
       <legend>
-        <h2 class="fields__title">Output</h2>
+        <span class="fields__title">Output</span>
       </legend>
       <label class="field__box">
-        <div>Data: URL</div>
+        <span>Data: URL</span>
         <input type="text" id="outputDataURL" class="field field__output" title="Click to Copy" readonly
           placeholder="data:image/png;base64,">
       </label>
       <label class="field__box">
-        <div>CSS:</div>
+        <span>CSS:</span>
         <input type="text" id="outputCSS" class="field field__output" title="Click to Copy" readonly
           placeholder="background-image: url();">
       </label>
       <label class="field__box">
-        <div>Base64:<div>
-            <input type="text" id="outputBase64" class="field field__output" title="Click to Copy" readonly
-              placeholder="">
+        <span>Base64:</span>
+        <input type="text" id="outputBase64" class="field field__output" title="Click to Copy" readonly placeholder="">
       </label>
       <label class="field__box">
-        <div>Bytes:<div>
-            <input type="text" id="outputBytes" class="field field__output" title="Click to Copy" readonly
-              placeholder="">
+        <span>Bytes:</span>
+        <input type="text" id="outputBytes" class="field field__output" title="Click to Copy" readonly placeholder="">
       </label>
       <div class="field__box">
-        <a id="download" class="link link__output" rel="noopener noreferrer" title="Download Image">
+        <a href="" id="download" class="link link__output" rel="noopener noreferrer" title="Download Image">
           Download PNG
         </a>
       </div>
     </fieldset>
   </main>
 
-  <footer class="footer" role="contentinfo">
-    <div class="content">
+  <footer class="footer">
+    <div class="content" role="contentinfo">
       <a href="https://twitter.com/_shoonia" class="link footer__link" aria-label="follow me on twitter" rel="me">
         twitter
       </a>
