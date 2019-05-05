@@ -3,6 +3,8 @@ import { id } from './util';
 var outputImage = id('outputImage');
 var outputDataURL = id('outputDataURL');
 var outputBase64 = id('outputBase64');
+var outputCSS = id('outputCSS');
+var outputBytes = id('outputBytes');
 var download = id('download');
 
 function clipboard(event) {
@@ -10,7 +12,7 @@ function clipboard(event) {
   document.execCommand('copy');
 }
 
-function createDataURL(color) {
+function createDataURL(color, cb) {
   var canvas = document.createElement('canvas');
   var ctx = canvas.getContext('2d');
 
@@ -21,19 +23,38 @@ function createDataURL(color) {
   ctx.fillStyle = color;
   ctx.fill();
 
+  canvas.toBlob(cb);
+
   return canvas.toDataURL('image/png');;
 }
 
-outputDataURL.addEventListener('click', clipboard);
-outputBase64.addEventListener('click', clipboard);
+[
+  outputDataURL,
+  outputCSS,
+  outputBase64,
+  outputBytes
+].forEach(function (input) {
+  input.addEventListener('click', clipboard);
+});
 
 export default function (hex8) {
   var color = '#' + hex8;
-  var dataURL = createDataURL(color);
 
-  outputDataURL.value = dataURL;
-  outputBase64.value = dataURL.slice(22);
+  var dataURL = createDataURL(color, function (blob) {
+    var reader = new FileReader();
+
+    reader.onload = function () {
+      var bytes = new Uint8Array(reader.result);
+      outputBytes.value = bytes.toString();
+    };
+
+    reader.readAsArrayBuffer(blob);
+  });
+
   outputImage.style.backgroundColor = color;
+  outputDataURL.value = dataURL;
+  outputCSS.value = 'background-image: url(' + dataURL + ');';
+  outputBase64.value = dataURL.slice(22);
   download.href = dataURL;
   download.download = '1x1' + color + '.png';
 }

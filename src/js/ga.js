@@ -1,12 +1,12 @@
 function getCID() {
-  var cid = sessionStorage.getItem('cid');
+  var cid = document.cookie.replace(/(?:(?:^|.*;\s*)cid\s*\=\s*([^;]*).*$)|^.*$/, '$1');
 
-  if (null == cid) {
+  if (!cid) {
     cid = 'xxxxxxxxxxxxxxxx'.replace(/x/g, function () {
-      return (Math.random() * 16 | 0).toString(16);
+      return (Math.random() * 36 | 0).toString(36);
     });
 
-    sessionStorage.setItem('cid', cid);
+    document.cookie = 'cid=' + cid + ';domain=shoonia.github.io;max-age=' + 60 * 60 * 24 * 365;
   }
 
   return cid;
