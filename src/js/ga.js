@@ -2,9 +2,11 @@ function getCID() {
   var cid = document.cookie.replace(/(?:(?:^|.*;\s*)cid\s*\=\s*([^;]*).*$)|^.*$/, '$1');
 
   if (!cid) {
-    cid = 'xxxxxxxxxxxxxxxx'.replace(/x/g, function () {
-      return (Math.random() * 36 | 0).toString(36);
-    });
+    var i = 16;
+
+    while (0 < i--) {
+      cid += (36 * Math.random() | 0).toString(36);
+    }
 
     document.cookie = 'cid=' + cid + ';domain=shoonia.github.io;max-age=' + 60 * 60 * 24 * 365;
   }
