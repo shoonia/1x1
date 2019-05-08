@@ -52,6 +52,7 @@ export default function (hex8) {
   });
 
   outputImage.style.backgroundColor = color;
+  outputImage.title = '8 Digit Hex: ' + color;
   outputDataURL.value = dataURL;
   outputCSS.value = 'background-image: url(' + dataURL + ');';
   outputBase64.value = dataURL.slice(22);

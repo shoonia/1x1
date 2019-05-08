@@ -43,9 +43,11 @@ function changeColor() {
     inputColor.value = color;
   }
 
-  rangeRed.value = numberRed.value = parseInt(color.slice(0, 2), 16);
-  rangeGreen.value = numberGreen.value = parseInt(color.slice(2, 4), 16);
-  rangeBlue.value = numberBlue.value = parseInt(color.slice(4), 16);
+  var rgb = parseInt(color, 16);
+
+  rangeRed.value = numberRed.value = rgb >> 16 & 0xff;
+  rangeGreen.value = numberGreen.value = rgb >> 8 & 0xff;
+  rangeBlue.value = numberBlue.value = rgb & 0xff;
 
   toOutputData(color + rgbToHex(rangeAlpha.value));
 }
