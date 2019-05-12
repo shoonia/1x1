@@ -12,10 +12,19 @@ var rangeBlue = id('rangeBlue');
 var numberBlue = id('numberBlue');
 var rangeAlpha = id('rangeAlpha');
 var numberAlpha = id('numberAlpha');
+var picker = id('picker');
 var buttonCreate = id('buttonCreate');
 
 var NOT_ALPHANUMERIC = /[^0-9a-z]/gi;
 var NOT_HEXADECIMAL = /[^0-9a-f]/gi;
+
+function setRGB(color) {
+  var int = parseInt(color, 16);
+
+  rangeRed.value = numberRed.value = int >> 16 & 255;
+  rangeGreen.value = numberGreen.value = int >> 8 & 255;
+  rangeBlue.value = numberBlue.value = int & 255;
+}
 
 function changeColor() {
   var color = inputColor.value
@@ -43,12 +52,9 @@ function changeColor() {
     inputColor.value = color;
   }
 
-  var rgb = parseInt(color, 16);
+  picker.value = '#' + color;
 
-  rangeRed.value = numberRed.value = rgb >> 16 & 0xff;
-  rangeGreen.value = numberGreen.value = rgb >> 8 & 0xff;
-  rangeBlue.value = numberBlue.value = rgb & 0xff;
-
+  setRGB(color);
   toOutputData(color + rgbToHex(rangeAlpha.value));
 }
 
@@ -56,11 +62,17 @@ function changeRGBA() {
   var r = rgbToHex(rangeRed.value);
   var g = rgbToHex(rangeGreen.value);
   var b = rgbToHex(rangeBlue.value);
-  var a = rgbToHex(rangeAlpha.value);
+  var hex = r + g + b;
 
-  inputColor.value = r + g + b;
+  inputColor.value = hex;
+  picker.value = '#' + hex;
 
-  toOutputData(r + g + b + a);
+  toOutputData(hex + rgbToHex(rangeAlpha.value));
+}
+
+function changePicker() {
+  inputColor.value = picker.value.slice(1);
+  changeColor();
 }
 
 var debounceChangeRGBA = debounce(changeRGBA, 100);
@@ -81,6 +93,7 @@ var debounceChangeColor = debounce(changeColor, 100);
 
 inputColor.addEventListener('change', debounceChangeColor);
 buttonCreate.addEventListener('click', debounceChangeColor);
+picker.addEventListener('change', changePicker);
 
 bindInputs(rangeRed, numberRed);
 bindInputs(rangeGreen, numberGreen);

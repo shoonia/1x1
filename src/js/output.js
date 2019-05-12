@@ -6,6 +6,7 @@ var outputBase64 = id('outputBase64');
 var outputCSS = id('outputCSS');
 var outputBytes = id('outputBytes');
 var download = id('download');
+var reader = new FileReader();
 
 function clipboard(event) {
   event.target.select();
@@ -37,17 +38,15 @@ function createDataURL(color, cb) {
   input.addEventListener('click', clipboard);
 });
 
+reader.addEventListener('load', function () {
+  var bytes = new Uint8Array(reader.result);
+  outputBytes.value = bytes.toString();
+});
+
 export default function (hex8) {
   var color = '#' + hex8;
 
   var dataURL = createDataURL(color, function (blob) {
-    var reader = new FileReader();
-
-    reader.onload = function () {
-      var bytes = new Uint8Array(reader.result);
-      outputBytes.value = bytes.toString();
-    };
-
     reader.readAsArrayBuffer(blob);
   });
 

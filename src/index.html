@@ -24,50 +24,6 @@
 
 <body class="wrapper">
 
-  <aside class="sitebar">
-    <fieldset class="fields">
-      <legend>
-        <span class="fields__title">HEX</span>
-      </legend>
-      <label class="field__box">
-        <span>Color:</span>
-        <input type="text" id="inputColor" class="field" placeholder="color" value="65B049">
-      </label>
-      <button type="button" id="buttonCreate" class="btn">
-        Create
-      </button>
-    </fieldset>
-    <fieldset class="fields">
-      <legend>
-        <span class="fields__title">RGBA</span>
-      </legend>
-      <label class="field__box">
-        <span>Red:</span>
-        <input type="range" id="rangeRed" class="range" value="255" max="255" min="0" step="1">
-      </label>
-      <input type="number" id="numberRed" class="field field__number" placeholder="red" value="255" max="255" min="0"
-        step="1">
-      <label class="field__box">
-        <span>Green:</span>
-        <input type="range" id="rangeGreen" class="range" value="255" max="255" min="0" step="1">
-      </label>
-      <input type="number" id="numberGreen" class="field field__number" placeholder="green" value="255" max="255"
-        min="0" step="1">
-      <label class="field__box">
-        <span>Blue:</span>
-        <input type="range" id="rangeBlue" class="range" value="255" max="255" min="0" step="1">
-      </label>
-      <input type="number" id="numberBlue" class="field field__number" placeholder="blue" value="255" max="255" min="0"
-        step="1">
-      <label class="field__box">
-        <span>Alpha (Opacity):</span>
-        <input type="range" id="rangeAlpha" class="range" value="255" max="255" min="0" step="1">
-      </label>
-      <input type="number" id="numberAlpha" class="field field__number" placeholder="alpha" value="255" max="255"
-        min="0" step="1">
-    </fieldset>
-  </aside>
-
   <main class="content">
     <h1 class="content__title">
       Transparent PNG one pixel base64 encoded generator
@@ -75,7 +31,7 @@
     <div id="outputImage" class="output__image"></div>
     <fieldset class="fields">
       <legend>
-        <span class="fields__title">
+        <span class="title">
           Output
         </span>
       </legend>
@@ -112,6 +68,58 @@
       </div>
     </fieldset>
   </main>
+
+  <aside class="sitebar">
+    <details open>
+      <summary class="title">HEX</summary>
+      <fieldset class="fields">
+        <label class="field__box">
+          <span>Color:</span>
+          <input type="text" id="inputColor" class="field" placeholder="color" value="65B049">
+        </label>
+        <button type="button" id="buttonCreate" class="btn">
+          Create
+        </button>
+      </fieldset>
+    </details>
+    <details open>
+      <summary class="title">RGBA</summary>
+      <fieldset class="fields">
+        <label class="field__box">
+          <span>Red:</span>
+          <input type="range" id="rangeRed" class="range" value="255" max="255" min="0" step="1">
+        </label>
+        <input type="number" id="numberRed" class="field field__number" placeholder="red" value="255" max="255" min="0"
+          step="1">
+        <label class="field__box">
+          <span>Green:</span>
+          <input type="range" id="rangeGreen" class="range" value="255" max="255" min="0" step="1">
+        </label>
+        <input type="number" id="numberGreen" class="field field__number" placeholder="green" value="255" max="255"
+          min="0" step="1">
+        <label class="field__box">
+          <span>Blue:</span>
+          <input type="range" id="rangeBlue" class="range" value="255" max="255" min="0" step="1">
+        </label>
+        <input type="number" id="numberBlue" class="field field__number" placeholder="blue" value="255" max="255"
+          min="0" step="1">
+        <label class="field__box">
+          <span>Alpha (Opacity):</span>
+          <input type="range" id="rangeAlpha" class="range" value="255" max="255" min="0" step="1">
+        </label>
+        <input type="number" id="numberAlpha" class="field field__number" placeholder="alpha" value="255" max="255"
+          min="0" step="1">
+      </fieldset>
+    </details>
+    <details>
+      <summary class="title">
+        Picker
+      </summary>
+      <fieldset class="fields">
+        <input type="color" id="picker" class="picker">
+      </fieldset>
+    </details>
+  </aside>
 
   <footer class="footer">
     <div class="content" role="contentinfo">
