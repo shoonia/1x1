@@ -3,13 +3,13 @@ export function id($) {
 }
 
 export function rgbToHex(int) {
-  var i = Math.abs(~~int);
+  const i = Math.abs(~~int);
 
   if (255 < i) {
     return 'ff';
   }
 
-  var hex = i.toString(16);
+  const hex = i.toString(16);
 
   return 2 > hex.length ? ('0' + hex) : hex;
 }
@@ -25,7 +25,7 @@ export function bindInputs(x, y) {
 }
 
 export function debounce(fn, ms) {
-  var timer;
+  let timer;
 
   return function () {
     clearTimeout(timer);
@@ -34,13 +34,13 @@ export function debounce(fn, ms) {
 };
 
 export function sendBeacon(url) {
-	var isSend = false;
+  let isSend = false;
 
-	try {
-		isSend = navigator.sendBeacon(url);
-	} catch (error) {}
+  try {
+    isSend = navigator.sendBeacon(url);
+  } catch (error) { }
 
-	if (!isSend) {
-		(new Image()).src = url;
-	}
+  if (!isSend) {
+    (new Image()).src = url;
+  }
 }
