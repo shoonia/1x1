@@ -15,11 +15,11 @@ export function rgbToHex(int) {
 }
 
 export function bindInputs(x, y) {
-  x.addEventListener('input', function () {
+  x.addEventListener('input', () => {
     y.value = x.value || '0';
   });
 
-  y.addEventListener('input', function () {
+  y.addEventListener('input', () => {
     x.value = y.value || '0';
   });
 }
@@ -27,7 +27,7 @@ export function bindInputs(x, y) {
 export function debounce(fn, ms) {
   let timer;
 
-  return function () {
+  return () => {
     clearTimeout(timer);
     timer = setTimeout(fn, ms);
   }

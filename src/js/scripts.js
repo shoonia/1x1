@@ -87,7 +87,7 @@ const debounceChangeColor = debounce(changeColor, 100);
   numberBlue,
   rangeAlpha,
   numberAlpha
-].forEach(function (input) {
+].forEach((input) => {
   input.addEventListener('change', debounceChangeRGBA);
 });
 

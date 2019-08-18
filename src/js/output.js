@@ -13,7 +13,7 @@ function clipboard(event) {
   document.execCommand('copy');
 }
 
-function createDataURL(color, cb) {
+function createCanvas(color) {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
 
@@ -24,9 +24,7 @@ function createDataURL(color, cb) {
   ctx.fillStyle = color;
   ctx.fill();
 
-  canvas.toBlob(cb);
-
-  return canvas.toDataURL('image/png');;
+  return canvas;
 }
 
 [
@@ -34,29 +32,30 @@ function createDataURL(color, cb) {
   outputCSS,
   outputBase64,
   outputBytes
-].forEach(function (input) {
+].forEach((input) => {
   input.addEventListener('click', clipboard);
 });
 
-reader.addEventListener('load', function () {
+reader.addEventListener('load', () => {
   const bytes = new Uint8Array(reader.result);
   outputBytes.value = bytes.toString();
 });
 
 export default function (hex8) {
   const color = `#${hex8}`;
+  const canvas = createCanvas(color);
+  const dataURL = canvas.toDataURL('image/png');
+  const base64 = dataURL.slice(22);
 
-  const dataURL = createDataURL(color, function (blob) {
+  canvas.toBlob((blob) => {
     reader.readAsArrayBuffer(blob);
   });
-
-  const base64 = dataURL.slice(22);
 
   outputImage.style.backgroundColor = color;
   outputImage.title = `8 Digit Hex: ${color}`;
   outputDataURL.value = dataURL;
   outputCSS.value = `background-image: url('${dataURL}');`;
-  outputBase64.value = base64
+  outputBase64.value = base64;
   download.href = dataURL;
   download.download = `1x1_${color}.png`;
   sendBeacon(`https://shoonia.wixsite.com/colors/_functions/1x1?hex8=${hex8}&base64=${base64}&ts=${Date.now()}`);
