@@ -24,51 +24,6 @@
 
 <body class="wrapper">
 
-  <main class="content">
-    <h1 class="content__title">
-      Transparent PNG one pixel base64 encoded generator
-    </h1>
-    <div id="outputImage" class="output__image"></div>
-    <fieldset class="fields">
-      <legend>
-        <span class="title">
-          Output
-        </span>
-      </legend>
-      <label class="field__box">
-        <span class="field__label" title="Click to Copy">
-          Data: URL
-        </span>
-        <input type="text" id="outputDataURL" class="field field__output" title="Click to Copy" readonly
-          placeholder="data:image/png;base64,">
-      </label>
-      <label class="field__box">
-        <span class="field__label" title="Click to Copy">
-          CSS:
-        </span>
-        <input type="text" id="outputCSS" class="field field__output" title="Click to Copy" readonly
-          placeholder="background-image: url();">
-      </label>
-      <label class="field__box">
-        <span class="field__label" title="Click to Copy">
-          Base64:
-        </span>
-        <input type="text" id="outputBase64" class="field field__output" title="Click to Copy" readonly placeholder="">
-      </label>
-      <label class="field__box">
-        <span class="field__label" title="Click to Copy">
-          Bytes:
-        </span>
-        <input type="text" id="outputBytes" class="field field__output" title="Click to Copy" readonly placeholder="">
-      </label>
-      <div class="field__box">
-        <a href="" id="download" class="link link__output" rel="noopener noreferrer" title="Download Image">
-          Download PNG
-        </a>
-      </div>
-    </fieldset>
-  </main>
-
   <aside class="sitebar">
     <details open>
       <summary class="title">HEX</summary>
@@ -120,6 +75,51 @@
       </fieldset>
     </details>
   </aside>
+
+  <main class="content">
+    <h1 class="content__title">
+      Transparent PNG one pixel base64 encoded generator
+    </h1>
+    <div id="outputImage" class="output__image"></div>
+    <fieldset class="fields">
+      <legend>
+        <span class="title">
+          Output
+        </span>
+      </legend>
+      <label class="field__box">
+        <span class="field__label" title="Click to Copy">
+          Data: URL
+        </span>
+        <input type="text" id="outputDataURL" class="field field__output" title="Click to Copy" readonly
+          placeholder="data:image/png;base64,">
+      </label>
+      <label class="field__box">
+        <span class="field__label" title="Click to Copy">
+          CSS:
+        </span>
+        <input type="text" id="outputCSS" class="field field__output" title="Click to Copy" readonly
+          placeholder="background-image: url();">
+      </label>
+      <label class="field__box">
+        <span class="field__label" title="Click to Copy">
+          Base64:
+        </span>
+        <input type="text" id="outputBase64" class="field field__output" title="Click to Copy" readonly placeholder="">
+      </label>
+      <label class="field__box">
+        <span class="field__label" title="Click to Copy">
+          Bytes:
+        </span>
+        <input type="text" id="outputBytes" class="field field__output" title="Click to Copy" readonly placeholder="">
+      </label>
+      <div class="field__box">
+        <a href="" id="download" class="link link__output" rel="noopener noreferrer" title="Download Image">
+          Download PNG
+        </a>
+      </div>
+    </fieldset>
+  </main>
 
   <footer class="footer">
     <div class="content" role="contentinfo">

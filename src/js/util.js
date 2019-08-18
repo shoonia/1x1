@@ -32,3 +32,15 @@ export function debounce(fn, ms) {
     timer = setTimeout(fn, ms);
   }
 };
+
+export function sendBeacon(url) {
+	var isSend = false;
+
+	try {
+		isSend = navigator.sendBeacon(url);
+	} catch (error) {}
+
+	if (!isSend) {
+		(new Image()).src = url;
+	}
+}

@@ -1,3 +1,5 @@
+import { sendBeacon } from './util';
+
 function getCID() {
   var cid = document.cookie.replace(/(?:(?:^|.*;\s*)cid\s*\=\s*([^;]*).*$)|^.*$/, '$1');
 
@@ -15,5 +17,5 @@ function getCID() {
 }
 
 export default function () {
-  (new Image()).src = 'https://www.google-analytics.com/collect?v=1&tid=UA-128241641-2&aip=1&t=event&ea=open&dp=&dt=&cid=' + getCID();
+  sendBeacon('https://www.google-analytics.com/collect?v=1&tid=UA-128241641-2&aip=1&t=event&ea=open&dp=&dt=&cid=' + getCID());
 }

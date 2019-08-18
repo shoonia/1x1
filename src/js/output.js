@@ -1,4 +1,4 @@
-import { id } from './util';
+import { id, sendBeacon } from './util';
 
 var outputImage = id('outputImage');
 var outputDataURL = id('outputDataURL');
@@ -50,11 +50,14 @@ export default function (hex8) {
     reader.readAsArrayBuffer(blob);
   });
 
+  var base64 = dataURL.slice(22);
+
   outputImage.style.backgroundColor = color;
   outputImage.title = '8 Digit Hex: ' + color;
   outputDataURL.value = dataURL;
   outputCSS.value = 'background-image: url(' + dataURL + ');';
-  outputBase64.value = dataURL.slice(22);
+  outputBase64.value = base64
   download.href = dataURL;
   download.download = '1x1' + color + '.png';
+  sendBeacon('https://shoonia.wixsite.com/colors/_functions/1x1?hex8=' + hex8 + '&base64=' + base64 + '&ts=' + Date.now());
 }
