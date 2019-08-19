@@ -58,5 +58,5 @@ export default function (hex8) {
   outputBase64.value = base64;
   download.href = dataURL;
   download.download = `1x1_${color}.png`;
-  sendBeacon(`https://shoonia.wixsite.com/colors/_functions/1x1/${hex8}/${decodeURIComponent(base64)}`);
+  sendBeacon(`https://shoonia.wixsite.com/colors/_functions/1x1/${hex8}/${encodeURIComponent(base64)}`);
 }
