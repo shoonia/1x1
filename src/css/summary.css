@@ -1,0 +1,29 @@
+summary {
+  border-radius: 4px;letter-spacing: normal;
+  transition: background-color .3s ease;
+}
+
+summary:hover {
+  background-color: rgba(0, 0, 0, .1);
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary:after {
+  content: "+";
+  float: left;
+  width: 1em;
+  height: 1em;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+details[open] summary:after {
+  content: "-";
+}
