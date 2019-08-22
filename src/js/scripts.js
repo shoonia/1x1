@@ -1,6 +1,6 @@
 import { id, rgbToHex, bindInputs, debounce } from './util';
 import toOutputData from './output';
-import colors from './colors';
+import { colors, createOptionList } from './colors';
 import ga from './ga';
 
 const inputColor = id('inputColor');
@@ -14,6 +14,7 @@ const rangeAlpha = id('rangeAlpha');
 const numberAlpha = id('numberAlpha');
 const picker = id('picker');
 const buttonCreate = id('buttonCreate');
+const colorList = id('colorList');
 
 const NOT_ALPHANUMERIC = /[^\da-z]/i;
 const NOT_HEXADECIMAL = /[^\da-f]/i;
@@ -94,6 +95,8 @@ const debounceChangeColor = debounce(changeColor, 100);
 inputColor.addEventListener('change', debounceChangeColor);
 buttonCreate.addEventListener('click', debounceChangeColor);
 picker.addEventListener('change', changePicker);
+colorList.addEventListener('change', changeColor);
+colorList.appendChild(createOptionList());
 
 bindInputs(rangeRed, numberRed);
 bindInputs(rangeGreen, numberGreen);

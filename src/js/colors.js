@@ -1,4 +1,4 @@
-export default {
+export const colors = {
   black: '000',
   silver: 'c0c0c0',
   gray: '808080',
@@ -148,3 +148,18 @@ export default {
   yellowgreen: '9acd32',
   rebeccapurple: '663399',
 };
+
+export function createOptionList() {
+  const list = document.createDocumentFragment();
+  const option = document.createElement('option');
+
+  for (let key in colors) {
+    const item = option.cloneNode();
+
+    item.value = colors[key];
+    item.textContent = key;
+    list.appendChild(item);
+  }
+
+  return list;
+}
