@@ -118,6 +118,7 @@ html {
 }
 
 .content {
+  max-width: 850px;
   position: relative;
   padding: 1em 2.5em;
 }
@@ -198,10 +199,17 @@ html {
   }
 
   .content {
-    margin-left: 310px;
+    margin-left: 320px;
   }
 
   .footer {
     margin-top: 50px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .content {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
