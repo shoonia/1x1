@@ -1,11 +1,11 @@
 {
   "name": "1x1",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Transparent PNG one pixel base64 encoded generator",
   "main": "src/index.html",
   "scripts": {
     "start": "parcel serve src/index.html -p 3000 --no-cache",
-    "build": "parcel build src/index.html --public-url ./ --no-source-maps --no-cache",
+    "build": "parcel build src/index.html --public-url ./ --no-source-maps --no-cache --experimental-scope-hoisting",
     "deploy": "gh-pages -d ./dist"
   },
   "devDependencies": {
