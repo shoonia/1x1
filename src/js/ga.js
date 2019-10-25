@@ -1,17 +1,10 @@
-import { sendBeacon } from './util';
+import { sendBeacon, uniqueId } from './util';
 
 function getCID() {
-  let cid = document.cookie.replace(/(?:(?:^|.*;\s*)cid\s*\=\s*([^;]*).*$)|^.*$/, '$1');
+  const cookie = document.cookie.replace(/(?:(?:^|.*;\s*)cid\s*=\s*([^;]*).*$)|^.*$/, '$1');
+  const cid = cookie !== '' ? cookie : uniqueId();
 
-  if (!cid) {
-    let i = 16;
-
-    while (0 < i--) {
-      cid += (36 * Math.random() | 0).toString(36);
-    }
-
-    document.cookie = `cid=${cid};domain=shoonia.github.io;max-age=${(60 * 60 * 24 * 365)}`;
-  }
+  document.cookie = `cid=${cid};domain=shoonia.github.io;max-age=${(60 * 60 * 24 * 365)}`;
 
   return cid;
 }

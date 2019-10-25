@@ -1,5 +1,5 @@
 # 1x1
 
-Transparent PNG one pixel base64 encoded generator
+Online generator creating one pixel transparent PNG image in base64 encoded.
 
 [https://shoonia.github.io/1x1/](https://shoonia.github.io/1x1/)

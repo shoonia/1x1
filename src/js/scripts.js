@@ -19,9 +19,10 @@ const colorList = id('colorList');
 const NOT_ALPHANUMERIC = /[^\da-z]/i;
 const NOT_HEXADECIMAL = /[^\da-f]/i;
 
-function setRGB(color) {
+function setColor(color) {
   const int = parseInt(color, 16);
 
+  picker.value = `#${color}`;
   rangeRed.value = numberRed.value = int >> 16 & 255;
   rangeGreen.value = numberGreen.value = int >> 8 & 255;
   rangeBlue.value = numberBlue.value = int & 255;
@@ -33,7 +34,7 @@ function changeColor() {
     .toLowerCase()
     .replace(NOT_ALPHANUMERIC, '')
 
-  if (colors[color]) {
+  if (undefined !== colors[color]) {
     color = colors[color];
   }
 
@@ -53,9 +54,7 @@ function changeColor() {
     inputColor.value = color;
   }
 
-  picker.value = `#${color}`;
-
-  setRGB(color);
+  setColor(color);
   toOutputData(color + rgbToHex(rangeAlpha.value));
 }
 
@@ -103,4 +102,7 @@ bindInputs(rangeGreen, numberGreen);
 bindInputs(rangeBlue, numberBlue);
 bindInputs(rangeAlpha, numberAlpha);
 changeColor();
-ga();
+
+if (document.location.hostname !== 'localhost') {
+  ga();
+}

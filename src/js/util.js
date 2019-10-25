@@ -44,3 +44,13 @@ export function sendBeacon(url) {
     (new Image()).src = url;
   }
 }
+
+export function uniqueId() {
+  let i = 16, id = '';
+
+  while (0 < i--) {
+    id += (36 * Math.random() | 0).toString(36);
+  }
+
+  return id;
+}

@@ -1,7 +1,7 @@
 {
   "name": "1x1",
-  "version": "2.1.0",
-  "description": "Transparent PNG one pixel base64 encoded generator",
+  "version": "2.2.0",
+  "description": "Оne pixel transparent PNG base64 encoded online generator.",
   "main": "src/index.html",
   "scripts": {
     "start": "parcel serve src/index.html -p 3000 --no-cache",
@@ -9,17 +9,30 @@
     "deploy": "gh-pages -d ./dist"
   },
   "devDependencies": {
-    "autoprefixer": "^9.6.1",
+    "autoprefixer": "^9.7.0",
     "cssnano": "^4.1.10",
     "gh-pages": "^2.1.1",
-    "parcel-bundler": "^1.12.3",
+    "parcel-bundler": "^1.12.4",
     "postcss-input-range": "^4.0.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/shoonia/1x1"
   },
+  "bugs": {
+    "url": "https://github.com/shoonia/1x1/issues"
+  },
   "homepage": "https://shoonia.github.io/1x1/",
-  "author": "Alexander Zaytsev zaytsev126@gmail.com",
+  "author": {
+    "name": "Alexander Zaytsev",
+    "email": "zaytsev126@gmail.com",
+    "url": "https://twitter.com/_shoonia"
+  },
+  "keywords": [
+    "1x1",
+    "pixel",
+    "png",
+    "base64"
+  ],
   "license": "MIT"
 }
