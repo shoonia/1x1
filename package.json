@@ -1,6 +1,6 @@
 {
   "name": "1x1",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Оne pixel transparent PNG base64 encoded online generator.",
   "main": "src/index.html",
   "scripts": {
@@ -9,7 +9,7 @@
     "deploy": "gh-pages -d ./dist"
   },
   "devDependencies": {
-    "autoprefixer": "^9.7.0",
+    "autoprefixer": "^9.7.1",
     "cssnano": "^4.1.10",
     "gh-pages": "^2.1.1",
     "parcel-bundler": "^1.12.4",
