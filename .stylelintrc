@@ -1,0 +1,17 @@
+  
+{
+  "extends": [
+    "stylelint-config-standard"
+  ],
+  "rules": {
+    "selector-pseudo-element-no-unknown": [
+      true,
+      {
+        "ignorePseudoElements": [
+          "range-track",
+          "range-thumb"
+        ]
+      }
+    ]
+  }
+}
