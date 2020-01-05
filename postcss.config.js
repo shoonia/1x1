@@ -1,7 +1,8 @@
+/* eslint-env node */
 module.exports = {
   plugins: {
-    'autoprefixer': {},
+    autoprefixer: {},
     'postcss-input-range': {},
-    'cssnano': {}
-  }
-}
+    cssnano: {},
+  },
+};

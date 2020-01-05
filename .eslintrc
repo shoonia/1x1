@@ -1,0 +1,39 @@
+{
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 2019,
+    "sourceType": "module"
+  },
+  "rules": {
+    "linebreak-style": "off",
+    "no-else-return": "error",
+    "no-trailing-spaces": "error",
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 2
+      }
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ]
+  }
+}

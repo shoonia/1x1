@@ -1,16 +1,19 @@
 {
   "name": "1x1",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "description": "Оne pixel transparent PNG base64 encoded online generator.",
   "main": "src/index.html",
   "scripts": {
     "start": "parcel serve src/index.html -p 3000 --no-cache",
     "build": "parcel build src/index.html --public-url ./ --no-source-maps --no-cache --experimental-scope-hoisting",
-    "deploy": "gh-pages -d ./dist"
+    "deploy": "gh-pages -d ./dist",
+    "lint": "stylelint src/**/*.css --fix && eslint src/**/*.js --fix",
+    "lint-ci": "stylelint src/**/*.css && eslint src/**/*.js"
   },
   "devDependencies": {
     "autoprefixer": "^9.7.3",
     "cssnano": "^4.1.10",
+    "eslint": "^6.8.0",
     "gh-pages": "^2.1.1",
     "parcel-bundler": "^1.12.4",
     "postcss-input-range": "^4.0.0",

@@ -30,15 +30,15 @@ export function debounce(fn, ms) {
   return () => {
     clearTimeout(timer);
     timer = setTimeout(fn, ms);
-  }
-};
+  };
+}
 
 export function sendBeacon(url) {
   let isSend = false;
 
   try {
     isSend = navigator.sendBeacon(url);
-  } catch (error) { }
+  } catch (error) { /**/ }
 
   if (!isSend) {
     (new Image()).src = url;

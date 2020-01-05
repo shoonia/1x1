@@ -32,7 +32,7 @@ function changeColor() {
   let color = inputColor.value
     .trim()
     .toLowerCase()
-    .replace(NOT_ALPHANUMERIC, '')
+    .replace(NOT_ALPHANUMERIC, '');
 
   if (undefined !== colors[color]) {
     color = colors[color];
