@@ -42,7 +42,7 @@ reader.addEventListener('load', () => {
 });
 
 export default function (hex8) {
-  const color = `#${hex8}`;
+  const color = '#' + hex8;
   const canvas = createCanvas(color);
   const dataURL = canvas.toDataURL('image/png');
   const base64 = dataURL.slice(22);
@@ -52,10 +52,10 @@ export default function (hex8) {
   });
 
   outputImage.style.backgroundColor = color;
-  outputImage.title = `8 Digit Hex: ${color}`;
+  outputImage.title = '8 Digit Hex: ' + color;
   outputDataURL.value = dataURL;
-  outputCSS.value = `background-image: url('${dataURL}');`;
+  outputCSS.value = 'background-image: url(\'' + dataURL + '\');';
   outputBase64.value = base64;
   download.href = dataURL;
-  download.download = `1x1_${color}.png`;
+  download.download = '1x1_' + color + '.png';
 }

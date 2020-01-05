@@ -25,7 +25,8 @@ jobs:
           ${{ runner.os }}-node-
 
     - run: npm ci
-    - run: npm run lint-ci
+    - run: npm run lint-js
+    - run: npm run lint-css
     - run: npm run build
 
     - name: Deploy

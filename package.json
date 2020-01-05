@@ -7,14 +7,13 @@
     "start": "parcel serve src/index.html -p 3000 --no-cache",
     "build": "parcel build src/index.html --public-url ./ --no-source-maps --no-cache --experimental-scope-hoisting",
     "deploy": "gh-pages -d ./dist",
-    "lint": "stylelint src/**/*.css --fix && eslint src/**/*.js --fix",
-    "lint-ci": "stylelint src/**/*.css && eslint src/**/*.js"
+    "lint-js": "eslint src/**/*.js",
+    "lint-css": "stylelint src/**/*.css"
   },
   "devDependencies": {
     "autoprefixer": "^9.7.3",
     "cssnano": "^4.1.10",
     "eslint": "^6.8.0",
-    "gh-pages": "^2.1.1",
     "parcel-bundler": "^1.12.4",
     "postcss-input-range": "^4.0.0",
     "stylelint": "^12.0.1",

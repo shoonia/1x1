@@ -32,25 +32,3 @@ export function debounce(fn, ms) {
     timer = setTimeout(fn, ms);
   };
 }
-
-export function sendBeacon(url) {
-  let isSend = false;
-
-  try {
-    isSend = navigator.sendBeacon(url);
-  } catch (error) { /**/ }
-
-  if (!isSend) {
-    (new Image()).src = url;
-  }
-}
-
-export function uniqueId() {
-  let i = 16, id = '';
-
-  while (0 < i--) {
-    id += (36 * Math.random() | 0).toString(36);
-  }
-
-  return id;
-}

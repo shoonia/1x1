@@ -22,7 +22,7 @@ const NOT_HEXADECIMAL = /[^\da-f]/i;
 function setColor(color) {
   const int = parseInt(color, 16);
 
-  picker.value = `#${color}`;
+  picker.value = '#' + color;
   rangeRed.value = numberRed.value = int >> 16 & 255;
   rangeGreen.value = numberGreen.value = int >> 8 & 255;
   rangeBlue.value = numberBlue.value = int & 255;
@@ -65,7 +65,7 @@ function changeRGBA() {
   const hex = r + g + b;
 
   inputColor.value = hex;
-  picker.value = `#${hex}`;
+  picker.value = '#' + hex;
 
   toOutputData(hex + rgbToHex(rangeAlpha.value));
 }
