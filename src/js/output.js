@@ -45,17 +45,17 @@ export default function (hex8) {
   const color = '#' + hex8;
   const canvas = createCanvas(color);
   const dataURL = canvas.toDataURL('image/png');
-  const base64 = dataURL.slice(22);
+  const url = 'url(' + dataURL + ')';
 
   canvas.toBlob((blob) => {
     reader.readAsArrayBuffer(blob);
   });
 
-  outputImage.style.backgroundColor = color;
+  outputImage.style.backgroundImage = url;
   outputImage.title = '8 Digit Hex: ' + color;
   outputDataURL.value = dataURL;
-  outputCSS.value = 'background-image: url(\'' + dataURL + '\');';
-  outputBase64.value = base64;
+  outputCSS.value = 'background-image: ' + url + ';';
+  outputBase64.value = dataURL.slice(22);
   download.href = dataURL;
   download.download = '1x1_' + color + '.png';
 }
