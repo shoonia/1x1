@@ -1,4 +1,4 @@
-import { id, rgbToHex, bindInputs, debounce } from './util';
+import { id, rgbToHex, bindInputs, debounce, randomColor } from './util';
 import toOutputData from './output';
 import { colors, createOptionList } from './colors';
 import ga from './ga';
@@ -101,6 +101,8 @@ bindInputs(rangeRed, numberRed);
 bindInputs(rangeGreen, numberGreen);
 bindInputs(rangeBlue, numberBlue);
 bindInputs(rangeAlpha, numberAlpha);
+
+inputColor.value = randomColor();
 changeColor();
 
 if (document.location.hostname !== 'localhost') {
