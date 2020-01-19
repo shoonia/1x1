@@ -6,7 +6,6 @@
   "scripts": {
     "start": "parcel serve src/index.html -p 3000 --no-cache",
     "build": "parcel build src/index.html --public-url ./ --no-source-maps --no-cache --experimental-scope-hoisting",
-    "deploy": "gh-pages -d ./dist",
     "lint-js": "eslint src/**/*.js",
     "lint-css": "stylelint src/**/*.css"
   },
