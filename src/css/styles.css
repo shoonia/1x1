@@ -12,8 +12,7 @@
 }
 
 ::selection {
-  background-color: #176ced;
-  color: #fff;
+  background-color: #d3edff;
 }
 
 ::-webkit-calendar-picker-indicator {
