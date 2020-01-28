@@ -105,6 +105,8 @@ bindInputs(rangeAlpha, numberAlpha);
 inputColor.value = randomColor();
 changeColor();
 
+id('rgbaDetails').open = window.innerWidth > 701;
+
 if (document.location.hostname !== 'localhost') {
   ga();
 }
