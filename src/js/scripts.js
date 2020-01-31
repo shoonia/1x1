@@ -13,7 +13,6 @@ const numberBlue = id('numberBlue');
 const rangeAlpha = id('rangeAlpha');
 const numberAlpha = id('numberAlpha');
 const picker = id('picker');
-const buttonCreate = id('buttonCreate');
 const colorList = id('colorList');
 
 const NOT_ALPHANUMERIC = /[^\da-z]/i;
@@ -75,6 +74,11 @@ function changePicker() {
   changeColor();
 }
 
+function random() {
+  inputColor.value = randomColor();
+  changeColor();
+}
+
 const debounceChangeRGBA = debounce(changeRGBA, 100);
 const debounceChangeColor = debounce(changeColor, 100);
 
@@ -92,20 +96,20 @@ const debounceChangeColor = debounce(changeColor, 100);
 });
 
 inputColor.addEventListener('change', debounceChangeColor);
-buttonCreate.addEventListener('click', debounceChangeColor);
 picker.addEventListener('change', changePicker);
 colorList.addEventListener('change', changeColor);
 colorList.appendChild(createOptionList());
+
+id('buttonCreate').addEventListener('click', debounceChangeColor);
+id('random').addEventListener('click', random);
+id('rgbaDetails').open = window.innerWidth > 701;
 
 bindInputs(rangeRed, numberRed);
 bindInputs(rangeGreen, numberGreen);
 bindInputs(rangeBlue, numberBlue);
 bindInputs(rangeAlpha, numberAlpha);
 
-inputColor.value = randomColor();
-changeColor();
-
-id('rgbaDetails').open = window.innerWidth > 701;
+random();
 
 if (document.location.hostname !== 'localhost') {
   ga();

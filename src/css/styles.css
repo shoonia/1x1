@@ -19,9 +19,30 @@
   display: none;
 }
 
+@keyframes bubble {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
 html,
 button {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+button,
+input {
+  -webkit-touch-callout: none;
 }
 
 .wrapper {
@@ -72,7 +93,6 @@ button {
   font-size: 1em;
   font-family: "Courier New", Courier, monospace;
   border-radius: 6px;
-  -webkit-touch-callout: none;
   margin: 0.5em 0;
   outline: none;
 }
@@ -178,6 +198,31 @@ button {
   height: 1em;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 768 768' height='16' width='16'%3E%3Cpath fill='%23fff' d='M691.199 499.2v153.6c0 10.598-4.262 20.16-11.251 27.149s-16.55 11.251-27.149 11.251h-537.599c-10.598 0-20.16-4.262-27.149-11.251s-11.251-16.55-11.251-27.149v-153.6c0-21.196-17.204-38.4-38.4-38.4s-38.4 17.203-38.4 38.4v153.6c0 31.796 12.941 60.672 33.754 81.446s49.651 33.754 81.446 33.754h537.599c31.795 0 60.672-12.941 81.446-33.754s33.754-49.651 33.754-81.446v-153.6c0-21.196-17.203-38.4-38.4-38.4s-38.4 17.203-38.4 38.4zM422.4 406.503v-368.102c0-21.197-17.204-38.4-38.4-38.4s-38.4 17.203-38.4 38.4v368.102l-126.451-126.451c-15.015-15.015-39.322-15.015-54.298 0s-15.015 39.322 0 54.298l191.999 191.999c3.532 3.533 7.757 6.375 12.442 8.333s9.716 2.919 14.707 2.919c9.831 0 19.66-3.763 27.148-11.251l191.999-191.999c15.015-15.015 15.015-39.322 0-54.298s-39.322-15.015-54.298 0z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
+}
+
+.btn_random {
+  border: 1px solid #00abd4;
+  border-radius: 50%;
+  outline: none;
+  background-color: #fff;
+  transition: all 0.1s ease-in;
+  cursor: pointer;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 20px;
+  right: 20px;
+  padding: 0;
+  margin: 0;
+  z-index: 5;
+}
+
+.btn_random:hover {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn_random:active {
+  transform: scale(0.9);
 }
 
 .content {
