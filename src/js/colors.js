@@ -150,7 +150,7 @@ export const colors = {
 };
 
 export function createOptionList() {
-  const list = document.createDocumentFragment();
+  const list = new DocumentFragment();
   const option = document.createElement('option');
 
   for (let key in colors) {
