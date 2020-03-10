@@ -1,4 +1,4 @@
-import { id, rgbToHex, bindInputs, debounce, randomColor } from './util';
+import { id, rgbToHex, bindInputs, debounce, uniqueId16 } from './util';
 import toOutputData from './output';
 import { colors, createOptionList } from './colors';
 import ga from './ga';
@@ -75,7 +75,7 @@ function changePicker() {
 }
 
 function random() {
-  inputColor.value = randomColor();
+  inputColor.value = uniqueId16(6);
   changeColor();
 }
 

@@ -1,16 +1,8 @@
-function uniqueId() {
-  let i = 16, id = '';
-
-  while (0 < i--) {
-    id += (36 * Math.random() | 0).toString(36);
-  }
-
-  return id;
-}
+import { uniqueId16 } from './util';
 
 function getCID() {
   const cookie = document.cookie.replace(/(?:(?:^|.*;\s*)cid\s*=\s*([^;]*).*$)|^.*$/, '$1');
-  const cid = cookie !== '' ? cookie : uniqueId();
+  const cid = cookie !== '' ? cookie : uniqueId16(21);
 
   document.cookie = 'cid='
     + cid

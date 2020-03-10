@@ -16,7 +16,7 @@
     "husky": "^4.2.3",
     "parcel-bundler": "^1.12.4",
     "postcss-input-range": "^4.0.0",
-    "stylelint": "^13.1.0",
+    "stylelint": "^13.2.1",
     "stylelint-config-standard": "^20.0.0"
   },
   "husky": {

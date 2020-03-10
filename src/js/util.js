@@ -33,8 +33,12 @@ export function debounce(fn, ms) {
   };
 }
 
-export function randomColor() {
-  const hex = Math.floor(Math.random() * 16777215).toString(16);
+export function uniqueId16(size) {
+  let id = '';
 
-  return hex.length < 6 ? hex + '0' : hex;
+  while (0 < size--) {
+    id += (16 * Math.random() | 0).toString(16);
+  }
+
+  return id;
 }
