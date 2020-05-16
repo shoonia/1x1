@@ -1,4 +1,4 @@
-import { id, rgbToHex, bindInputs, debounce, uniqueId16 } from './util';
+import { id, rgbToHex, bindInputs, uniqueId16 } from './util';
 import toOutputData from './output';
 import { colors, createOptionList } from './colors';
 import ga from './ga';
@@ -79,9 +79,6 @@ function random() {
   changeColor();
 }
 
-const debounceChangeRGBA = debounce(changeRGBA, 100);
-const debounceChangeColor = debounce(changeColor, 100);
-
 [
   rangeRed,
   numberRed,
@@ -92,15 +89,15 @@ const debounceChangeColor = debounce(changeColor, 100);
   rangeAlpha,
   numberAlpha
 ].forEach((input) => {
-  input.addEventListener('change', debounceChangeRGBA);
+  input.addEventListener('change', changeRGBA);
 });
 
-inputColor.addEventListener('change', debounceChangeColor);
+inputColor.addEventListener('change', changeColor);
 picker.addEventListener('change', changePicker);
 colorList.addEventListener('change', changeColor);
 colorList.appendChild(createOptionList());
 
-id('buttonCreate').addEventListener('click', debounceChangeColor);
+id('buttonCreate').addEventListener('click', changeColor);
 id('random').addEventListener('click', random);
 id('rgbaDetails').open = window.innerWidth > 701;
 

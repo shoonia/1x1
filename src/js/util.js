@@ -24,15 +24,6 @@ export function bindInputs(x, y) {
   });
 }
 
-export function debounce(fn, ms) {
-  let timer;
-
-  return () => {
-    clearTimeout(timer);
-    timer = setTimeout(fn, ms);
-  };
-}
-
 export function uniqueId16(size) {
   let id = '';
 

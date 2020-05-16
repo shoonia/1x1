@@ -10,13 +10,13 @@
     "lint-css": "stylelint src/**/*.css"
   },
   "devDependencies": {
-    "autoprefixer": "^9.7.4",
+    "autoprefixer": "^9.7.6",
     "cssnano": "^4.1.10",
-    "eslint": "^6.8.0",
-    "husky": "^4.2.3",
+    "eslint": "^7.0.0",
+    "husky": "^4.2.5",
     "parcel-bundler": "^1.12.4",
     "postcss-input-range": "^4.0.0",
-    "stylelint": "^13.2.1",
+    "stylelint": "^13.3.3",
     "stylelint-config-standard": "^20.0.0"
   },
   "husky": {

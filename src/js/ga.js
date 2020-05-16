@@ -6,7 +6,7 @@ function getCID() {
 
   document.cookie = 'cid='
     + cid
-    + ';domain=shoonia.github.io;max-age='
+    + ';domain=shoonia.github.io;path=/;max-age='
     + (60 * 60 * 24 * 365);
 
   return cid;
