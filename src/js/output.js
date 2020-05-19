@@ -48,7 +48,9 @@ export default function (hex8) {
   const url = 'url(' + dataURL + ')';
 
   canvas.toBlob((blob) => {
-    reader.readAsArrayBuffer(blob);
+    if (reader.readyState !== 1) {
+      reader.readAsArrayBuffer(blob);
+    }
   });
 
   outputImage.style.backgroundImage = url;
