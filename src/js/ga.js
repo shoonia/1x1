@@ -12,7 +12,7 @@ function getCID() {
   return cid;
 }
 
-export default function () {
+export function ga() {
   const url = 'https://www.google-analytics.com/collect?v=1&tid=UA-128241641-2&aip=1&t=event&ea=open&dp=&dt=&cid='
     + getCID();
 
@@ -20,7 +20,7 @@ export default function () {
 
   try {
     isSend = navigator.sendBeacon(url);
-  } catch (error) { /**/ }
+  } catch { /**/ }
 
   if (!isSend) {
     (new Image()).src = url;

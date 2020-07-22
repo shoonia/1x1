@@ -41,7 +41,7 @@ reader.addEventListener('load', () => {
   outputBytes.value = bytes.toString();
 });
 
-export default function (hex8) {
+export function outputData(hex8) {
   const color = '#' + hex8;
   const canvas = createCanvas(color);
   const dataURL = canvas.toDataURL('image/png');

@@ -1,7 +1,7 @@
 import { id, rgbToHex, bindInputs, uniqueId16 } from './util';
-import toOutputData from './output';
+import { outputData } from './output';
 import { colors, createOptionList } from './colors';
-import ga from './ga';
+import { ga } from './ga';
 
 const inputColor = id('inputColor');
 const rangeRed = id('rangeRed');
@@ -54,7 +54,7 @@ function changeColor() {
   }
 
   setColor(color);
-  toOutputData(color + rgbToHex(rangeAlpha.value));
+  outputData(color + rgbToHex(rangeAlpha.value));
 }
 
 function changeRGBA() {
@@ -66,7 +66,7 @@ function changeRGBA() {
   inputColor.value = hex;
   picker.value = '#' + hex;
 
-  toOutputData(hex + rgbToHex(rangeAlpha.value));
+  outputData(hex + rgbToHex(rangeAlpha.value));
 }
 
 function changePicker() {
