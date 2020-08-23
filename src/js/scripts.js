@@ -33,7 +33,7 @@ function changeColor() {
     .toLowerCase()
     .replace(NOT_ALPHANUMERIC, '');
 
-  if (undefined !== colors[color]) {
+  if (color in colors) {
     color = colors[color];
   }
 
