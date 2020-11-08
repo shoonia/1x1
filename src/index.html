@@ -22,7 +22,7 @@
   <link rel="canonical" href="https://shoonia.github.io/1x1/">
   <link rel="shortcut icon" href="/favicon.png">
   <link rel="stylesheet" href="css/styles.css">
-  <script defer src="js/scripts.js"></script>
+  <script defer src="js/index.js"></script>
 </head>
 
 <body class="wrapper">
@@ -47,11 +47,10 @@
       <fieldset class="fields">
         <label class="field__box">
           <span>Color:</span>
-          <input type="text" list="colorList" autocomplete="on" id="inputColor" class="field" placeholder="color"
-            value="65b049">
+          <input type="text" list="colorList" autocomplete="on" id="inputColor" class="field" placeholder="000000" value="65b049">
           <datalist id="colorList"></datalist>
         </label>
-        <button type="button" id="buttonCreate" class="btn btn__create">
+        <button type="button" class="btn btn__create">
           Create
         </button>
       </fieldset>
@@ -62,27 +61,23 @@
         <label class="field__box">
           <span>Red:</span>
           <input type="range" id="rangeRed" class="range" value="255" max="255" min="0" step="1">
+          <input type="number" id="numberRed" class="field field__number" placeholder="red" value="255" max="255" min="0" step="1">
         </label>
-        <input type="number" id="numberRed" class="field field__number" placeholder="red" value="255" max="255" min="0"
-          step="1">
         <label class="field__box">
           <span>Green:</span>
           <input type="range" id="rangeGreen" class="range" value="255" max="255" min="0" step="1">
+          <input type="number" id="numberGreen" class="field field__number" placeholder="green" value="255" max="255" min="0" step="1">
         </label>
-        <input type="number" id="numberGreen" class="field field__number" placeholder="green" value="255" max="255"
-          min="0" step="1">
         <label class="field__box">
           <span>Blue:</span>
           <input type="range" id="rangeBlue" class="range" value="255" max="255" min="0" step="1">
+          <input type="number" id="numberBlue" class="field field__number" placeholder="blue" value="255" max="255" min="0" step="1">
         </label>
-        <input type="number" id="numberBlue" class="field field__number" placeholder="blue" value="255" max="255"
-          min="0" step="1">
         <label class="field__box">
           <span>Alpha (Opacity):</span>
           <input type="range" id="rangeAlpha" class="range" value="255" max="255" min="0" step="1">
+          <input type="number" id="numberAlpha" class="field field__number" placeholder="alpha" value="255" max="255" min="0" step="1">
         </label>
-        <input type="number" id="numberAlpha" class="field field__number" placeholder="alpha" value="255" max="255"
-          min="0" step="1">
       </fieldset>
     </details>
     <details>
@@ -108,27 +103,25 @@
         <span class="field__label" title="Click to Copy">
           Data: URL
         </span>
-        <input type="text" id="outputDataURL" class="field field__output" title="Click to Copy" readonly
-          placeholder="data:image/png;base64,">
+        <input data-clipboard type="text" id="outputDataURL" class="field field__output" title="Click to Copy" readonly>
       </label>
       <label class="field__box">
         <span class="field__label" title="Click to Copy">
           CSS:
         </span>
-        <input type="text" id="outputCSS" class="field field__output" title="Click to Copy" readonly
-          placeholder="background-image: url();">
+        <input data-clipboard type="text" id="outputCSS" class="field field__output" title="Click to Copy" readonly>
       </label>
       <label class="field__box">
         <span class="field__label" title="Click to Copy">
           Base64:
         </span>
-        <input type="text" id="outputBase64" class="field field__output" title="Click to Copy" readonly>
+        <input data-clipboard type="text" id="outputBase64" class="field field__output" title="Click to Copy" readonly>
       </label>
       <label class="field__box">
         <span class="field__label" title="Click to Copy">
           Bytes:
         </span>
-        <input type="text" id="outputBytes" class="field field__output" title="Click to Copy" readonly>
+        <input data-clipboard type="text" id="outputBytes" class="field field__output" title="Click to Copy" readonly>
       </label>
       <div class="field__box">
         <a id="download" class="btn btn__output">

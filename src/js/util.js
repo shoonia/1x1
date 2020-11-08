@@ -1,30 +1,43 @@
-export function id($) {
+export const id = ($) => {
   return document.getElementById($);
-}
+};
 
-export function rgbToHex(int) {
+export const clipboard = (event) => {
+  event.target.select();
+  document.execCommand('copy');
+};
+
+export const createCanvas = (color) => {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+
+  canvas.width = 1;
+  canvas.height = 1;
+
+  ctx.rect(0, 0, 1, 1);
+  ctx.fillStyle = color;
+  ctx.fill();
+
+  return canvas;
+};
+
+export const rgbToHex = (int) => {
   const i = Math.abs(~~int);
 
-  if (255 < i) {
+  if (i > 255) {
     return 'ff';
   }
 
   const hex = i.toString(16);
 
-  return 2 > hex.length ? ('0' + hex) : hex;
-}
+  return (hex.length < 2) ? ('0' + hex) : hex;
+};
 
-export function bindInputs(x, y) {
-  x.addEventListener('input', () => {
-    y.value = x.value || '0';
-  });
+export const createHex = ({ R, G, B }) => {
+  return [R, G, B].map(rgbToHex).join('');
+};
 
-  y.addEventListener('input', () => {
-    x.value = y.value || '0';
-  });
-}
-
-export function uniqueId16(size) {
+export const unique16 = (size) => {
   let id = '';
 
   while (0 < size--) {
@@ -32,4 +45,4 @@ export function uniqueId16(size) {
   }
 
   return id;
-}
+};

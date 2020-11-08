@@ -149,7 +149,7 @@ export const colors = {
   rebeccapurple: '663399',
 };
 
-export function createOptionList() {
+export const createOptionList = () => {
   const list = new DocumentFragment();
   const option = document.createElement('option');
 
@@ -162,4 +162,4 @@ export function createOptionList() {
   }
 
   return list;
-}
+};
