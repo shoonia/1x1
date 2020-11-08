@@ -20,20 +20,23 @@ const outputCSS = id('outputCSS');
 const outputBytes = id('outputBytes');
 const download = id('download');
 
-const reader = new FileReader();
+const fileReader = new FileReader();
 
 const NOT_ALPHANUMERIC = /[^\da-z]/i;
 const NOT_HEXADECIMAL = /[^\da-f]/i;
 
 const setHex = (hex) => dispatch('hex', hex);
 
-const setRGBA = (key) => (event) => {
-  dispatch('rgba', [key, parseInt(event.target.value, 10)]);
+const setRGBA = ({ target }) => {
+  return dispatch('rgba', [
+    target.dataset.rgba,
+    parseInt(target.value, 10),
+  ]);
 };
 
 const readAsArrayBuffer = (blob) => {
-  if (reader.readyState !== 1) {
-    reader.readAsArrayBuffer(blob);
+  if (fileReader.readyState !== 1) {
+    fileReader.readAsArrayBuffer(blob);
   }
 };
 
@@ -106,22 +109,14 @@ picker.addEventListener('change', () => {
   setHex(picker.value.slice(1));
 });
 
-reader.addEventListener('load', () => {
-  const bytes = new Uint8Array(reader.result);
+fileReader.addEventListener('load', () => {
+  const bytes = new Uint8Array(fileReader.result);
   outputBytes.value = bytes.toString();
 });
 
-rangeRed.addEventListener('change', setRGBA('R'));
-numberRed.addEventListener('change', setRGBA('R'));
-
-rangeGreen.addEventListener('change', setRGBA('G'));
-numberGreen.addEventListener('change', setRGBA('G'));
-
-rangeBlue.addEventListener('change', setRGBA('B'));
-numberBlue.addEventListener('change', setRGBA('B'));
-
-rangeAlpha.addEventListener('change', setRGBA('A'));
-numberAlpha.addEventListener('change', setRGBA('A'));
+document.querySelectorAll('[data-rgba]').forEach((i) => {
+  i.addEventListener('change', setRGBA);
+});
 
 document.querySelectorAll('[data-clipboard]').forEach((i) => {
   i.addEventListener('click', clipboard);

@@ -60,23 +60,23 @@
       <fieldset class="fields">
         <label class="field__box">
           <span>Red:</span>
-          <input type="range" id="rangeRed" class="range" value="255" max="255" min="0" step="1">
-          <input type="number" id="numberRed" class="field field__number" placeholder="red" value="255" max="255" min="0" step="1">
+          <input type="range" data-rgba="R" id="rangeRed" class="range" value="255" max="255" min="0" step="1">
+          <input type="number" data-rgba="R" id="numberRed" class="field field__number" placeholder="red" value="255" max="255" min="0" step="1">
         </label>
         <label class="field__box">
           <span>Green:</span>
-          <input type="range" id="rangeGreen" class="range" value="255" max="255" min="0" step="1">
-          <input type="number" id="numberGreen" class="field field__number" placeholder="green" value="255" max="255" min="0" step="1">
+          <input type="range" data-rgba="G" id="rangeGreen" class="range" value="255" max="255" min="0" step="1">
+          <input type="number" data-rgba="G" id="numberGreen" class="field field__number" placeholder="green" value="255" max="255" min="0" step="1">
         </label>
         <label class="field__box">
           <span>Blue:</span>
-          <input type="range" id="rangeBlue" class="range" value="255" max="255" min="0" step="1">
-          <input type="number" id="numberBlue" class="field field__number" placeholder="blue" value="255" max="255" min="0" step="1">
+          <input type="range" data-rgba="B" id="rangeBlue" class="range" value="255" max="255" min="0" step="1">
+          <input type="number" data-rgba="B" id="numberBlue" class="field field__number" placeholder="blue" value="255" max="255" min="0" step="1">
         </label>
         <label class="field__box">
           <span>Alpha (Opacity):</span>
-          <input type="range" id="rangeAlpha" class="range" value="255" max="255" min="0" step="1">
-          <input type="number" id="numberAlpha" class="field field__number" placeholder="alpha" value="255" max="255" min="0" step="1">
+          <input type="range" data-rgba="A" id="rangeAlpha" class="range" value="255" max="255" min="0" step="1">
+          <input type="number" data-rgba="A" id="numberAlpha" class="field field__number" placeholder="alpha" value="255" max="255" min="0" step="1">
         </label>
       </fieldset>
     </details>
@@ -132,7 +132,7 @@
   </main>
 
   <footer class="footer">
-    <div class="content" role="contentinfo">
+    <div class="content">
       <a href="https://twitter.com/_shoonia" class="link footer__link" aria-label="follow me on twitter">
         Twitter
       </a>

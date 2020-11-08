@@ -8,8 +8,8 @@ const connect = (key, cb) => {
   subs.push({ key, cb });
 };
 
-const modules = (store) => {
-  store.on('@init', () => {
+const appModule = ({ on }) => {
+  on('@init', () => {
     return {
       R: 255,
       G: 255,
@@ -19,7 +19,7 @@ const modules = (store) => {
     };
   });
 
-  store.on('@changed', (state, diff) => {
+  on('@changed', (state, diff) => {
     subs.forEach((s) => {
       if (s.key in diff) {
         s.cb(state);
@@ -27,7 +27,7 @@ const modules = (store) => {
     });
   });
 
-  store.on('hex', (_, hex) => {
+  on('hex', (_, hex) => {
     const i = parseInt(hex, 16);
 
     return {
@@ -38,7 +38,7 @@ const modules = (store) => {
     };
   });
 
-  store.on('rgba', (state, [key, value]) => {
+  on('rgba', (state, [key, value]) => {
     return {
       [key]: value,
       hex: createHex({ ...state, [key]: value }),
@@ -46,7 +46,7 @@ const modules = (store) => {
   });
 };
 
-const { dispatch } = createStoreon([modules]);
+const { dispatch } = createStoreon([appModule]);
 
 export {
   dispatch,
