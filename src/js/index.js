@@ -1,7 +1,7 @@
 import { ga } from './ga';
 import { colors, createOptionList } from './colors';
 import { connect, dispatch } from './store';
-import { createCanvas, id, unique16, rgbToHex, clipboard } from './util';
+import { createCanvas, id, unique16, decimalToHex, clipboard } from './util';
 
 const inputColor = id('inputColor');
 const picker = id('picker');
@@ -30,7 +30,7 @@ const setHex = (hex) => dispatch('hex', hex);
 const setRGBA = ({ target }) => {
   return dispatch('rgba', [
     target.dataset.rgba,
-    parseInt(target.value, 10),
+    target.valueAsNumber,
   ]);
 };
 
@@ -42,7 +42,7 @@ const readAsArrayBuffer = (blob) => {
 
 connect('hex', ({ hex, A }) => {
   const hex6 = '#' + hex;
-  const hex8 = hex6 + rgbToHex(A);
+  const hex8 = hex6 + decimalToHex(A);
 
   const canvas = createCanvas(hex8);
   const dataURL = canvas.toDataURL('image/png');

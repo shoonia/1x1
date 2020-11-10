@@ -21,20 +21,20 @@ export const createCanvas = (color) => {
   return canvas;
 };
 
-export const rgbToHex = (int) => {
-  const i = Math.abs(~~int);
+export const parseNumber = (n) => {
+  const i = Math.abs(~~n);
 
-  if (i > 255) {
-    return 'ff';
-  }
+  return i > 255 ? 255 : i;
+};
 
+export const decimalToHex = (i) => {
   const hex = i.toString(16);
 
   return (hex.length < 2) ? ('0' + hex) : hex;
 };
 
 export const createHex = ({ R, G, B }) => {
-  return [R, G, B].map(rgbToHex).join('');
+  return [R, G, B].map(decimalToHex).join('');
 };
 
 export const unique16 = (size) => {

@@ -1,6 +1,6 @@
 import { createStoreon } from 'storeon/index';
 
-import { createHex } from './util';
+import { createHex, parseNumber } from './util';
 
 const subs = [];
 
@@ -39,9 +39,11 @@ const appModule = ({ on }) => {
   });
 
   on('rgba', (state, [key, value]) => {
+    const i = parseNumber(value);
+
     return {
-      [key]: value,
-      hex: createHex({ ...state, [key]: value }),
+      [key]: i,
+      hex: createHex({ ...state, [key]: i }),
     };
   });
 };
