@@ -71,15 +71,20 @@ connect('hex', ({ hex, A }) => {
 
   const canvas = createCanvas(hex8);
   const dataURL = canvas.toDataURL('image/png');
-  const url = `url(${dataURL})`;
 
+  const url = `url(${dataURL})`;
+  const backgroundImage = `background-image: ${url};`;
+  const css = `display:inline-block;border:1px solid #c6e2f7;border-radius:50%;width:1em;height:1em;${backgroundImage}`;
+
+  console.log('%c  ', css, hex8);
   canvas.toBlob(readAsArrayBuffer);
+
   inputColor.value = hex;
   picker.value = hex6;
   outputImage.style.backgroundImage = url;
-  outputImage.title = `8 Digit Hex: ${hex8}`;
+  outputImage.title = `8-Digit Hex: ${hex8}`;
   outputDataURL.value = dataURL;
-  outputCSS.value = `background-image: ${url};`;
+  outputCSS.value = backgroundImage;
   outputBase64.value = dataURL.slice(22);
   download.href = dataURL;
   download.download = `1x1_${hex8}.png`;
