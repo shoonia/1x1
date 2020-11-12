@@ -55,7 +55,7 @@ input {
 }
 
 .title {
-  display: block;
+  display: inline-block;
   font-size: 1.5em;
   font-weight: normal;
   padding: 0;
@@ -232,7 +232,6 @@ input {
   background-size: 21px 21px;
   position: relative;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-  transition: box-shadow 0.1s ease-in;
 }
 
 .output__image::after {
