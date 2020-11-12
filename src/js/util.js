@@ -37,7 +37,7 @@ export const createHex = ({ R, G, B }) => {
   return [R, G, B].map(decimalToHex).join('');
 };
 
-export const unique16 = (size) => {
+export const random16 = (size) => {
   let id = '';
 
   while (0 < size--) {

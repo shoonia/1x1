@@ -1,7 +1,7 @@
 import { ga } from './ga';
 import { colors, createOptionList } from './colors';
 import { connect, dispatch } from './store';
-import { createCanvas, id, unique16, decimalToHex, clipboard } from './util';
+import { createCanvas, id, random16, decimalToHex, clipboard } from './util';
 
 const inputColor = id('inputColor');
 const picker = id('picker');
@@ -38,6 +38,31 @@ const readAsArrayBuffer = (blob) => {
   if (fileReader.readyState !== 1) {
     fileReader.readAsArrayBuffer(blob);
   }
+};
+
+const handleInputColor = () => {
+  let color = inputColor.value
+    .trim()
+    .toLowerCase()
+    .replace(NOT_ALPHANUMERIC, '');
+
+  if (color in colors) {
+    color = colors[color];
+  }
+
+  if (NOT_HEXADECIMAL.test(color)) {
+    return inputColor.focus();
+  }
+
+  if (color.length === 3) {
+    color += color;
+  }
+
+  if (color.length !== 6) {
+    return inputColor.focus();
+  }
+
+  setHex(color);
 };
 
 connect('hex', ({ hex, A }) => {
@@ -80,30 +105,8 @@ connect('A', ({ A }) => {
   numberAlpha.value = A;
 });
 
-inputColor.addEventListener('change', () => {
-  let color = inputColor.value
-    .trim()
-    .toLowerCase()
-    .replace(NOT_ALPHANUMERIC, '');
-
-  if (color in colors) {
-    color = colors[color];
-  }
-
-  if (NOT_HEXADECIMAL.test(color)) {
-    return inputColor.focus();
-  }
-
-  if (color.length === 3) {
-    color += color;
-  }
-
-  if (color.length !== 6) {
-    return inputColor.focus();
-  }
-
-  setHex(color);
-});
+inputColor.addEventListener('change', handleInputColor);
+id('create').addEventListener('click', handleInputColor);
 
 picker.addEventListener('change', () => {
   setHex(picker.value.slice(1));
@@ -130,7 +133,7 @@ id('rgbaDetails').open = window.innerWidth > 701;
 id('colorList').appendChild(createOptionList());
 
 id('random').addEventListener('click', () => {
-  setHex(unique16(6));
+  setHex(random16(6));
 });
 
-setHex(unique16(6));
+setHex(random16(6));
