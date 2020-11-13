@@ -24,6 +24,7 @@ const fileReader = new FileReader();
 
 const NOT_ALPHANUMERIC = /[^\da-z]/i;
 const NOT_HEXADECIMAL = /[^\da-f]/i;
+const SPLIT_BY_6 = /.{1,6}/g;
 
 const setHex = (hex) => dispatch('hex', hex);
 
@@ -56,6 +57,13 @@ const handleInputColor = () => {
 
   if (color.length === 3) {
     color += color;
+  }
+
+  if (color.length === 8) {
+    let A;
+
+    [color, A] = color.match(SPLIT_BY_6);
+    dispatch('rgba', ['A', parseInt(A, 16)]);
   }
 
   if (color.length !== 6) {
