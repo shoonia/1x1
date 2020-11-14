@@ -23,9 +23,9 @@ const download = id('download');
 
 const fileReader = new FileReader();
 
+const FF = 'ff';
 const NOT_ALPHANUMERIC = /[^\da-z]/i;
 const NOT_HEXADECIMAL = /[^\da-f]/i;
-const SPLIT_BY_6 = /.{1,6}/g;
 
 const setHex = (hex) => dispatch('hex', hex);
 
@@ -64,23 +64,20 @@ const handleInputColor = () => {
     color += color;
   }
 
-  if (color.length === 8) {
-    let A;
-
-    [color, A] = color.match(SPLIT_BY_6);
-    setAlpha(A);
+  if (color.length === 6) {
+    color += FF;
   }
 
-  if (color.length !== 6) {
+  if (color.length !== 8) {
     return inputColor.focus();
   }
 
   setHex(color);
 };
 
-connect('hex', ({ hex, A }) => {
-  const hex6 = '#' + hex;
-  const hex8 = hex6 + decimalToHex(A);
+connect('hex', ({ hex }) => {
+  const hex6 = hex.slice(0, 6);
+  const hex8 = '#' + hex;
 
   const canvas = createCanvas(hex8);
   const dataURL = canvas.toDataURL('image/png');
@@ -92,8 +89,8 @@ connect('hex', ({ hex, A }) => {
   console.log('%c  ', css, hex8);
   canvas.toBlob(readAsArrayBuffer);
 
-  inputColor.value = hex;
-  picker.value = hex6;
+  inputColor.value = hex6;
+  picker.value = '#' + hex6;
   outputImage.style.backgroundImage = url;
   outputImage.title = `8-Digit Hex: ${hex8}`;
   outputDataURL.value = dataURL;
@@ -125,7 +122,6 @@ connect('A', ({ A }) => {
 });
 
 inputColor.addEventListener('change', handleInputColor);
-id('create').addEventListener('click', handleInputColor);
 
 inputAlpha.addEventListener('change', () => {
   const val = inputAlpha.value
@@ -133,13 +129,13 @@ inputAlpha.addEventListener('change', () => {
     .toLowerCase()
     .replace(NOT_HEXADECIMAL, '');
 
-  const hex = val.length !== 2 ? 'ff' : val;
+  const hex = val.length !== 2 ? FF : val;
 
   setAlpha(hex);
 });
 
 picker.addEventListener('change', () => {
-  setHex(picker.value.slice(1));
+  setHex(picker.value.slice(1) + FF);
 });
 
 fileReader.addEventListener('load', () => {
@@ -163,7 +159,7 @@ id('rgbaDetails').open = window.innerWidth > 701;
 id('colorList').appendChild(createOptionList());
 
 id('random').addEventListener('click', () => {
-  setHex(random16(6));
+  setHex(random16(6) + FF);
 });
 
-setHex(random16(6));
+setHex(random16(6) + FF);

@@ -156,7 +156,7 @@ export const createOptionList = () => {
   for (let key in colors) {
     const item = option.cloneNode();
 
-    item.value = colors[key] + 'ff';
+    item.value = colors[key];
     item.textContent = key;
     list.appendChild(item);
   }

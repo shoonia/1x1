@@ -31,9 +31,10 @@ const appModule = ({ on }) => {
     const i = parseInt(hex, 16);
 
     return {
-      R: i >> 16 & 255,
-      G: i >> 8 & 255,
-      B: i & 255,
+      R: i >> 24 & 255,
+      G: i >> 16 & 255,
+      B: i >> 8 & 255,
+      A: i & 255,
       hex,
     };
   });

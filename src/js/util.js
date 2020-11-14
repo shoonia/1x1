@@ -33,8 +33,8 @@ export const decimalToHex = (i) => {
   return (hex.length < 2) ? ('0' + hex) : hex;
 };
 
-export const createHex = ({ R, G, B }) => {
-  return [R, G, B].map(decimalToHex).join('');
+export const createHex = ({ R, G, B, A }) => {
+  return [R, G, B, A].map(decimalToHex).join('');
 };
 
 export const random16 = (size) => {
