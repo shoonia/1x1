@@ -1,8 +1,8 @@
 export const colors = {
-  black: '000',
+  black: '000000',
   silver: 'c0c0c0',
   gray: '808080',
-  white: 'fff',
+  white: 'ffffff',
   maroon: '800000',
   red: 'ff0000',
   purple: '800080',
@@ -156,7 +156,7 @@ export const createOptionList = () => {
   for (let key in colors) {
     const item = option.cloneNode();
 
-    item.value = colors[key];
+    item.value = colors[key] + 'ff';
     item.textContent = key;
     list.appendChild(item);
   }

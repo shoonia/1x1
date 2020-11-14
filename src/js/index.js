@@ -4,6 +4,7 @@ import { connect, dispatch } from './store';
 import { createCanvas, id, random16, decimalToHex, clipboard } from './util';
 
 const inputColor = id('inputColor');
+const inputAlpha = id('inputAlpha');
 const picker = id('picker');
 const rangeRed = id('rangeRed');
 const numberRed = id('numberRed');
@@ -35,6 +36,10 @@ const setRGBA = ({ target }) => {
   ]);
 };
 
+const setAlpha = (hex) => {
+  return dispatch('rgba', ['A', parseInt(hex, 16)]);
+};
+
 const readAsArrayBuffer = (blob) => {
   if (fileReader.readyState !== 1) {
     fileReader.readAsArrayBuffer(blob);
@@ -63,7 +68,7 @@ const handleInputColor = () => {
     let A;
 
     [color, A] = color.match(SPLIT_BY_6);
-    dispatch('rgba', ['A', parseInt(A, 16)]);
+    setAlpha(A);
   }
 
   if (color.length !== 6) {
@@ -116,10 +121,22 @@ connect('B', ({ B }) => {
 connect('A', ({ A }) => {
   rangeAlpha.value = A;
   numberAlpha.value = A;
+  inputAlpha.value = decimalToHex(A);
 });
 
 inputColor.addEventListener('change', handleInputColor);
 id('create').addEventListener('click', handleInputColor);
+
+inputAlpha.addEventListener('change', () => {
+  const val = inputAlpha.value
+    .trim()
+    .toLowerCase()
+    .replace(NOT_HEXADECIMAL, '');
+
+  const hex = val.length !== 2 ? 'ff' : val;
+
+  setAlpha(hex);
+});
 
 picker.addEventListener('change', () => {
   setHex(picker.value.slice(1));
