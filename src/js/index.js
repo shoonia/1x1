@@ -2,8 +2,8 @@ import tinykeys from 'tinykeys';
 
 import { ga } from './ga';
 import { colors, createOptionList } from './colors';
-import { connect, dispatch } from './store';
-import { createCanvas, id, random16, decimalToHex, clipboard } from './util';
+import { connect, dispatch, getState } from './store';
+import { createCanvas, id, all, random16, decimalToHex, clipboard } from './util';
 
 const inputColor = id('inputColor');
 const inputAlpha = id('inputAlpha');
@@ -24,11 +24,20 @@ const outputBytes = id('outputBytes');
 const download = id('download');
 
 const fileReader = new FileReader();
-const location = window.location;
 
 const FF = 'ff';
 const NOT_ALPHANUMERIC = /[^\da-z]/i;
 const NOT_HEXADECIMAL = /[^\da-f]/i;
+const MACOS = /Mac\sOS/gi;
+const SMARTPHONE = /Android.+Mobile|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i;
+
+const undo = () => {
+  if (history.state === null) {
+    history.go(-1);
+  }
+};
+
+const redo = () => history.go(1);
 
 const setHex = (hex) => dispatch('hex', hex);
 
@@ -155,17 +164,13 @@ fileReader.addEventListener('load', () => {
   outputBytes.value = bytes.toString();
 });
 
-document.querySelectorAll('[data-rgba]').forEach((i) => {
+all('[data-rgba]').forEach((i) => {
   i.addEventListener('change', setRGBA);
 });
 
-document.querySelectorAll('[data-clipboard]').forEach((i) => {
+all('[data-clipboard]').forEach((i) => {
   i.addEventListener('click', clipboard);
 });
-
-if (document.location.hostname !== 'localhost') {
-  ga();
-}
 
 id('rgbaDetails').open = window.innerWidth > 701;
 id('colorList').appendChild(createOptionList());
@@ -175,25 +180,48 @@ id('random').addEventListener('click', () => {
 });
 
 window.addEventListener('popstate', () => {
-  const [isValid, color] = parseHex(location.hash);
+  const { hex } = getState();
+  const hash = location.hash.slice(1);
+
+  if (hash === hex) {
+    return;
+  }
+
+  const [isValid, color] = parseHex(hash);
 
   if (isValid) {
     setHex(color);
   }
 });
 
-tinykeys(window, {
-  '$mod+z': () => {
-    window.history.go(-1);
-  },
-  '$mod+Shift+z': () => {
-    window.history.go(1);
-  },
-});
-
 (() => {
+  const isMac = MACOS.test(navigator.userAgent);
+  const isSmartphone = SMARTPHONE.test(navigator.userAgent);
+
+  if (isSmartphone) {
+    id('history').remove();
+  } else {
+    const os = isMac ? '.darwin-hint' : '.win-hint';
+
+    tinykeys(window, {
+      '$mod+z': undo,
+      '$mod+Shift+z': redo,
+    });
+
+    id('undo').addEventListener('click', undo);
+    id('redo').addEventListener('click', redo);
+    all(os).forEach((i) => {
+      i.hidden = false;
+    });
+  }
+
+  if (location.hostname !== 'localhost') {
+    ga();
+  }
+
   const [isValid, color] = parseHex(location.hash);
   const hex = isValid ? color : random16(6) + FF;
 
+  history.pushState(1, null, `#${hex}`);
   setHex(hex);
 })();

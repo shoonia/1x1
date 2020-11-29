@@ -49,9 +49,10 @@ const appModule = ({ on }) => {
   });
 };
 
-const { dispatch } = createStoreon([appModule]);
+const { get, dispatch } = createStoreon([appModule]);
 
 export {
+  get as getState,
   dispatch,
   connect,
 };
