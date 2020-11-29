@@ -174,10 +174,6 @@ all('[data-clipboard]').forEach((i) => {
   i.addEventListener('click', clipboard);
 });
 
-if (document.location.hostname !== 'localhost') {
-  ga();
-}
-
 id('rgbaDetails').open = window.innerWidth > 701;
 id('colorList').appendChild(createOptionList());
 
@@ -199,9 +195,6 @@ tinykeys(window, {
 });
 
 (() => {
-  const [isValid, color] = parseHex(location.hash);
-  const hex = isValid ? color : random16(6) + FF;
-
   const isMac = MACOS.test(navigator.userAgent);
   const isSmartphone = SMARTPHONE.test(navigator.userAgent);
 
@@ -216,6 +209,13 @@ tinykeys(window, {
       i.hidden = false;
     });
   }
+
+  if (location.hostname !== 'localhost') {
+    ga();
+  }
+
+  const [isValid, color] = parseHex(location.hash);
+  const hex = isValid ? color : random16(6) + FF;
 
   setHex(hex);
 })();
