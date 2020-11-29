@@ -1,3 +1,5 @@
+import tinykeys from 'tinykeys';
+
 import { ga } from './ga';
 import { colors, createOptionList } from './colors';
 import { connect, dispatch } from './store';
@@ -178,6 +180,15 @@ window.addEventListener('popstate', () => {
   if (isValid) {
     setHex(color);
   }
+});
+
+tinykeys(window, {
+  '$mod+z': () => {
+    window.history.go(-1);
+  },
+  '$mod+Shift+z': () => {
+    window.history.go(1);
+  },
 });
 
 (() => {

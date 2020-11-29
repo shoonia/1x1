@@ -10,7 +10,8 @@
     "lint-css": "stylelint src/**/*.css"
   },
   "dependencies": {
-    "storeon": "^3.1.1"
+    "storeon": "^3.1.1",
+    "tinykeys": "^1.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
