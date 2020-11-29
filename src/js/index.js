@@ -2,7 +2,7 @@ import tinykeys from 'tinykeys';
 
 import { ga } from './ga';
 import { colors, createOptionList } from './colors';
-import { connect, dispatch } from './store';
+import { connect, dispatch, getState } from './store';
 import { createCanvas, id, all, random16, decimalToHex, clipboard } from './util';
 
 const inputColor = id('inputColor');
@@ -55,10 +55,16 @@ const readAsArrayBuffer = (blob) => {
 };
 
 const parseHex = (value) => {
+  const { hex } = getState();
+
   let color = value
     .trim()
     .toLowerCase()
     .replace(NOT_ALPHANUMERIC, '');
+
+  if (color === hex) {
+    return [false];
+  }
 
   if (color in colors) {
     color = colors[color];
