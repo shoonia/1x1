@@ -3,7 +3,7 @@ import tinykeys from 'tinykeys';
 import { ga } from './ga';
 import { colors, createOptionList } from './colors';
 import { connect, dispatch } from './store';
-import { createCanvas, id, random16, decimalToHex, clipboard } from './util';
+import { createCanvas, id, all, random16, decimalToHex, clipboard } from './util';
 
 const inputColor = id('inputColor');
 const inputAlpha = id('inputAlpha');
@@ -29,6 +29,11 @@ const location = window.location;
 const FF = 'ff';
 const NOT_ALPHANUMERIC = /[^\da-z]/i;
 const NOT_HEXADECIMAL = /[^\da-f]/i;
+const MACOS = /Mac\sOS/gi;
+const SMARTPHONE = /Android.+Mobile|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i;
+
+const undo = () => window.history.go(-1);
+const redo = () => window.history.go(1);
 
 const setHex = (hex) => dispatch('hex', hex);
 
@@ -155,11 +160,11 @@ fileReader.addEventListener('load', () => {
   outputBytes.value = bytes.toString();
 });
 
-document.querySelectorAll('[data-rgba]').forEach((i) => {
+all('[data-rgba]').forEach((i) => {
   i.addEventListener('change', setRGBA);
 });
 
-document.querySelectorAll('[data-clipboard]').forEach((i) => {
+all('[data-clipboard]').forEach((i) => {
   i.addEventListener('click', clipboard);
 });
 
@@ -183,17 +188,28 @@ window.addEventListener('popstate', () => {
 });
 
 tinykeys(window, {
-  '$mod+z': () => {
-    window.history.go(-1);
-  },
-  '$mod+Shift+z': () => {
-    window.history.go(1);
-  },
+  '$mod+z': undo,
+  '$mod+Shift+z': redo,
 });
 
 (() => {
   const [isValid, color] = parseHex(location.hash);
   const hex = isValid ? color : random16(6) + FF;
+
+  const isMac = MACOS.test(navigator.userAgent);
+  const isSmartphone = SMARTPHONE.test(navigator.userAgent);
+
+  if (isSmartphone) {
+    id('history').remove();
+  } else {
+    const os = isMac ? '.darwin-hint' : '.win-hint';
+
+    id('undo').addEventListener('click', undo);
+    id('redo').addEventListener('click', redo);
+    all(os).forEach((i) => {
+      i.hidden = false;
+    });
+  }
 
   setHex(hex);
 })();

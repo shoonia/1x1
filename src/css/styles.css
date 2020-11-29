@@ -24,6 +24,7 @@ button {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+a,
 button,
 input {
   -webkit-touch-callout: none;
@@ -46,6 +47,9 @@ input {
   padding: 1.3em 2em;
   margin: 8px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
 }
 
 .fields {
@@ -127,7 +131,6 @@ input {
   padding: 5px 15px;
   border-radius: 6px;
   user-select: none;
-  -webkit-touch-callout: none;
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
@@ -136,6 +139,7 @@ input {
   outline: none;
   position: relative;
   transition: all 0.1s ease-in;
+  white-space: nowrap;
 }
 
 .btn__create {
@@ -216,6 +220,18 @@ input {
   transform: scale(0.9);
 }
 
+.btn__hint {
+  appearance: none;
+  user-select: none;
+  border: none;
+  background: none;
+  outline: none;
+  padding: 10px 0;
+  font-size: 14px;
+  color: #555;
+  cursor: pointer;
+}
+
 .content {
   max-width: 850px;
   position: relative;
@@ -275,6 +291,17 @@ input {
   font-size: 80%;
   margin: 0 1em;
   line-height: 1.5;
+}
+
+.history {
+  margin-top: auto;
+  padding-top: 1em;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-gap: 0.3em;
+  align-items: end;
+  font-size: 14px;
+  color: #555;
 }
 
 @media (min-width: 700px) {

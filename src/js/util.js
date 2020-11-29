@@ -2,6 +2,10 @@ export const id = ($) => {
   return document.getElementById($);
 };
 
+export const all = ($) => {
+  return document.querySelectorAll($);
+};
+
 export const clipboard = (event) => {
   event.target.select();
   document.execCommand('copy');
