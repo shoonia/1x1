@@ -24,7 +24,6 @@ const outputBytes = id('outputBytes');
 const download = id('download');
 
 const fileReader = new FileReader();
-const location = window.location;
 
 const FF = 'ff';
 const NOT_ALPHANUMERIC = /[^\da-z]/i;
@@ -32,8 +31,13 @@ const NOT_HEXADECIMAL = /[^\da-f]/i;
 const MACOS = /Mac\sOS/gi;
 const SMARTPHONE = /Android.+Mobile|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i;
 
-const undo = () => window.history.go(-1);
-const redo = () => window.history.go(1);
+const undo = () => {
+  if (history.state === null) {
+    history.go(-1);
+  }
+};
+
+const redo = () => history.go(1);
 
 const setHex = (hex) => dispatch('hex', hex);
 
@@ -55,16 +59,10 @@ const readAsArrayBuffer = (blob) => {
 };
 
 const parseHex = (value) => {
-  const { hex } = getState();
-
   let color = value
     .trim()
     .toLowerCase()
     .replace(NOT_ALPHANUMERIC, '');
-
-  if (color === hex) {
-    return [false];
-  }
 
   if (color in colors) {
     color = colors[color];
@@ -182,16 +180,18 @@ id('random').addEventListener('click', () => {
 });
 
 window.addEventListener('popstate', () => {
-  const [isValid, color] = parseHex(location.hash);
+  const { hex } = getState();
+  const hash = location.hash.slice(1);
+
+  if (hash === hex) {
+    return;
+  }
+
+  const [isValid, color] = parseHex(hash);
 
   if (isValid) {
     setHex(color);
   }
-});
-
-tinykeys(window, {
-  '$mod+z': undo,
-  '$mod+Shift+z': redo,
 });
 
 (() => {
@@ -202,6 +202,11 @@ tinykeys(window, {
     id('history').remove();
   } else {
     const os = isMac ? '.darwin-hint' : '.win-hint';
+
+    tinykeys(window, {
+      '$mod+z': undo,
+      '$mod+Shift+z': redo,
+    });
 
     id('undo').addEventListener('click', undo);
     id('redo').addEventListener('click', redo);
@@ -217,5 +222,6 @@ tinykeys(window, {
   const [isValid, color] = parseHex(location.hash);
   const hex = isValid ? color : random16(6) + FF;
 
+  history.pushState(1, null, `#${hex}`);
   setHex(hex);
 })();
