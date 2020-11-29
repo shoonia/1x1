@@ -22,6 +22,7 @@ const outputBytes = id('outputBytes');
 const download = id('download');
 
 const fileReader = new FileReader();
+const location = window.location;
 
 const FF = 'ff';
 const NOT_ALPHANUMERIC = /[^\da-z]/i;
@@ -46,8 +47,8 @@ const readAsArrayBuffer = (blob) => {
   }
 };
 
-const handleInputColor = () => {
-  let color = inputColor.value
+const parseHex = (value) => {
+  let color = value
     .trim()
     .toLowerCase()
     .replace(NOT_ALPHANUMERIC, '');
@@ -57,7 +58,7 @@ const handleInputColor = () => {
   }
 
   if (NOT_HEXADECIMAL.test(color)) {
-    return inputColor.focus();
+    return [false];
   }
 
   if (color.length === 3) {
@@ -69,10 +70,10 @@ const handleInputColor = () => {
   }
 
   if (color.length !== 8) {
-    return inputColor.focus();
+    return [false];
   }
 
-  setHex(color);
+  return [true, color];
 };
 
 connect('hex', ({ hex }) => {
@@ -88,6 +89,7 @@ connect('hex', ({ hex }) => {
 
   console.log('%c  ', css, hex8);
   canvas.toBlob(readAsArrayBuffer);
+  location.hash = hex8;
 
   inputColor.value = hex6;
   picker.value = '#' + hex6;
@@ -121,7 +123,15 @@ connect('A', ({ A }) => {
   inputAlpha.value = decimalToHex(A);
 });
 
-inputColor.addEventListener('change', handleInputColor);
+inputColor.addEventListener('change', () => {
+  const [isValid, color] = parseHex(inputColor.value);
+
+  if (isValid) {
+    setHex(color);
+  } else {
+    inputColor.focus();
+  }
+});
 
 inputAlpha.addEventListener('change', () => {
   const val = inputAlpha.value
@@ -162,4 +172,17 @@ id('random').addEventListener('click', () => {
   setHex(random16(6) + FF);
 });
 
-setHex(random16(6) + FF);
+window.addEventListener('popstate', () => {
+  const [isValid, color] = parseHex(location.hash);
+
+  if (isValid) {
+    setHex(color);
+  }
+});
+
+(() => {
+  const [isValid, color] = parseHex(location.hash);
+  const hex = isValid ? color : random16(6) + FF;
+
+  setHex(hex);
+})();
