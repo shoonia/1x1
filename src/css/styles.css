@@ -28,6 +28,10 @@ a,
 button,
 input {
   -webkit-touch-callout: none;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
 .wrapper {
@@ -89,7 +93,6 @@ input {
   font-family: "Courier New", Courier, monospace;
   border-radius: 6px;
   margin: 0.5em 0;
-  outline: none;
 }
 
 .field__number {
@@ -120,7 +123,6 @@ input {
   height: 2em;
   padding: 0;
   margin: 0;
-  cursor: pointer;
   background-color: transparent;
   border: 1px solid #c6e2f7;
   border-radius: 6px;
@@ -131,15 +133,11 @@ input {
   padding: 5px 15px;
   border-radius: 6px;
   user-select: none;
-  text-decoration: none;
   display: inline-block;
-  cursor: pointer;
   background-color: #00bcd4;
   color: #fff;
-  outline: none;
   position: relative;
   transition: all 0.1s ease-in;
-  white-space: nowrap;
 }
 
 .btn__create {
@@ -198,10 +196,8 @@ input {
 .btn_random {
   border: 1px solid #00abd4;
   border-radius: 50%;
-  outline: none;
   background-color: #fff;
   transition: all 0.1s ease-in;
-  cursor: pointer;
   position: absolute;
   width: 50px;
   height: 50px;
@@ -225,11 +221,9 @@ input {
   user-select: none;
   border: none;
   background: none;
-  outline: none;
   padding: 10px 0;
   font-size: 14px;
   color: #555;
-  cursor: pointer;
 }
 
 .content {
@@ -297,8 +291,8 @@ input {
   margin-top: auto;
   padding-top: 1em;
   display: grid;
-  grid-template-columns: 50% 50%;
-  grid-gap: 0.3em;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
   align-items: end;
   font-size: 14px;
   color: #555;
