@@ -32,6 +32,7 @@ input {
   outline: none;
   cursor: pointer;
   white-space: nowrap;
+  transition: all 0.1s ease-in;
 }
 
 .wrapper {
@@ -137,7 +138,6 @@ input {
   background-color: #00bcd4;
   color: #fff;
   position: relative;
-  transition: all 0.1s ease-in;
 }
 
 .btn__create {
@@ -197,7 +197,6 @@ input {
   border: 1px solid #00abd4;
   border-radius: 50%;
   background-color: #fff;
-  transition: all 0.1s ease-in;
   position: absolute;
   width: 50px;
   height: 50px;
@@ -219,11 +218,17 @@ input {
 .btn__hint {
   appearance: none;
   user-select: none;
-  border: none;
-  background: none;
-  padding: 10px 0;
-  font-size: 14px;
+  border-radius: 4px;
+  border: 2px solid #c6e2f7;
+  background-color: #fff;
+  padding: 2px 5px;
+  margin: 5px 0 0 0;
+  font-size: 13px;
   color: #555;
+}
+
+.btn__hint:hover {
+  background-color: #c6e2f7;
 }
 
 .content {
@@ -294,6 +299,7 @@ input {
   grid-template-columns: auto auto;
   justify-content: space-between;
   align-items: end;
+  text-align: center;
   font-size: 14px;
   color: #555;
 }
