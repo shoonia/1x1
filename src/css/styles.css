@@ -219,7 +219,7 @@ input {
   appearance: none;
   user-select: none;
   border-radius: 4px;
-  border: 2px solid #c6e2f7;
+  border: 1px solid #00bcd4;
   background-color: #fff;
   padding: 2px 5px;
   margin: 5px 0 0 0;
@@ -228,7 +228,9 @@ input {
 }
 
 .btn__hint:hover {
-  background-color: #c6e2f7;
+  background-color: #00bcd4;
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
 .content {
