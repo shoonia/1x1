@@ -1,3 +1,40 @@
+const canvas = document.createElement('canvas');
+
+export const createCanvas = (color) => {
+  const el = canvas.cloneNode();
+  const ctx = el.getContext('2d');
+
+  el.width = 1;
+  el.height = 1;
+
+  ctx.fillStyle = color;
+  ctx.rect(0, 0, 1, 1);
+  ctx.fill();
+
+  return el;
+};
+
+export const createFavicon = (color) => {
+  const el = canvas.cloneNode();
+  const ctx = el.getContext('2d');
+
+  el.width = 50;
+  el.height = 50;
+
+  Object.assign(ctx, {
+    fillStyle: color,
+    lineWidth: 4,
+    strokeStyle: '#c6e2f7',
+  });
+
+  ctx.beginPath();
+  ctx.arc(25, 25, 20, 0, 2 * Math.PI);
+  ctx.stroke();
+  ctx.fill();
+
+  return el.toDataURL('image/png');
+};
+
 export const id = ($) => {
   return document.getElementById($);
 };
@@ -9,20 +46,6 @@ export const all = ($) => {
 export const clipboard = (event) => {
   event.target.select();
   document.execCommand('copy');
-};
-
-export const createCanvas = (color) => {
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-
-  canvas.width = 1;
-  canvas.height = 1;
-
-  ctx.rect(0, 0, 1, 1);
-  ctx.fillStyle = color;
-  ctx.fill();
-
-  return canvas;
 };
 
 export const parseNumber = (n) => {

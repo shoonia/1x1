@@ -3,7 +3,7 @@ import tinykeys from 'tinykeys';
 import { ga } from './ga';
 import { colors, createOptionList } from './colors';
 import { connect, dispatch, getState } from './store';
-import { createCanvas, id, all, random16, decimalToHex, clipboard } from './util';
+import { createCanvas, createFavicon, id, all, random16, decimalToHex, clipboard } from './util';
 
 const inputColor = id('inputColor');
 const inputAlpha = id('inputAlpha');
@@ -22,6 +22,7 @@ const outputBase64 = id('outputBase64');
 const outputCSS = id('outputCSS');
 const outputBytes = id('outputBytes');
 const download = id('download');
+const favicon = id('favicon');
 
 const fileReader = new FileReader();
 
@@ -94,7 +95,7 @@ connect('hex', ({ hex }) => {
   canvas.toBlob(readAsArrayBuffer);
   location.hash = hex8;
   document.title =  `1x1 Pixel PNG | ${hex8}`;
-
+  favicon.href = createFavicon(hex8);
   inputColor.value = hex6;
   picker.value = '#' + hex6;
   outputImage.style.backgroundImage = url;
