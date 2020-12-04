@@ -31,14 +31,6 @@ const NOT_HEXADECIMAL = /[^\da-f]/i;
 const MACOS = /Mac\sOS/gi;
 const SMARTPHONE = /Android.+Mobile|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i;
 
-const undo = () => {
-  if (history.state === null) {
-    history.go(-1);
-  }
-};
-
-const redo = () => history.go(1);
-
 const setHex = (hex) => dispatch('hex', hex);
 
 const setRGBA = ({ target }) => {
@@ -101,6 +93,7 @@ connect('hex', ({ hex }) => {
   console.log('%c  ', css, hex8);
   canvas.toBlob(readAsArrayBuffer);
   location.hash = hex8;
+  document.title =  `1x1 Pixel PNG | ${hex8}`;
 
   inputColor.value = hex6;
   picker.value = '#' + hex6;
@@ -156,7 +149,11 @@ inputAlpha.addEventListener('change', () => {
 });
 
 picker.addEventListener('change', () => {
-  setHex(picker.value.slice(1) + FF);
+  const [isValid, color] = parseHex(picker.value);
+
+  if (isValid) {
+    setHex(color);
+  }
 });
 
 fileReader.addEventListener('load', () => {
@@ -202,6 +199,14 @@ window.addEventListener('popstate', () => {
     id('history').remove();
   } else {
     const os = isMac ? '.darwin-hint' : '.win-hint';
+
+    const undo = () => {
+      if (history.state === null) {
+        history.go(-1);
+      }
+    };
+
+    const redo = () => history.go(1);
 
     tinykeys(window, {
       '$mod+z': undo,
