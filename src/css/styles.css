@@ -91,9 +91,10 @@ input {
   width: 100%;
   border: 2px solid #c6e2f7;
   font-size: 1em;
-  font-family: "Courier New", Courier, monospace;
+  font-family: system-ui, 'Courier New', Courier, monospace;
   border-radius: 6px;
   margin: 0.5em 0;
+  color: #333;
 }
 
 .field__number {
@@ -218,19 +219,35 @@ input {
 .btn__hint {
   appearance: none;
   user-select: none;
-  border-radius: 4px;
-  border: 1px solid #00bcd4;
-  background-color: #fff;
-  padding: 2px 5px;
-  margin: 5px 0 0 0;
-  font-size: 13px;
+  border: none;
+  background: none;
   color: #555;
+  margin-top: 5px;
 }
 
-.btn__hint:hover {
+.btn__hint:active {
+  transform: scale(0.96);
+}
+
+.btn__hint kbd {
+  font-family: system-ui, 'Courier New', Courier, monospace;
+  font-size: 13px;
+  white-space: normal;
+}
+
+.btn__hint span {
+  padding: 2px 6px;
+  line-height: 1;
+  background-color: #fff;
+  color: #555;
+  border: 1px solid #00bcd4;
+  border-radius: 2px;
+}
+
+.btn__hint:hover span {
   background-color: #00bcd4;
   color: #fff;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .content {
@@ -260,7 +277,7 @@ input {
 
 .output__image::after {
   content: "1x1";
-  font-family: 'Courier New', Courier, monospace;
+  font-family: system-ui, 'Courier New', Courier, monospace;
   position: absolute;
   bottom: 10px;
   right: 10px;
@@ -303,7 +320,7 @@ input {
   align-items: end;
   text-align: center;
   font-size: 14px;
-  color: #555;
+  color: #333;
 }
 
 @media (min-width: 700px) {
