@@ -41,7 +41,7 @@ module.exports = {
     path: isProd ? paths.dist : undefined,
     pathinfo: isDev,
     filename: '[name].[contenthash:4].js',
-    publicPath: isProd ? '/' : '',
+    publicPath: isProd ? homepage : '',
   },
   optimization: {
     minimize: isProd,
@@ -174,9 +174,7 @@ module.exports = {
       },
     }),
     new MiniCssExtractPlugin(),
-    new HTMLInlineCSSWebpackPlugin({
-      leaveCSSFile: false,
-    }),
+    new HTMLInlineCSSWebpackPlugin(),
     new webpack.DefinePlugin({
       'process.platform': JSON.stringify(process.platform),
       'process.env.NODE_ENV': JSON.stringify(buildEnv),

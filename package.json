@@ -4,10 +4,9 @@
   "description": "Оne pixel transparent PNG base64 encoded online generator.",
   "main": "src/index.html",
   "scripts": {
-    "start": "parcel serve src/index.html -p 3000 --no-cache",
-    "build": "parcel build src/index.html --public-url ./ --no-source-maps --no-cache --experimental-scope-hoisting",
-    "lint-js": "eslint src/**/*.js",
-    "lint-css": "stylelint src/**/*.css"
+    "start": ":",
+    "build": "webpack --config webpack.config.js",
+    "lint": "eslint src/**/*.js && stylelint src/**/*.css"
   },
   "dependencies": {
     "rgb-hex": "^3.0.0",
@@ -40,7 +39,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint-js && npm run lint-css"
+      "pre-commit": "npm run lint"
     }
   },
   "repository": {
