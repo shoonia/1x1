@@ -1,4 +1,5 @@
 import tinykeys from 'tinykeys';
+import rgbHex from 'rgb-hex';
 
 import { ga } from './ga';
 import { colors, createOptionList } from './colors';
@@ -62,7 +63,11 @@ const parseHex = (value) => {
   }
 
   if (NOT_HEXADECIMAL.test(color)) {
-    return [false];
+    try {
+      color = rgbHex(color);
+    } catch {
+      return [false];
+    }
   }
 
   if (color.length === 3) {

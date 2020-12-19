@@ -10,6 +10,7 @@
     "lint-css": "stylelint src/**/*.css"
   },
   "dependencies": {
+    "rgb-hex": "^3.0.0",
     "storeon": "^3.1.2",
     "tinykeys": "^1.1.1"
   },
@@ -17,7 +18,7 @@
     "@babel/core": "^7.12.10",
     "autoprefixer": "^9.8.6",
     "cssnano": "^4.1.10",
-    "eslint": "^7.15.0",
+    "eslint": "^7.16.0",
     "husky": "^4.3.6",
     "parcel-bundler": "^1.12.4",
     "postcss-input-range": "^4.0.0",
