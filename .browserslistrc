@@ -1,5 +1,11 @@
+[production]
 defaults
 not IE 11
 not IE_Mob 11
 not op_mini all
 not dead
+edge 18
+
+[development]
+last 1 chrome version
+last 1 firefox version

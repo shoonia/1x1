@@ -1,4 +1,4 @@
-import { createStoreon } from 'storeon/index';
+import { createStoreon } from 'storeon';
 
 import { createHex, parseNumber } from './util';
 

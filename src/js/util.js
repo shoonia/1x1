@@ -35,8 +35,8 @@ export const createFavicon = (color) => {
   return el.toDataURL('image/png');
 };
 
-export const id = ($) => {
-  return document.getElementById($);
+export const one = ($) => {
+  return document.querySelector($);
 };
 
 export const all = ($) => {

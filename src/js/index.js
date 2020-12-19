@@ -1,29 +1,30 @@
 import tinykeys from 'tinykeys';
 import rgbHex from 'rgb-hex';
 
+import '../css/styles.css';
 import { ga } from './ga';
 import { colors, createOptionList } from './colors';
 import { connect, dispatch, getState } from './store';
-import { createCanvas, createFavicon, id, all, random16, decimalToHex, clipboard } from './util';
+import { createCanvas, createFavicon, one, all, random16, decimalToHex, clipboard } from './util';
 
-const inputColor = id('inputColor');
-const inputAlpha = id('inputAlpha');
-const picker = id('picker');
-const rangeRed = id('rangeRed');
-const numberRed = id('numberRed');
-const rangeGreen = id('rangeGreen');
-const numberGreen = id('numberGreen');
-const rangeBlue = id('rangeBlue');
-const numberBlue = id('numberBlue');
-const rangeAlpha = id('rangeAlpha');
-const numberAlpha = id('numberAlpha');
-const outputImage = id('outputImage');
-const outputDataURL = id('outputDataURL');
-const outputBase64 = id('outputBase64');
-const outputCSS = id('outputCSS');
-const outputBytes = id('outputBytes');
-const download = id('download');
-const favicon = id('favicon');
+const inputColor = one('#inputColor');
+const inputAlpha = one('#inputAlpha');
+const picker = one('#picker');
+const rangeRed = one('#rangeRed');
+const numberRed = one('#numberRed');
+const rangeGreen = one('#rangeGreen');
+const numberGreen = one('#numberGreen');
+const rangeBlue = one('#rangeBlue');
+const numberBlue = one('#numberBlue');
+const rangeAlpha = one('#rangeAlpha');
+const numberAlpha = one('#numberAlpha');
+const outputImage = one('#outputImage');
+const outputDataURL = one('#outputDataURL');
+const outputBase64 = one('#outputBase64');
+const outputCSS = one('#outputCSS');
+const outputBytes = one('#outputBytes');
+const download = one('#download');
+const favicon = one('link[rel="icon"]');
 
 const fileReader = new FileReader();
 
@@ -175,10 +176,10 @@ all('[data-clipboard]').forEach((i) => {
   i.addEventListener('click', clipboard);
 });
 
-id('rgbaDetails').open = window.innerWidth > 701;
-id('colorList').appendChild(createOptionList());
+one('#rgbaDetails').open = window.innerWidth > 701;
+one('#colorList').appendChild(createOptionList());
 
-id('random').addEventListener('click', () => {
+one('#random').addEventListener('click', () => {
   setHex(random16(6) + FF);
 });
 
@@ -202,7 +203,7 @@ window.addEventListener('popstate', () => {
   const isSmartphone = SMARTPHONE.test(navigator.userAgent);
 
   if (isSmartphone) {
-    id('history').remove();
+    one('#history').remove();
   } else {
     const os = isMac ? '.darwin-hint' : '.win-hint';
 
@@ -219,8 +220,8 @@ window.addEventListener('popstate', () => {
       '$mod+Shift+z': redo,
     });
 
-    id('undo').addEventListener('click', undo);
-    id('redo').addEventListener('click', redo);
+    one('#undo').addEventListener('click', undo);
+    one('#redo').addEventListener('click', redo);
     all(os).forEach((i) => {
       i.hidden = false;
     });
