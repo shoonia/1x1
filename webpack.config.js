@@ -1,4 +1,3 @@
-/* eslint-env node */
 const nodeEnv = process.env.BABEL_ENV = process.env.BROWSERSLIST_ENV = process.env.NODE_ENV;
 const isDev = nodeEnv === 'development';
 const isProd = nodeEnv === 'production';
