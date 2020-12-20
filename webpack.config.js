@@ -1,9 +1,7 @@
 /* eslint-env node */
-const buildEnv = 'production';
-
-process.env.NODE_ENV = buildEnv;
-process.env.BABEL_ENV = buildEnv;
-process.env.BROWSERSLIST_ENV = buildEnv;
+const nodeEnv = process.env.BABEL_ENV = process.env.BROWSERSLIST_ENV = process.env.NODE_ENV;
+const isDev = nodeEnv === 'development';
+const isProd = nodeEnv === 'production';
 
 const { resolve } = require('path');
 const { realpathSync } = require('fs');
@@ -27,13 +25,12 @@ const paths = {
   favicon: resolveApp('src/favicon.png'),
 };
 
-emptyDirSync(paths.dist);
-
-const isDev = buildEnv === 'development';
-const isProd = buildEnv === 'production';
+if (isProd) {
+  emptyDirSync(paths.dist);
+}
 
 module.exports = {
-  mode: buildEnv,
+  mode: nodeEnv,
   bail: isProd,
   devtool: isDev && 'cheap-module-source-map',
   entry: paths.indexJs,
@@ -116,7 +113,7 @@ module.exports = {
                   '@babel/preset-env',
                   {
                     loose: true,
-                    browserslistEnv: buildEnv,
+                    browserslistEnv: nodeEnv,
                     configPath: appDirectory,
                     useBuiltIns: 'entry',
                   },
@@ -127,6 +124,7 @@ module.exports = {
           {
             test: /\.css$/,
             use: [
+              isDev && require.resolve('style-loader'),
               isProd && MiniCssExtractPlugin.loader,
               {
                 loader: require.resolve('css-loader'),
@@ -173,17 +171,22 @@ module.exports = {
         isProd,
       },
     }),
-    new MiniCssExtractPlugin(),
-    new HTMLInlineCSSWebpackPlugin(),
     new webpack.DefinePlugin({
       'process.platform': JSON.stringify(process.platform),
-      'process.env.NODE_ENV': JSON.stringify(buildEnv),
+      'process.env.NODE_ENV': JSON.stringify(nodeEnv),
       'process.env.NODE_DEBUG': JSON.stringify(isDev),
       'process.env': '{}',
       'process': 'undefined',
     }),
-    // new webpack.HotModuleReplacementPlugin(),
+    isProd && new MiniCssExtractPlugin(),
+    isProd && new HTMLInlineCSSWebpackPlugin(),
+    isDev && new webpack.HotModuleReplacementPlugin(),
     // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   ].filter(Boolean),
   performance: false,
+  devServer: {
+    contentBase: paths.dist,
+    compress: true,
+    port: 3000
+  }
 };

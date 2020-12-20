@@ -4,8 +4,8 @@
   "description": "Оne pixel transparent PNG base64 encoded online generator.",
   "main": "src/index.html",
   "scripts": {
-    "start": ":",
-    "build": "webpack --config webpack.config.js",
+    "start": "cross-env NODE_ENV=development webpack serve",
+    "build": "cross-env NODE_ENV=production webpack",
     "lint": "eslint src/**/*.js && stylelint src/**/*.css"
   },
   "dependencies": {
@@ -18,9 +18,9 @@
     "@babel/preset-env": "^7.12.11",
     "autoprefixer": "^10.1.0",
     "babel-loader": "^8.2.2",
+    "cross-env": "^7.0.3",
     "css-loader": "^5.0.1",
     "eslint": "^7.16.0",
-    "file-loader": "^6.2.0",
     "fs-extra": "^9.0.1",
     "html-inline-css-webpack-plugin": "^1.9.1",
     "html-webpack-plugin": "^4.5.0",
@@ -30,6 +30,7 @@
     "postcss": "^8.2.1",
     "postcss-input-range": "^4.0.0",
     "postcss-loader": "^4.1.0",
+    "style-loader": "^2.0.0",
     "stylelint": "^13.8.0",
     "stylelint-config-standard": "^20.0.0",
     "terser-webpack-plugin": "^5.0.3",
