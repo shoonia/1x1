@@ -227,7 +227,7 @@ window.addEventListener('popstate', () => {
     });
   }
 
-  if (location.hostname !== 'localhost') {
+  if (process.env.NODE_ENV === 'production') {
     ga();
   }
 
