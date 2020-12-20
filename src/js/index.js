@@ -65,7 +65,7 @@ const parseHex = (value) => {
 
   if (NOT_HEXADECIMAL.test(color)) {
     try {
-      color = rgbHex(color);
+      color = rgbHex(value);
     } catch {
       return [false];
     }
