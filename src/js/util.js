@@ -21,18 +21,12 @@ export const createFavicon = (color) => {
   el.width = 50;
   el.height = 50;
 
-  Object.assign(ctx, {
-    fillStyle: color,
-    lineWidth: 4,
-    strokeStyle: '#c6e2f7',
-  });
-
-  ctx.beginPath();
-  ctx.arc(25, 25, 20, 0, 2 * Math.PI);
+  ctx.fillStyle = color,
+  ctx.arc(25, 25, 24, 0, 2 * Math.PI);
   ctx.stroke();
   ctx.fill();
 
-  return el.toDataURL('image/png');
+  return el.toDataURL();
 };
 
 export const one = ($) => {
