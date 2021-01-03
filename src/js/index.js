@@ -29,9 +29,9 @@ const favicon = one('link[rel="icon"]');
 const fileReader = new FileReader();
 
 const FF = 'ff';
-const NOT_ALPHANUMERIC = /[^\da-z]/i;
-const NOT_HEXADECIMAL = /[^\da-f]/i;
-const MACOS = /Mac\sOS/gi;
+const SYMBOL_HASH = /^#/;
+const NOT_HEXADECIMAL = /[^\da-f]/ig;
+const MACOS = /Mac OS/i;
 const SMARTPHONE = /Android.+Mobile|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i;
 
 const setHex = (hex) => dispatch('hex', hex);
@@ -57,7 +57,7 @@ const parseHex = (value) => {
   let color = value
     .trim()
     .toLowerCase()
-    .replace(NOT_ALPHANUMERIC, '');
+    .replace(SYMBOL_HASH, '');
 
   if (color in colors) {
     color = colors[color];
@@ -88,7 +88,7 @@ const parseHex = (value) => {
 
 connect('hex', ({ hex }) => {
   const hex6 = hex.slice(0, 6);
-  const hex8 = '#' + hex;
+  const hex8 = `#${hex}`;
 
   const canvas = createCanvas(hex8);
   const dataURL = canvas.toDataURL('image/png');
@@ -103,7 +103,7 @@ connect('hex', ({ hex }) => {
   document.title =  `1x1 Pixel PNG | ${hex8}`;
   favicon.href = createFavicon(hex8);
   inputColor.value = hex6;
-  picker.value = '#' + hex6;
+  picker.value = `#${hex6}`;
   outputImage.style.backgroundImage = url;
   outputImage.title = `8-Digit Hex: ${hex8}`;
   outputDataURL.value = dataURL;
