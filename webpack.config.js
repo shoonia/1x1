@@ -138,9 +138,9 @@ module.exports = {
                   sourceMap: isDev,
                   postcssOptions: {
                     plugins: [
-                      isProd && require('autoprefixer')(),
-                      require('postcss-input-range')(),
-                    ],
+                      isProd && require('autoprefixer'),
+                      require('postcss-input-range'),
+                    ].filter(Boolean),
                   },
                 },
               },
