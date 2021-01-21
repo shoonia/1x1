@@ -2,31 +2,15 @@ const nodeEnv = process.env.BABEL_ENV = process.env.BROWSERSLIST_ENV = process.e
 const isDev = nodeEnv === 'development';
 const isProd = nodeEnv === 'production';
 
-const { resolve } = require('path');
-const { realpathSync } = require('fs');
-const { emptyDirSync } = require('fs-extra');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
+
 const { homepage } = require('./package.json');
-
-const appDirectory = realpathSync(process.cwd());
-const resolveApp = (relativePath) => resolve(appDirectory, relativePath);
-
-const paths = {
-  nodeModules: resolveApp('node_modules'),
-  dist: resolveApp('dist'),
-  indexJs: resolveApp('src/js/index.js'),
-  indexHtml: resolveApp('src/index.ejs'),
-  favicon: resolveApp('src/favicon.png'),
-};
-
-if (isProd) {
-  emptyDirSync(paths.dist);
-}
+const paths = require('./scripts/paths');
 
 module.exports = {
   mode: nodeEnv,
@@ -113,7 +97,7 @@ module.exports = {
                   {
                     loose: true,
                     browserslistEnv: nodeEnv,
-                    configPath: appDirectory,
+                    configPath: paths.appDirectory,
                     useBuiltIns: 'entry',
                   },
                 ],

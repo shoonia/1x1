@@ -205,7 +205,7 @@ window.addEventListener('popstate', () => {
   if (isSmartphone) {
     one('#history').remove();
   } else {
-    const os = isMac ? '.darwin-hint' : '.win-hint';
+    const os = isMac ? '[data-hint="darwin"]' : '[data-hint="win"]';
 
     const undo = () => {
       if (history.state === null) {

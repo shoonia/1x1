@@ -5,7 +5,7 @@
   "main": "src/index.html",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve",
-    "build": "cross-env NODE_ENV=production webpack",
+    "build": "cross-env NODE_ENV=production node scripts/build.js",
     "lint": "eslint src/**/*.js && stylelint src/**/*.css"
   },
   "dependencies": {
@@ -16,12 +16,12 @@
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
-    "autoprefixer": "^10.2.1",
+    "autoprefixer": "^10.2.3",
     "babel-loader": "^8.2.2",
     "cross-env": "^7.0.3",
     "css-loader": "^5.0.1",
     "eslint": "^7.18.0",
-    "fs-extra": "^9.0.1",
+    "fs-extra": "^9.1.0",
     "html-inline-css-webpack-plugin": "^1.10.0",
     "html-webpack-plugin": "^4.5.1",
     "husky": "^4.3.8",
@@ -29,13 +29,15 @@
     "optimize-css-assets-webpack-plugin": "^5.0.4",
     "postcss": "^8.2.4",
     "postcss-input-range": "^4.0.0",
-    "postcss-loader": "^4.1.0",
+    "postcss-loader": "^4.2.0",
+    "posthtml": "^0.15.1",
+    "posthtml-minify-classnames": "^0.2.3",
     "style-loader": "^2.0.0",
-    "stylelint": "^13.8.0",
+    "stylelint": "^13.9.0",
     "stylelint-config-standard": "^20.0.0",
     "terser-webpack-plugin": "^5.1.1",
-    "webpack": "^5.15.0",
-    "webpack-cli": "^4.3.1",
+    "webpack": "^5.16.0",
+    "webpack-cli": "^4.4.0",
     "webpack-dev-server": "^3.11.2"
   },
   "husky": {

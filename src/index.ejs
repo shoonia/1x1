@@ -125,11 +125,11 @@ var ldJson = JSON.stringify({
       <div>
         <div>Undo:</div>
         <button type="button" id="undo" class="btn__hint">
-          <kbd class="darwin-hint" hidden>
+          <kbd data-hint="darwin" hidden>
             <span>⌘</span>
             <span>z</span>
           </kbd>
-          <kbd class="win-hint" hidden>
+          <kbd data-hint="win" hidden>
             <span>Ctrl</span>
             <span>z</span>
           </kbd>
@@ -138,12 +138,12 @@ var ldJson = JSON.stringify({
       <div>
         <div>Redo:</div>
         <button type="button" id="redo" class="btn__hint">
-          <kbd class="darwin-hint" hidden>
+          <kbd data-hint="darwin" hidden>
             <span>⌘</span>
             <span>Shift</span>
             <span>z</span>
           </kbd>
-          <kbd class="win-hint" hidden>
+          <kbd data-hint="win" hidden>
             <span>Ctrl</span>
             <span>Shift</span>
             <span>z</span>
