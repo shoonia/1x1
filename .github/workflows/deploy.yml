@@ -2,8 +2,7 @@ name: deploy
 
 on:
   push:
-    branches:
-    - master
+    branches: master
 
 jobs:
   build-deploy:
@@ -12,25 +11,24 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Setup Node
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2
       with:
         node-version: '14.x'
 
     - name: Cache dependencies
-      uses: actions/cache@v1
+      uses: actions/cache@v2
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
+        restore-keys: ${{ runner.os }}-node-
 
     - run: npm ci
     - run: npm run lint
     - run: npm run build
 
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2
-      env:
-        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: ./dist
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        publish_branch: gh-pages
+        publish_dir: ./dist
