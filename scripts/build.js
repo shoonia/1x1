@@ -1,5 +1,4 @@
 const { promises } = require('fs');
-const { emptyDir } = require('fs-extra');
 const webpack = require('webpack');
 const posthtml = require('posthtml');
 const minifyClassnames = require('posthtml-minify-classnames');
@@ -23,7 +22,6 @@ process.env.BABEL_ENV = process.env.BROWSERSLIST_ENV = process.env.NODE_ENV = 'p
 (async () => {
   console.log('\nProduction build...\n');
 
-  await emptyDir(paths.dist);
   await build(webpackConfig(process.env));
 
   const minify = minifyClassnames({ filter: /^#/ });

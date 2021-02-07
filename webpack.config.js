@@ -22,6 +22,7 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
       pathinfo: isDev,
       filename: '[name].[contenthash:4].js',
       publicPath: isProd ? homepage : '',
+      clean: isProd,
     },
     optimization: {
       minimize: isProd,
@@ -163,7 +164,6 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
       isProd && new MiniCssExtractPlugin(),
       isProd && new HTMLInlineCSSWebpackPlugin(),
       isDev && new webpack.HotModuleReplacementPlugin(),
-    // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     ].filter(Boolean),
     performance: false,
     devServer: {
