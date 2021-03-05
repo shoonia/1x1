@@ -198,42 +198,38 @@ window.addEventListener('popstate', () => {
   }
 });
 
-(() => {
+if (SMARTPHONE.test(navigator.userAgent)) {
+  one('#history').remove();
+} else {
   const isMac = MACOS.test(navigator.userAgent);
-  const isSmartphone = SMARTPHONE.test(navigator.userAgent);
+  const os = isMac ? '[data-hint="darwin"]' : '[data-hint="win"]';
 
-  if (isSmartphone) {
-    one('#history').remove();
-  } else {
-    const os = isMac ? '[data-hint="darwin"]' : '[data-hint="win"]';
+  const undo = () => {
+    if (history.state === null) {
+      history.go(-1);
+    }
+  };
 
-    const undo = () => {
-      if (history.state === null) {
-        history.go(-1);
-      }
-    };
+  const redo = () => history.go(1);
 
-    const redo = () => history.go(1);
+  tinykeys(window, {
+    '$mod+z': undo,
+    '$mod+Shift+z': redo,
+  });
 
-    tinykeys(window, {
-      '$mod+z': undo,
-      '$mod+Shift+z': redo,
-    });
+  one('#undo').addEventListener('click', undo);
+  one('#redo').addEventListener('click', redo);
+  all(os).forEach((i) => {
+    i.hidden = false;
+  });
+}
 
-    one('#undo').addEventListener('click', undo);
-    one('#redo').addEventListener('click', redo);
-    all(os).forEach((i) => {
-      i.hidden = false;
-    });
-  }
+if (process.env.NODE_ENV === 'production') {
+  ga();
+}
 
-  if (process.env.NODE_ENV === 'production') {
-    ga();
-  }
+const [isValid, color] = parseHex(location.hash);
+const hex = isValid ? color : random16(6) + FF;
 
-  const [isValid, color] = parseHex(location.hash);
-  const hex = isValid ? color : random16(6) + FF;
-
-  history.pushState(1, null, `#${hex}`);
-  setHex(hex);
-})();
+history.pushState(1, null, `#${hex}`);
+setHex(hex);
