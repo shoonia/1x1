@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
 
 const { homepage } = require('./package.json');
@@ -41,7 +41,7 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
               comparisons: false,
               inline: 2,
               drop_console: false,
-              passes: 5,
+              passes: 3,
               toplevel: true,
               pure_getters: true,
             },
@@ -51,11 +51,9 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
             },
           },
         }),
-        new OptimizeCSSAssetsPlugin({
-          cssProcessorOptions: {
-            map: false,
-          },
-          cssProcessorPluginOptions: {
+        new CssMinimizerPlugin({
+          sourceMap: false,
+          minimizerOptions: {
             preset: [
               'default',
               {
