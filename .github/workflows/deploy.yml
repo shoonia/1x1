@@ -15,14 +15,6 @@ jobs:
       with:
         node-version: '14.x'
 
-    - name: Cache dependencies
-      uses: actions/cache@v2
-      with:
-        path: |
-          ~/cache
-          !~/cache/exclude
-        key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
-
     - run: npm ci
     - run: npm run lint
     - run: npm run build

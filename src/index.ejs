@@ -1,6 +1,6 @@
 <%
 var title = '1x1 Pixel PNG';
-var description = 'Оne pixel base64 encoded transparent PNG online generator. Online generator creating one pixel transparent PNG image in base64 encoded.';
+var description = 'Оne pixel base64 encoded transparent PNG online generator. Online generator creating one pixel transparent PNG image in base64 encoded';
 
 var ldJson = JSON.stringify({
   '@context': 'https://schema.org',
@@ -200,19 +200,27 @@ var ldJson = JSON.stringify({
   </main>
 
   <footer class="footer">
-    <div class="content">
-      <a href="https://twitter.com/_shoonia" class="link footer__link" aria-label="follow me on twitter">
-        Twitter
-      </a>
-      <a href="https://github.com/shoonia/1x1" class="link footer__link" aria-label="follow me on github">
-        GitHub
-      </a>
-      <a href="https://www.linkedin.com/in/shoonia" class="link footer__link" aria-label="follow me on linkedin">
-        LinkedIn
-      </a>
-      <a href="https://shoonia.site" class="link footer__link">
-        Blog
-      </a>
+    <div class="content" role="list">
+      <span role="listitem">
+        <a href="https://twitter.com/_shoonia" class="link footer__link" aria-label="follow me on twitter" rel="me">
+          Twitter
+        </a>
+      </span>
+      <span role="listitem">
+        <a href="https://github.com/shoonia/1x1" class="link footer__link" aria-label="follow me on github" rel="me">
+          GitHub
+        </a>
+      </span>
+      <span role="listitem">
+        <a href="https://www.linkedin.com/in/shoonia" class="link footer__link" aria-label="follow me on linkedin" rel="me">
+          LinkedIn
+        </a>
+      </span>
+      <span role="listitem">
+        <a href="https://shoonia.site" class="link footer__link" rel="me">
+          Blog
+        </a>
+      </span>
     </div>
   </footer>
 </body>

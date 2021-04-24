@@ -11,5 +11,6 @@ module.exports = {
   indexHtml: resolveApp('src/index.ejs'),
   favicon: resolveApp('src/favicon.png'),
   dist: resolveApp('dist'),
+  appSrc: resolveApp('src'),
   distHtml: resolveApp('dist/index.html'),
 };

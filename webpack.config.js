@@ -52,7 +52,6 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
           },
         }),
         new CssMinimizerPlugin({
-          sourceMap: false,
           minimizerOptions: {
             preset: [
               'default',
@@ -156,7 +155,7 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
       new webpack.DefinePlugin({
         'process.platform': JSON.stringify(process.platform),
         'process.env.NODE_ENV': JSON.stringify(nodeEnv),
-        'process.env': '{}',
+        'process.env': '({})',
         'process': 'undefined',
       }),
       isProd && new MiniCssExtractPlugin(),
@@ -165,8 +164,9 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
     ].filter(Boolean),
     performance: false,
     devServer: {
-      contentBase: paths.dist,
+      hot: true,
       compress: true,
+      static: paths.appSrc,
       port: 3000,
     },
   };
