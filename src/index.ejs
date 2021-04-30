@@ -1,22 +1,23 @@
 <%
-var title = '1x1 Pixel PNG';
-var description = 'Оne pixel base64 encoded transparent PNG online generator. Online generator creating one pixel transparent PNG image in base64 encoded';
+  var title = '1x1 Pixel PNG';
+  var description = 'Оne pixel base64 encoded transparent PNG online generator. Online generator creating one pixel transparent PNG image in base64 encoded';
+  var image = new URL('favicon.png', homepage).href;
 
-var ldJson = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  'url': homepage,
-  'potentialAction': {
-    '@type': 'SearchAction',
-    'target': `${homepage}#{color}`,
-    'query-input': {
-      '@type': 'PropertyValueSpecification',
-      'valueRequired': true,
-      'valueMaxlength': 20,
-      'valueName': 'color'
+  var ldJson = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    'url': homepage,
+    'potentialAction': {
+      '@type': 'SearchAction',
+      'target': `${homepage}#{color}`,
+      'query-input': {
+        '@type': 'PropertyValueSpecification',
+        'valueRequired': true,
+        'valueMaxlength': 20,
+        'valueName': 'color'
+      }
     }
-  }
-});
+  });
 %>
 
 <!DOCTYPE html>
@@ -32,17 +33,21 @@ var ldJson = JSON.stringify({
   <link rel="canonical" href="<%= homepage %>">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   <meta name="google-site-verification" content="JkNxAfkbyATcDv733CZNZPVT9UPc4rJNXxd31OgDwvY">
+  <meta name="theme-color" content="#ffffff">
   <meta name="description" content="<%= description %>">
   <meta property="og:title" content="<%= title %>">
   <meta property="og:description" content="<%= description %>">
   <meta property="og:type" content="website">
   <meta property="og:url" content="<%= homepage %>">
-  <meta property="og:image" content="<%= homepage %>favicon.png">
+  <meta property="og:image" content="<%= image %>">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@_shoonia">
   <meta name="twitter:creator" content="@_shoonia">
   <meta name="twitter:title" content="<%= title %>">
   <meta name="twitter:description" content="<%= description %>">
+  <meta itemprop="name" content="<%= title %>">
+  <meta itemprop="description" content="<%= description %>">
+  <meta itemprop="image" content="<%= image %>">
   <script type="application/ld+json"><%= ldJson %></script>
 </head>
 
