@@ -17,7 +17,7 @@ summary::after {
   font-weight: bold;
 }
 
-summary::-webkit-details-marker {
+summary::marker {
   display: none;
 }
 
