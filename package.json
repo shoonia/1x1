@@ -31,7 +31,7 @@
     "posthtml-minify-classnames": "^0.2.3",
     "simple-git-hooks": "^2.4.1",
     "style-loader": "^2.0.0",
-    "stylelint": "^13.13.0",
+    "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",
     "terser-webpack-plugin": "^5.1.1",
     "webpack": "^5.36.2",
