@@ -111,10 +111,6 @@ connect('hex', ({ hex }) => {
   outputBase64.value = dataURL.slice(22);
   download.href = dataURL;
   download.download = `1x1_${hex8}.png`;
-
-  try {
-    navigator.sendBeacon(`https://shoonia.wixsite.com/colors/_functions/ping/${hex}`);
-  } catch {/**/ }
 });
 
 connect('R', ({ R }) => {
