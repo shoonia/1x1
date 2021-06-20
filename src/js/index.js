@@ -43,10 +43,6 @@ const setRGBA = ({ target }) => {
   ]);
 };
 
-const setAlpha = (hex) => {
-  return dispatch('rgba', ['A', parseInt(hex, 16)]);
-};
-
 const readAsArrayBuffer = (blob) => {
   if (fileReader.readyState !== 1) {
     fileReader.readAsArrayBuffer(blob);
@@ -85,6 +81,109 @@ const parseHex = (value) => {
 
   return [true, color];
 };
+
+if (process.env.NODE_ENV === 'production') {
+  ga();
+}
+
+if (SMARTPHONE.test(navigator.userAgent)) {
+  one('#history').remove();
+} else {
+  const isMac = MACOS.test(navigator.userAgent);
+  const os = isMac ? '[data-hint="darwin"]' : '[data-hint="win"]';
+
+  const undo = () => {
+    if (history.state === null) {
+      history.go(-1);
+    }
+  };
+
+  const redo = () => history.go(1);
+
+  tinykeys(window, {
+    '$mod+z': undo,
+    '$mod+Shift+z': redo,
+  });
+
+  one('#undo').addEventListener('click', undo);
+  one('#redo').addEventListener('click', redo);
+  all(os).forEach((i) => {
+    i.hidden = false;
+  });
+}
+
+const [isValid, color] = parseHex(location.hash);
+const hexColor = isValid ? color : random16(6) + FF;
+
+history.pushState(1, null, `#${hexColor}`);
+setHex(hexColor);
+
+inputColor.addEventListener('change', () => {
+  const [isValid, color] = parseHex(inputColor.value);
+
+  if (isValid) {
+    setHex(color);
+  } else {
+    inputColor.focus();
+  }
+});
+
+inputAlpha.addEventListener('change', () => {
+  const val = inputAlpha.value
+    .trim()
+    .toLowerCase()
+    .replace(NOT_HEXADECIMAL, '');
+
+  const hex = val.length !== 2 ? FF : val;
+
+  dispatch('rgba', [
+    'A',
+    parseInt(hex, 16),
+  ]);
+});
+
+picker.addEventListener('change', () => {
+  const [isValid, color] = parseHex(picker.value);
+
+  if (isValid) {
+    setHex(color);
+  }
+});
+
+fileReader.addEventListener('load', () => {
+  const bytes = new Uint8Array(fileReader.result);
+  outputBytes.value = bytes.toString();
+});
+
+all('[data-rgba]').forEach((i) => {
+  i.addEventListener('change', setRGBA);
+});
+
+all('[data-clipboard]').forEach((i) => {
+  i.addEventListener('click', clipboard);
+});
+
+one('#rgbaDetails').open = window.innerWidth > 701;
+one('#colorList').appendChild(createOptionList());
+
+one('#random').addEventListener('click', () => {
+  setHex(random16(6) + FF);
+});
+
+window.addEventListener('popstate', () => {
+  const { hex } = getState();
+  const hash = location.hash.slice(1);
+
+  if (hash === hex) {
+    return;
+  }
+
+  const [isValid, color] = parseHex(hash);
+
+  if (isValid) {
+    setHex(color);
+  }
+});
 
 connect('hex', ({ hex }) => {
   const hex6 = hex.slice(0, 6);
@@ -133,103 +232,3 @@ connect('A', ({ A }) => {
   numberAlpha.value = A;
   inputAlpha.value = decimalToHex(A);
 });
-
-inputColor.addEventListener('change', () => {
-  const [isValid, color] = parseHex(inputColor.value);
-
-  if (isValid) {
-    setHex(color);
-  } else {
-    inputColor.focus();
-  }
-});
-
-inputAlpha.addEventListener('change', () => {
-  const val = inputAlpha.value
-    .trim()
-    .toLowerCase()
-    .replace(NOT_HEXADECIMAL, '');
-
-  const hex = val.length !== 2 ? FF : val;
-
-  setAlpha(hex);
-});
-
-picker.addEventListener('change', () => {
-  const [isValid, color] = parseHex(picker.value);
-
-  if (isValid) {
-    setHex(color);
-  }
-});
-
-fileReader.addEventListener('load', () => {
-  const bytes = new Uint8Array(fileReader.result);
-  outputBytes.value = bytes.toString();
-});
-
-all('[data-rgba]').forEach((i) => {
-  i.addEventListener('change', setRGBA);
-});
-
-all('[data-clipboard]').forEach((i) => {
-  i.addEventListener('click', clipboard);
-});
-
-one('#rgbaDetails').open = window.innerWidth > 701;
-one('#colorList').appendChild(createOptionList());
-
-one('#random').addEventListener('click', () => {
-  setHex(random16(6) + FF);
-});
-
-window.addEventListener('popstate', () => {
-  const { hex } = getState();
-  const hash = location.hash.slice(1);
-
-  if (hash === hex) {
-    return;
-  }
-
-  const [isValid, color] = parseHex(hash);
-
-  if (isValid) {
-    setHex(color);
-  }
-});
-
-if (SMARTPHONE.test(navigator.userAgent)) {
-  one('#history').remove();
-} else {
-  const isMac = MACOS.test(navigator.userAgent);
-  const os = isMac ? '[data-hint="darwin"]' : '[data-hint="win"]';
-
-  const undo = () => {
-    if (history.state === null) {
-      history.go(-1);
-    }
-  };
-
-  const redo = () => history.go(1);
-
-  tinykeys(window, {
-    '$mod+z': undo,
-    '$mod+Shift+z': redo,
-  });
-
-  one('#undo').addEventListener('click', undo);
-  one('#redo').addEventListener('click', redo);
-  all(os).forEach((i) => {
-    i.hidden = false;
-  });
-}
-
-if (process.env.NODE_ENV === 'production') {
-  ga();
-}
-
-const [isValid, color] = parseHex(location.hash);
-const hex = isValid ? color : random16(6) + FF;
-
-history.pushState(1, null, `#${hex}`);
-setHex(hex);

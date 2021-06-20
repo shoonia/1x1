@@ -1,12 +1,6 @@
-import { createStoreon } from 'storeon';
+import { createStoreon } from 'storeon-connect';
 
 import { createHex, parseNumber } from './util';
-
-const subs = [];
-
-const connect = (key, cb) => {
-  subs.push({ key, cb });
-};
 
 const appModule = ({ on }) => {
   on('@init', () => {
@@ -15,16 +9,8 @@ const appModule = ({ on }) => {
       G: 255,
       B: 255,
       A: 255,
-      hex: 'ffffff',
+      hex: 'ffffffff',
     };
-  });
-
-  on('@changed', (state, diff) => {
-    subs.forEach((s) => {
-      if (s.key in diff) {
-        s.cb(state);
-      }
-    });
   });
 
   on('hex', (_, hex) => {
@@ -49,10 +35,8 @@ const appModule = ({ on }) => {
   });
 };
 
-const { get, dispatch } = createStoreon([appModule]);
-
-export {
-  get as getState,
+export const {
+  getState,
   dispatch,
   connect,
-};
+} = createStoreon([appModule]);
