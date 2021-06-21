@@ -1,4 +1,5 @@
-import { createStoreon } from 'storeon-connect';
+import { createStoreon } from 'storeon';
+import { storeonConnect } from 'storeon-connect';
 
 import { createHex, parseNumber } from './util';
 
@@ -35,8 +36,6 @@ const appModule = ({ on }) => {
   });
 };
 
-export const {
-  getState,
-  dispatch,
-  connect,
-} = createStoreon([appModule]);
+export const { getState, dispatch, connect } = storeonConnect(
+  createStoreon([appModule]),
+);
