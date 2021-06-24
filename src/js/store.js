@@ -36,6 +36,6 @@ const appModule = ({ on }) => {
   });
 };
 
-export const { getState, dispatch, connect } = storeonConnect(
-  createStoreon([appModule]),
-);
+const store = createStoreon([appModule]);
+
+export const { getState, dispatch, connect } = storeonConnect(store);

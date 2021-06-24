@@ -112,11 +112,13 @@ if (SMARTPHONE.test(navigator.userAgent)) {
   });
 }
 
-const [isValid, color] = parseHex(location.hash);
-const hexColor = isValid ? color : random16(6) + FF;
+{
+  const [isValid, color] = parseHex(location.hash);
+  const hexColor = isValid ? color : random16(6) + FF;
 
-history.pushState(1, null, `#${hexColor}`);
-setHex(hexColor);
+  history.pushState(1, null, `#${hexColor}`);
+  setHex(hexColor);
+}
 
 inputColor.addEventListener('change', () => {
   const [isValid, color] = parseHex(inputColor.value);
