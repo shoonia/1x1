@@ -35,6 +35,11 @@ input {
   transition: all 0.1s ease-in;
 }
 
+body,
+input {
+  color: #2b5672;
+}
+
 .wrapper {
   background-color: #fff;
   background-image:
@@ -48,7 +53,7 @@ input {
 
 .sitebar {
   position: relative;
-  background-color: #f5f5f5;
+  background-color: #f0f3f5;
   padding: 1.3em 2em;
   margin: 8px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
@@ -94,7 +99,6 @@ input {
   font-family: system-ui, 'Courier New', Courier, monospace;
   border-radius: 6px;
   margin: 0.5em 0;
-  color: #333;
 }
 
 .field__number {
@@ -136,7 +140,7 @@ input {
   border-radius: 6px;
   user-select: none;
   display: inline-block;
-  background-color: #00bcd4;
+  background-color: #116dff;
   color: #fff;
   position: relative;
 }
@@ -154,7 +158,7 @@ input {
 
 .btn__create::after {
   content: "";
-  background-color: #00abd4;
+  background-color: #3885ff;
   display: block;
   position: absolute;
   padding-top: 300%;
@@ -195,7 +199,7 @@ input {
 }
 
 .btn_random {
-  border: 1px solid #00abd4;
+  border: 1px solid #3885ff;
   border-radius: 50%;
   background-color: #fff;
   position: absolute;
@@ -240,12 +244,12 @@ input {
   line-height: 1;
   background-color: #fff;
   color: #555;
-  border: 1px solid #00bcd4;
+  border: 1px solid #116dff;
   border-radius: 2px;
 }
 
 .btn__hint:hover span {
-  background-color: #00bcd4;
+  background-color: #116dff;
   color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
@@ -273,6 +277,7 @@ input {
   background-size: 21px 21px;
   position: relative;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  margin-bottom: 15px;
 }
 
 .output__image::after {
@@ -288,7 +293,7 @@ input {
 }
 
 .link {
-  color: #176ced;
+  color: #116dff;
   background-color: #fff;
   display: inline-block;
   text-decoration: none;
