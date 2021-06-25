@@ -2,6 +2,7 @@
   var title = '1x1 Pixel PNG';
   var description = 'One pixel transparent PNG. Online generator for creating 1x1 pixel transparent PNG image in Base64 encoded, Bytes, or Download.';
   var image = new URL('favicon.png', homepage).href;
+  var gitHubStars = 'https://badgen.net/github/stars/shoonia/1x1?icon=github';
 
   var ldJson = JSON.stringify({
     '@context': 'https://schema.org',
@@ -26,6 +27,7 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="preload" as="image" href="<%= gitHubStars %>">
   <title><%= title %></title>
   <% if (isProd) { %>
     <base href="<%= homepage %>">
@@ -193,7 +195,7 @@
       </label>
       <label class="field__box">
         <span class="field__label" title="Click to Copy">
-          Link:
+          Share Link:
         </span>
         <input data-clipboard type="url" id="outputLink" class="field field__output" title="Click to Copy" readonly>
       </label>
@@ -206,15 +208,10 @@
   </main>
 
   <footer class="footer">
-    <div class="content" role="list">
+    <div class="content content__footer" role="list">
       <span role="listitem">
         <a href="https://twitter.com/_shoonia" class="link footer__link" aria-label="follow me on twitter" rel="me">
           Twitter
-        </a>
-      </span>
-      <span role="listitem">
-        <a href="https://github.com/shoonia/1x1" class="link footer__link" aria-label="follow me on github" rel="me">
-          GitHub
         </a>
       </span>
       <span role="listitem">
@@ -225,6 +222,11 @@
       <span role="listitem">
         <a href="https://shoonia.site" class="link footer__link" rel="me">
           Blog
+        </a>
+      </span>
+      <span role="listitem">
+        <a href="https://github.com/shoonia/1x1" class="footer__link" aria-label="github">
+          <img src="<%= gitHubStars%>" alt="GitHub Stars" />
         </a>
       </span>
     </div>
