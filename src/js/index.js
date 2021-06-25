@@ -23,6 +23,7 @@ const outputDataURL = one('#outputDataURL');
 const outputBase64 = one('#outputBase64');
 const outputCSS = one('#outputCSS');
 const outputBytes = one('#outputBytes');
+const outputLink = one('#outputLink');
 const download = one('#download');
 const favicon = one('link[rel="icon"]');
 
@@ -210,6 +211,7 @@ connect('hex', ({ hex }) => {
   outputDataURL.value = dataURL;
   outputCSS.value = backgroundImage;
   outputBase64.value = dataURL.slice(22);
+  outputLink.value = location.href;
   download.href = dataURL;
   download.download = `1x1_${hex8}.png`;
 });
