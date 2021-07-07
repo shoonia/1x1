@@ -1,5 +1,6 @@
 @import './range.css';
 @import './summary.css';
+@import './preset.css';
 
 *,
 *::after,
@@ -355,7 +356,7 @@ input {
   }
 
   .footer {
-    margin-top: 30px;
+    margin-top: 10px;
   }
 
   .footer__link {

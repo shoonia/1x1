@@ -1,6 +1,6 @@
 <%
   var title = '1x1 Pixel PNG';
-  var description = 'One pixel transparent PNG. Online generator for creating 1x1 pixel transparent PNG image in Base64 encoded, Bytes, or Download.';
+  var description = 'One pixel transparent PNG. Online generator for creating 1x1 pixel transparent PNG image in Base64 encoded, Bytes, or Download. 1 pixel for white, black, transparent image.';
   var image = new URL('favicon.png', homepage).href;
   var gitHubStars = 'https://badgen.net/github/stars/shoonia/1x1?icon=github';
 
@@ -167,7 +167,25 @@
     <p style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">
       <%= description %>
     </p>
-    <div id="outputImage" class="output__image"></div>
+
+    <div id="outputImage" class="output__image">
+
+      <nav class="preset">
+        <ul class="preset_list">
+          <li class="preset_item">
+            <a href="#ffffffff" class="preset_btn preset_btn--white" title="White"></a>
+          </li>
+          <li class="preset_item">
+            <a href="#000000ff" class="preset_btn preset_btn--black" title="Black"></a>
+          </li>
+          <li class="preset_item">
+            <a href="#00000000" class="preset_btn" title="Transparent"></a>
+          </li>
+        </ul>
+      </nav>
+
+    </div>
+
     <fieldset class="fields" aria-label="output">
       <label class="field__box">
         <span class="field__label" title="Click to Copy">

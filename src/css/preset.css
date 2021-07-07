@@ -1,0 +1,35 @@
+.preset {
+  position: absolute;
+  top: 0;
+  right: -28px;
+}
+
+.preset_list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.preset_item {
+  margin-bottom: 5px;
+}
+
+.preset_btn {
+  appearance: none;
+  border: 1px solid #2b5672;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: block;
+  padding: 0;
+}
+
+.preset_btn--black {
+  background-color: #000;
+}
+
+.preset_btn--white {
+  background-color: #fff;
+}
