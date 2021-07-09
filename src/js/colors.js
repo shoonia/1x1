@@ -147,6 +147,10 @@ export const colors = {
   whitesmoke: 'f5f5f5',
   yellowgreen: '9acd32',
   rebeccapurple: '663399',
+
+  transparent: '00000000',
+  blank: '00000000',
+  empty: '00000000',
 };
 
 export const createOptionList = () => {
