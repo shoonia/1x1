@@ -19,6 +19,7 @@ const numberBlue = one('#numberBlue');
 const rangeAlpha = one('#rangeAlpha');
 const numberAlpha = one('#numberAlpha');
 const outputImage = one('#outputImage');
+const outputBadge = one('#outputBadge');
 const outputDataURL = one('#outputDataURL');
 const outputBase64 = one('#outputBase64');
 const outputCSS = one('#outputCSS');
@@ -155,7 +156,9 @@ picker.addEventListener('change', () => {
 
 fileReader.addEventListener('load', () => {
   const bytes = new Uint8Array(fileReader.result);
+
   outputBytes.value = bytes.toString();
+  outputBadge.textContent = `1x1 (${bytes.length} bytes)`;
 });
 
 all('[data-rgba]').forEach((i) => {

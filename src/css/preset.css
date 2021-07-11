@@ -13,7 +13,7 @@
 }
 
 .preset_item {
-  margin-bottom: 5px;
+  margin-bottom: 25px;
 }
 
 .preset_btn {
@@ -32,4 +32,10 @@
 
 .preset_btn--white {
   background-color: #fff;
+}
+
+@media (min-width: 700px) {
+  .preset_item {
+    margin-bottom: 10px;
+  }
 }
