@@ -1,7 +1,7 @@
 const canvas = document.createElement('canvas');
 
 /**
- * @param {sring} color
+ * @param {string} color
  * @param {boolean} hasAlpha
  * @returns {HTMLCanvasElement}
  */
