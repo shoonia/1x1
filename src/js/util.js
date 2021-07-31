@@ -1,8 +1,18 @@
 const canvas = document.createElement('canvas');
 
-export const createCanvas = (color) => {
+/**
+ * @param {sring} color
+ * @param {boolean} hasAlpha
+ * @returns {HTMLCanvasElement}
+ */
+export const createCanvas = (color, hasAlpha) => {
+  /** @type {HTMLCanvasElement} */
   const el = canvas.cloneNode();
-  const ctx = el.getContext('2d');
+
+  const ctx = el.getContext('2d', {
+    alpha: hasAlpha,
+    desynchronized: true,
+  });
 
   el.width = 1;
   el.height = 1;
@@ -14,9 +24,17 @@ export const createCanvas = (color) => {
   return el;
 };
 
+/**
+ * @param {string} color
+ * @returns {string}
+ */
 export const createFavicon = (color) => {
+  /** @type {HTMLCanvasElement} */
   const el = canvas.cloneNode();
-  const ctx = el.getContext('2d');
+
+  const ctx = el.getContext('2d', {
+    desynchronized: true,
+  });
 
   el.width = 50;
   el.height = 50;
@@ -26,7 +44,7 @@ export const createFavicon = (color) => {
   ctx.stroke();
   ctx.fill();
 
-  return el.toDataURL();
+  return el.toDataURL('image/png', 0.1);
 };
 
 export const one = ($) => {
