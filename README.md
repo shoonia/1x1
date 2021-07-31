@@ -8,7 +8,7 @@ Uses a Canvas for drawing pixel images. The size of images depends on the browse
 
 | **Browser**   | white (`#ffffff`) | black (`#000000`) | `transparent` |
 |:-------------:|:-----------------:|:-----------------:|:-----------:|
-| Chrome `v91`  | 70 bytes          | 70 bytes          | 68 bytes    |
+| Chrome `v91`  | 69 bytes          | 69 bytes          | 68 bytes    |
 | Firefox `v90` | 70 bytes          | 70 bytes          | 70 bytes    |
-| Chrome `v92`  | 83 bytes          | 83 bytes          | 81 bytes    |
+| Chrome `v92`  | 82 bytes          | 82 bytes          | 81 bytes    |
 | Safari `v14`  | 161 bytes         | 163 bytes         | 161 bytes   |
