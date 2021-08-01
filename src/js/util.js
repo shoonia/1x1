@@ -12,6 +12,7 @@ export const createCanvas = (color, hasAlpha) => {
   const ctx = el.getContext('2d', {
     alpha: hasAlpha,
     desynchronized: true,
+    colorSpace: 'srgb',
   });
 
   el.width = 1;
@@ -33,6 +34,7 @@ export const createFavicon = (color) => {
   const el = canvas.cloneNode();
 
   const ctx = el.getContext('2d', {
+    alpha: true,
     desynchronized: true,
   });
 

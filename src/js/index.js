@@ -194,9 +194,8 @@ window.addEventListener('popstate', () => {
 connect('hex', ({ hex, A }) => {
   const hex6 = hex.slice(0, 6);
   const hex8 = `#${hex}`;
-  const hasAlpha = A !== 255;
 
-  const canvas = createCanvas(hex8, hasAlpha);
+  const canvas = createCanvas(hex8, A !== 255);
   const dataURL = canvas.toDataURL('image/png', 0.1);
 
   const url = `url(${dataURL})`;
