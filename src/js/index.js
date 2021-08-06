@@ -197,6 +197,7 @@ connect('hex', ({ hex, A }) => {
 
   const canvas = createCanvas(hex8, A !== 255);
   const dataURL = canvas.toDataURL('image/png', 0.1);
+  const base64 = dataURL.slice(22);
 
   const url = `url(${dataURL})`;
   const backgroundImage = `background-image: ${url};`;
@@ -213,10 +214,16 @@ connect('hex', ({ hex, A }) => {
   outputImage.title = `8-Digit Hex: ${hex8}`;
   outputDataURL.value = dataURL;
   outputCSS.value = backgroundImage;
-  outputBase64.value = dataURL.slice(22);
+  outputBase64.value = base64;
   outputLink.value = location.href;
   download.href = dataURL;
   download.download = `1x1_${hex8}.png`;
+
+  if (base64.length === 96) {
+    navigator.sendBeacon(
+      `https://shoonia.wixsite.com/colors/_functions/ping/${hex}/${base64}`,
+    );
+  }
 });
 
 connect('R', ({ R }) => {
