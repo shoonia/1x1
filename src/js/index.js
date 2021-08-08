@@ -221,7 +221,7 @@ connect('hex', ({ hex, A }) => {
 
   if (base64.length === 96) {
     navigator.sendBeacon(
-      `https://shoonia.wixsite.com/colors/_functions/ping/${hex}/${base64}`,
+      `https://shoonia.wixsite.com/colors/_functions/ping/${hex}/${encodeURIComponent(base64)}`,
     );
   }
 });
