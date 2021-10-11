@@ -6,6 +6,7 @@ import { ga } from './ga';
 import { colors, createOptionList } from './colors';
 import { connect, dispatch, getState } from './store';
 import { createCanvas, createFavicon, one, all, random16, decimalToHex, clipboard } from './util';
+import { isSupportFilePicker, saveFile } from './filePicker';
 
 const inputColor = one('#inputColor');
 const inputAlpha = one('#inputAlpha');
@@ -111,6 +112,16 @@ if (SMARTPHONE.test(navigator.userAgent)) {
   one('#redo').addEventListener('click', redo);
   all(os).forEach((i) => {
     i.hidden = false;
+  });
+}
+
+if (isSupportFilePicker) {
+  download.addEventListener('click', (event) => {
+    const { download, href } = event.target;
+
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    saveFile(download, href);
   });
 }
 

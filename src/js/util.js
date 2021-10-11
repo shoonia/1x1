@@ -49,10 +49,18 @@ export const createFavicon = (color) => {
   return el.toDataURL('image/png', 0.1);
 };
 
+/**
+ * @param {string} $
+ * @returns {HTMLElement}
+ */
 export const one = ($) => {
   return document.querySelector($);
 };
 
+/**
+ * @param {string} $
+ * @returns {NodeListOf}
+ */
 export const all = ($) => {
   return document.querySelectorAll($);
 };
