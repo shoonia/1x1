@@ -59,7 +59,7 @@ export const all = ($) => {
 
 export const clipboard = (event) => {
   event.target.select();
-  document.execCommand('copy');
+  navigator.clipboard.writeText(event.target.value);
 };
 
 export const parseNumber = (n) => {
