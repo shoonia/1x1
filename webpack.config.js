@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
 const SitemapPlugin = require('sitemap-webpack-plugin').default;
+const CssMqpackerPlugin = require('css-mqpacker-webpack-plugin');
 
 const { homepage } = require('./package.json');
 const colors = require('./src/js/colorConstants.json');
@@ -66,6 +67,7 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
             ],
           },
         }),
+        new CssMqpackerPlugin(),
       ],
     },
     resolve: {
