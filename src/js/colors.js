@@ -11,7 +11,7 @@ export const createOptionList = () => {
 
     item.value = colors[key];
     item.textContent = key;
-    list.appendChild(item);
+    list.append(item);
   }
 
   return list;
