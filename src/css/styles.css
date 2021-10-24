@@ -1,6 +1,6 @@
-@import './range.css';
-@import './summary.css';
-@import './preset.css';
+@import "./range.css";
+@import "./summary.css";
+@import "./preset.css";
 
 *,
 *::after,
@@ -24,7 +24,17 @@ html,
 kbd,
 input,
 button {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
 }
 
 a,
@@ -59,7 +69,7 @@ input {
   background-color: #f0f3f5;
   padding: 1.3em 2em;
   margin: 8px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 30%);
   display: flex;
   flex-direction: column;
   z-index: 1;
@@ -155,7 +165,7 @@ input {
 }
 
 .btn__create:hover {
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 10%);
 }
 
 .btn__create::after {
@@ -167,7 +177,7 @@ input {
   padding-left: 350%;
   margin-left: -20px !important;
   margin-top: -120%;
-  opacity: 0;
+  opacity: 0%;
   transition: all 1s;
   border-radius: 6px;
 }
@@ -175,19 +185,19 @@ input {
 .btn__create:active::after {
   padding: 0;
   margin: 0;
-  opacity: 1;
+  opacity: 100%;
   transition: 0s;
 }
 
 .btn__output {
   margin-top: 1em;
   font-weight: bold;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 10%);
 }
 
 .btn__output:hover {
   text-decoration: none;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 30%);
   transform: scale(1.01);
 }
 
@@ -215,7 +225,7 @@ input {
 }
 
 .btn_random:hover {
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 10%);
 }
 
 .btn_random:active {
@@ -252,7 +262,7 @@ input {
 .btn__hint:hover span {
   background-color: #116dff;
   color: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
 }
 
 .content {
@@ -283,7 +293,7 @@ input {
   background-position: 0 0, 10px 10px;
   background-size: 21px 21px;
   position: relative;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 30%);
   margin-bottom: 15px;
 }
 
@@ -293,7 +303,7 @@ input {
   bottom: 10px;
   right: 10px;
   display: inline-block;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgb(255 255 255 / 50%);
   border-radius: 6px;
   padding: 5px 10px;
   user-select: none;

@@ -23,7 +23,7 @@ summary::-webkit-details-marker {
 }
 
 summary:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgb(0 0 0 / 10%);
 }
 
 details[open] summary::after {

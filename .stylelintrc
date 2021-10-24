@@ -1,9 +1,9 @@
-  
 {
   "extends": [
     "stylelint-config-standard"
   ],
   "rules": {
+    "selector-class-pattern": null,
     "selector-pseudo-element-no-unknown": [
       true,
       {
