@@ -5,7 +5,7 @@ import '../css/styles.css';
 import { ga } from './ga';
 import { colors, createOptionList } from './colors';
 import { connect, dispatch, getState } from './store';
-import { createCanvas, createFavicon, one, all, random16, decimalToHex, clipboard } from './util';
+import { createFavicon, one, all, random16, decimalToHex, clipboard } from './util';
 import { isSupportFilePicker, saveFile } from './filePicker';
 
 const inputColor = one('#inputColor');
@@ -117,11 +117,12 @@ if (SMARTPHONE.test(navigator.userAgent)) {
 
 if (isSupportFilePicker) {
   download.addEventListener('click', (event) => {
-    const { download, href } = event.target;
+    const { download } = event.target;
+    const { canvas } = getState();
 
     event.preventDefault();
     event.stopImmediatePropagation();
-    saveFile(download, href);
+    saveFile(download, canvas);
   });
 }
 
@@ -202,11 +203,10 @@ window.addEventListener('popstate', () => {
   }
 });
 
-connect('hex', ({ hex, A }) => {
+connect('hex', ({ hex, canvas }) => {
   const hex6 = hex.slice(0, 6);
   const hex8 = `#${hex}`;
 
-  const canvas = createCanvas(hex8, A !== 255);
   const dataURL = canvas.toDataURL('image/png', 0.1);
   const base64 = dataURL.slice(22);
 

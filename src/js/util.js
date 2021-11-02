@@ -2,15 +2,15 @@ const canvas = document.createElement('canvas');
 
 /**
  * @param {string} color
- * @param {boolean} hasAlpha
+ * @param {number} alpha
  * @returns {HTMLCanvasElement}
  */
-export const createCanvas = (color, hasAlpha) => {
+export const createCanvas = (color, alpha) => {
   /** @type {HTMLCanvasElement} */
   const el = canvas.cloneNode();
 
   const ctx = el.getContext('2d', {
-    alpha: hasAlpha,
+    alpha: alpha !== 255,
     desynchronized: true,
     colorSpace: 'srgb',
   });
@@ -18,7 +18,7 @@ export const createCanvas = (color, hasAlpha) => {
   el.width = 1;
   el.height = 1;
 
-  ctx.fillStyle = color;
+  ctx.fillStyle = `#${color}`;
   ctx.rect(0, 0, 1, 1);
   ctx.fill();
 
