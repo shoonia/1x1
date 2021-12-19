@@ -177,7 +177,7 @@ input {
   padding-left: 350%;
   margin-left: -20px !important;
   margin-top: -120%;
-  opacity: 0%;
+  opacity: 0;
   transition: all 1s;
   border-radius: 6px;
 }
@@ -185,7 +185,7 @@ input {
 .btn__create:active::after {
   padding: 0;
   margin: 0;
-  opacity: 100%;
+  opacity: 1;
   transition: 0s;
 }
 
