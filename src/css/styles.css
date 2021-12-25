@@ -21,6 +21,11 @@
 }
 
 html,
+body {
+  min-height: 100vh;
+}
+
+html,
 kbd,
 input,
 button {
@@ -73,6 +78,13 @@ input {
   display: flex;
   flex-direction: column;
   z-index: 1;
+}
+
+.page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  grid-template-columns: 100%;
 }
 
 .fields {
@@ -321,10 +333,10 @@ input {
 }
 
 .footer {
-  padding: 0.5em 0;
-  text-align: center;
-  position: relative;
-  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
 }
 
 .footer__link {

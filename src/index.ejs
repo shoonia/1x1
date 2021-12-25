@@ -161,96 +161,98 @@
     </div>
   </aside>
 
-  <main class="content">
-    <h1 class="content__title">
-      One pixel Base64 encoded transparent PNG generator
-    </h1>
-    <p style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">
-      <%= description %>
-    </p>
+  <div class="page">
+    <main class="content">
+      <h1 class="content__title">
+        One pixel Base64 encoded transparent PNG generator
+      </h1>
+      <p style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">
+        <%= description %>
+      </p>
 
-    <div id="outputImage" class="output__image">
+      <div id="outputImage" class="output__image">
 
-      <nav class="preset">
-        <ul class="preset_list">
-          <li class="preset_item">
-            <a href="#ffffffff" class="preset_btn preset_btn--white" title="White"></a>
-          </li>
-          <li class="preset_item">
-            <a href="#000000ff" class="preset_btn preset_btn--black" title="Black"></a>
-          </li>
-          <li class="preset_item">
-            <a href="#00000000" class="preset_btn" title="Transparent"></a>
-          </li>
-        </ul>
-      </nav>
+        <nav class="preset">
+          <ul class="preset_list">
+            <li class="preset_item">
+              <a href="#ffffffff" class="preset_btn preset_btn--white" title="White"></a>
+            </li>
+            <li class="preset_item">
+              <a href="#000000ff" class="preset_btn preset_btn--black" title="Black"></a>
+            </li>
+            <li class="preset_item">
+              <a href="#00000000" class="preset_btn" title="Transparent"></a>
+            </li>
+          </ul>
+        </nav>
 
-      <span id="outputBadge" class="output_badge">1x1 (70 bytes)</span>
-    </div>
-
-    <fieldset class="fields" aria-label="output">
-      <label class="field__box">
-        <span class="field__label" title="Click to Copy">
-          Data: URL
-        </span>
-        <input data-clipboard type="text" id="outputDataURL" class="field field__output" title="Click to Copy" readonly>
-      </label>
-      <label class="field__box">
-        <span class="field__label" title="Click to Copy">
-          CSS:
-        </span>
-        <input data-clipboard type="text" id="outputCSS" class="field field__output" title="Click to Copy" readonly>
-      </label>
-      <label class="field__box">
-        <span class="field__label" title="Click to Copy">
-          Base64:
-        </span>
-        <input data-clipboard type="text" id="outputBase64" class="field field__output" title="Click to Copy" readonly>
-      </label>
-      <label class="field__box">
-        <span class="field__label" title="Click to Copy">
-          Bytes:
-        </span>
-        <input data-clipboard type="text" id="outputBytes" class="field field__output" title="Click to Copy" readonly>
-      </label>
-      <label class="field__box">
-        <span class="field__label" title="Click to Copy">
-          Share Link:
-        </span>
-        <input data-clipboard type="url" id="outputLink" class="field field__output" title="Click to Copy" readonly>
-      </label>
-      <div class="field__box">
-        <a id="download" class="btn btn__output">
-          &nbsp;Download PNG
-        </a>
+        <span id="outputBadge" class="output_badge">1x1 (70 bytes)</span>
       </div>
-    </fieldset>
-  </main>
 
-  <footer class="footer">
-    <div class="content content__footer" role="list">
-      <span role="listitem">
-        <a href="https://twitter.com/_shoonia" class="link footer__link" aria-label="follow me on twitter" rel="me">
-          Twitter
-        </a>
-      </span>
-      <span role="listitem">
-        <a href="https://www.linkedin.com/in/shoonia" class="link footer__link" aria-label="follow me on linkedin" rel="me">
-          LinkedIn
-        </a>
-      </span>
-      <span role="listitem">
-        <a href="https://shoonia.site" class="link footer__link" rel="me">
-          Blog
-        </a>
-      </span>
-      <span role="listitem">
-        <a href="https://github.com/shoonia/1x1" class="footer__link" aria-label="github">
-          <img src="<%= gitHubStars%>" alt="GitHub Stars" />
-        </a>
-      </span>
-    </div>
-  </footer>
+      <fieldset class="fields" aria-label="output">
+        <label class="field__box">
+          <span class="field__label" title="Click to Copy">
+            Data: URL
+          </span>
+          <input data-clipboard type="text" id="outputDataURL" class="field field__output" title="Click to Copy" readonly>
+        </label>
+        <label class="field__box">
+          <span class="field__label" title="Click to Copy">
+            CSS:
+          </span>
+          <input data-clipboard type="text" id="outputCSS" class="field field__output" title="Click to Copy" readonly>
+        </label>
+        <label class="field__box">
+          <span class="field__label" title="Click to Copy">
+            Base64:
+          </span>
+          <input data-clipboard type="text" id="outputBase64" class="field field__output" title="Click to Copy" readonly>
+        </label>
+        <label class="field__box">
+          <span class="field__label" title="Click to Copy">
+            Bytes:
+          </span>
+          <input data-clipboard type="text" id="outputBytes" class="field field__output" title="Click to Copy" readonly>
+        </label>
+        <label class="field__box">
+          <span class="field__label" title="Click to Copy">
+            Share Link:
+          </span>
+          <input data-clipboard type="url" id="outputLink" class="field field__output" title="Click to Copy" readonly>
+        </label>
+        <div class="field__box">
+          <a id="download" class="btn btn__output">
+            &nbsp;Download PNG
+          </a>
+        </div>
+      </fieldset>
+    </main>
+
+    <footer class="footer">
+      <div class="content content__footer" role="list">
+        <span role="listitem">
+          <a href="https://twitter.com/_shoonia" class="link footer__link" aria-label="follow me on twitter" rel="me">
+            Twitter
+          </a>
+        </span>
+        <span role="listitem">
+          <a href="https://www.linkedin.com/in/shoonia" class="link footer__link" aria-label="follow me on linkedin" rel="me">
+            LinkedIn
+          </a>
+        </span>
+        <span role="listitem">
+          <a href="https://shoonia.site" class="link footer__link" rel="me">
+            Blog
+          </a>
+        </span>
+        <span role="listitem">
+          <a href="https://github.com/shoonia/1x1" class="footer__link" aria-label="github">
+            <img src="<%= gitHubStars%>" alt="GitHub Stars" />
+          </a>
+        </span>
+      </div>
+    </footer>
+  </div>
 </body>
 
 </html>
