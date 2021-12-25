@@ -9,7 +9,7 @@ const CssMqpackerPlugin = require('css-mqpacker-webpack-plugin');
 
 const { homepage } = require('./package.json');
 const colors = require('./src/js/colorConstants.json');
-const paths = require('./scripts/paths');
+const { appPaths } = require('./scripts/paths');
 
 module.exports = ({ NODE_ENV: nodeEnv }) => {
   const isDev = nodeEnv === 'development';
@@ -19,9 +19,9 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
     mode: nodeEnv,
     bail: isProd,
     devtool: isDev && 'cheap-module-source-map',
-    entry: paths.indexJs,
+    entry: appPaths.indexJs,
     output: {
-      path: isProd ? paths.dist : undefined,
+      path: isProd ? appPaths.dist : undefined,
       pathinfo: isDev,
       filename: '[name].[contenthash:4].js',
       publicPath: isProd ? homepage : '',
@@ -36,10 +36,10 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
             module: true,
             toplevel: true,
             parse: {
-              ecma: 2018,
+              ecma: 2020,
             },
             compress: {
-              ecma: 2018,
+              ecma: 2020,
               module: true,
               comparisons: false,
               inline: 2,
@@ -49,7 +49,7 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
               pure_getters: true,
             },
             output: {
-              ecma: 2018,
+              ecma: 2020,
               comments: false,
             },
           },
@@ -73,7 +73,7 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
     resolve: {
       modules: [
         'node_modules',
-        paths.nodeModules,
+        appPaths.nodeModules,
       ],
       extensions: [
         '.js',
@@ -86,8 +86,8 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
           oneOf: [
             {
               test: /\.js$/,
-              include: paths.src,
-              loader: require.resolve('babel-loader'),
+              include: appPaths.src,
+              loader: 'babel-loader',
               options: {
                 cacheDirectory: true,
                 cacheCompression: false,
@@ -98,7 +98,7 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
                     {
                       loose: true,
                       browserslistEnv: nodeEnv,
-                      configPath: paths.appDirectory,
+                      configPath: appPaths.appDirectory,
                       useBuiltIns: 'entry',
                     },
                   ],
@@ -108,17 +108,17 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
             {
               test: /\.css$/,
               use: [
-                isDev && require.resolve('style-loader'),
+                isDev && 'style-loader',
                 isProd && MiniCssExtractPlugin.loader,
                 {
-                  loader: require.resolve('css-loader'),
+                  loader: 'css-loader',
                   options: {
                     importLoaders: 1,
                     sourceMap: isDev,
                   },
                 },
                 {
-                  loader: require.resolve('postcss-loader'),
+                  loader: 'postcss-loader',
                   options: {
                     sourceMap: isDev,
                     postcssOptions: {
@@ -139,9 +139,9 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
       new HtmlWebpackPlugin({
         filename: 'index.html',
         inject: 'head',
-        template: paths.indexHtml,
+        template: appPaths.indexHtml,
         scriptLoading: 'defer',
-        favicon: paths.favicon,
+        favicon: appPaths.favicon,
         minify: isProd && {
           collapseWhitespace: true,
           removeComments: true,
@@ -197,11 +197,15 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
       }),
       isDev && new webpack.HotModuleReplacementPlugin(),
     ].filter(Boolean),
+    node: false,
     performance: false,
+    experiments: {
+      backCompat: false,
+    },
     devServer: {
       hot: true,
       compress: true,
-      static: paths.appSrc,
+      static: appPaths.appSrc,
       port: 3000,
     },
   };

@@ -1,12 +1,10 @@
-const { promises } = require('fs');
+const { readFile, writeFile } = require('fs/promises');
 const webpack = require('webpack');
 const posthtml = require('posthtml');
 const minifyClassnames = require('posthtml-minify-classnames');
 
-const paths = require('./paths');
+const { appPaths } = require('./paths');
 const webpackConfig = require('../webpack.config');
-
-const { readFile, writeFile } = promises;
 
 const nodeEnv = 'production';
 
@@ -28,10 +26,10 @@ process.env.NODE_ENV = nodeEnv;
 
   const minify = minifyClassnames({ filter: /^#/ });
 
-  const text = await readFile(paths.distHtml, 'utf8');
+  const text = await readFile(appPaths.distHtml, 'utf8');
   const { html } = await posthtml(minify).process(text);
 
-  await writeFile(paths.distHtml, html);
+  await writeFile(appPaths.distHtml, html);
 
   console.log('Done!\n');
   process.exit();

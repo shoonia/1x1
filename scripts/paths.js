@@ -4,7 +4,7 @@ const { realpathSync } = require('fs');
 const appDirectory = realpathSync(process.cwd());
 const resolveApp = (relativePath) => resolve(appDirectory, relativePath);
 
-module.exports = {
+exports.appPaths = {
   appDirectory,
   nodeModules: resolveApp('node_modules'),
   indexJs: resolveApp('src/js/index.js'),
