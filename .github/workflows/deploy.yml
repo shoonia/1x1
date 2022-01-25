@@ -2,7 +2,6 @@ name: deploy
 
 on:
   push:
-    branches: master
 
 jobs:
   build-deploy:
@@ -14,8 +13,8 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '16'
-        cache: 'npm'
+        node-version: 16
+        cache: npm
 
     - run: npm ci
     - run: npm run lint
