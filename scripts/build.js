@@ -1,4 +1,4 @@
-const { readFile, writeFile } = require('fs/promises');
+const { readFile, writeFile } = require('node:fs/promises');
 const webpack = require('webpack');
 const posthtml = require('posthtml');
 const minifyClassnames = require('posthtml-minify-classnames');
