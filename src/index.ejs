@@ -7,15 +7,15 @@
   var ldJson = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    'url': homepage,
-    'potentialAction': {
+    url: homepage,
+    potentialAction: {
       '@type': 'SearchAction',
-      'target': `${homepage}#{color}`,
+      target: `${homepage}#{color}`,
       'query-input': {
         '@type': 'PropertyValueSpecification',
-        'valueRequired': true,
-        'valueMaxlength': 20,
-        'valueName': 'color'
+        valueRequired: true,
+        valueMaxlength: 20,
+        valueName: 'color'
       }
     }
   });
@@ -46,8 +46,6 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@_shoonia">
   <meta name="twitter:creator" content="@_shoonia">
-  <meta name="twitter:title" content="<%= title %>">
-  <meta name="twitter:description" content="<%= description %>">
   <script type="application/ld+json"><%= ldJson %></script>
 </head>
 
