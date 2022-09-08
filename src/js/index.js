@@ -229,12 +229,6 @@ connect('hex', ({ hex, canvas }) => {
   outputLink.value = location.href;
   download.href = dataURL;
   download.download = `1x1_${hex8}.png`;
-
-  if (base64.length === 96) {
-    navigator.sendBeacon(
-      `https://shoonia.wixsite.com/colors/_functions/ping/${hex}/${encodeURIComponent(base64)}`,
-    );
-  }
 });
 
 connect('R', ({ R }) => {
