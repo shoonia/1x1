@@ -1,0 +1,8 @@
+pre-commit:
+  parallel: true
+  commands:
+    eslint:
+      run: npm run lint
+      skip:
+        - merge
+        - rebase
