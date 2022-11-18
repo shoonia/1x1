@@ -1,7 +1,7 @@
-@import "./range.css";
-@import "./summary.css";
-@import "./preset.css";
-@import "./banner.css";
+@import url("./range.css");
+@import url("./summary.css");
+@import url("./preset.css");
+@import url("./banner.css");
 
 *,
 *::after,
