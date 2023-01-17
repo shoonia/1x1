@@ -4,7 +4,7 @@ import rgbHex from 'rgb-hex';
 import '../css/styles.css';
 import { ga } from './ga';
 import { colors, createOptionList } from './colors';
-import { connect, dispatch, getState } from './store';
+import { connect, dispatch, getState, readyStore } from './store';
 import { createFavicon, one, all, random16, decimalToHex, clipboard } from './util';
 import { isSupportFilePicker, saveFile } from './filePicker';
 
@@ -251,3 +251,5 @@ connect('A', ({ A }) => {
   numberAlpha.value = A;
   inputAlpha.value = decimalToHex(A);
 });
+
+readyStore();

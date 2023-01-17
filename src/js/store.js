@@ -1,5 +1,4 @@
-import { createStoreon } from 'storeon';
-import { storeonConnect } from 'storeon-connect';
+import { createStoreon } from 'storeon-velo';
 
 import { createCanvas, createHex, parseNumber } from './util';
 
@@ -42,6 +41,4 @@ const appModule = ({ on }) => {
   });
 };
 
-const store = createStoreon([appModule]);
-
-export const { getState, dispatch, connect } = storeonConnect(store);
+export const { getState, dispatch, connect, readyStore } = createStoreon([appModule]);
