@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "rgb-hex": "^4.0.0",
-    "storeon-velo": "^4.0.0",
+    "storeon-velo": "^4.1.1",
     "tinykeys": "^1.4.0"
   },
   "devDependencies": {
