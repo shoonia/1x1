@@ -84,27 +84,27 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
       rules: [
         {
           oneOf: [
-            {
-              test: /\.js$/,
-              include: appPaths.src,
-              loader: 'babel-loader',
-              options: {
-                cacheDirectory: true,
-                cacheCompression: false,
-                compact: isProd,
-                presets: [
-                  [
-                    '@babel/preset-env',
-                    {
-                      loose: true,
-                      browserslistEnv: nodeEnv,
-                      configPath: appPaths.appDirectory,
-                      useBuiltIns: 'entry',
-                    },
-                  ],
-                ],
-              },
-            },
+            // {
+            //   test: /\.js$/,
+            //   include: appPaths.src,
+            //   loader: 'babel-loader',
+            //   options: {
+            //     cacheDirectory: true,
+            //     cacheCompression: false,
+            //     compact: isProd,
+            //     presets: [
+            //       [
+            //         '@babel/preset-env',
+            //         {
+            //           loose: true,
+            //           browserslistEnv: nodeEnv,
+            //           configPath: appPaths.appDirectory,
+            //           useBuiltIns: 'entry',
+            //         },
+            //       ],
+            //     ],
+            //   },
+            // },
             {
               test: /\.css$/,
               use: [
