@@ -1,5 +1,7 @@
 # 1x1
 
+[![Stand with Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua/)
+
 Online generator creating one pixel transparent PNG image in base64 encoded.
 
 [https://shoonia.github.io/1x1/](https://shoonia.github.io/1x1/)
@@ -12,3 +14,7 @@ Uses a Canvas for drawing pixel images. The size of images depends on the browse
 | Firefox `v90` | 70 bytes          | 70 bytes          | 70 bytes    |
 | Chrome `v92`  | 82 bytes          | 82 bytes          | 81 bytes    |
 | Safari `v14`  | 161 bytes         | 163 bytes         | 161 bytes   |
+
+---
+
+[One pixel GIF](https://shoonia.github.io/pixel-gif/)
