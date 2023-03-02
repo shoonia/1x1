@@ -158,12 +158,18 @@ inputAlpha.addEventListener('change', () => {
   ]);
 });
 
-picker.addEventListener('change', () => {
-  const [isValid, color] = parseHex(picker.value);
+let af;
 
-  if (isValid) {
-    setHex(color);
-  }
+picker.addEventListener('color-changed', (event) => {
+  cancelAnimationFrame(af);
+
+  af = requestAnimationFrame(() => {
+    const [isValid, color] = parseHex(event.detail.value);
+
+    if (isValid) {
+      setHex(color);
+    }
+  });
 });
 
 fileReader.addEventListener('load', () => {
@@ -220,7 +226,7 @@ connect('hex', ({ hex, canvas }) => {
   document.title = `1x1 Pixel PNG | ${hex8}`;
   favicon.href = createFavicon(hex8);
   inputColor.value = hex6;
-  picker.value = `#${hex6}`;
+  picker.color = hex8;
   outputImage.style.backgroundImage = url;
   outputImage.title = `8-Digit Hex: ${hex8}`;
   outputDataURL.value = dataURL;

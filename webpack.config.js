@@ -19,7 +19,10 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
     mode: nodeEnv,
     bail: isProd,
     devtool: isDev && 'cheap-module-source-map',
-    entry: appPaths.indexJs,
+    entry: [
+      appPaths.indexJs,
+      appPaths.colorPicker,
+    ],
     output: {
       path: isProd ? appPaths.dist : undefined,
       pathinfo: isDev,
@@ -158,7 +161,7 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
       new webpack.DefinePlugin({
         'process.platform': JSON.stringify(process.platform),
         'process.env.NODE_ENV': JSON.stringify(nodeEnv),
-        'process.env': '({})',
+        'process.env': 'undefined',
         'process': 'undefined',
       }),
       isProd && new MiniCssExtractPlugin(),
