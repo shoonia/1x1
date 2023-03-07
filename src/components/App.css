@@ -1,7 +1,9 @@
 .page {
   display: grid;
   height: 100vh;
-  grid-template: var(--toolbar-w) 1fr var(--header-h) 1fr var(--footer-h) "header header" "toolbar main" "footer footer";
+  grid-template-rows: var(--header-h) 1fr var(--footer-h);
+  grid-template-columns: var(--toolbar-w) 1fr;
+  grid-template-areas: "header header" "toolbar main" "footer footer";
 }
 
 .header {

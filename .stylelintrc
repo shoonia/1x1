@@ -5,6 +5,14 @@
   ],
   "rules": {
     "selector-class-pattern": null,
+    "declaration-block-no-redundant-longhand-properties": [
+      true,
+      {
+        "ignoreShorthands": [
+          "grid-template"
+        ]
+      }
+    ],
     "selector-pseudo-element-no-unknown": [
       true,
       {
