@@ -1,14 +1,21 @@
 {
-  "env": {
-    "es6": true,
-    "browser": true,
-    "node": true
-  },
-  "extends": "eslint:recommended",
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "parserOptions": {
-    "ecmaVersion": 2020,
+    "ecmaVersion": 2022,
     "sourceType": "module"
   },
+  "ignorePatterns": [
+    "webpack.config.js",
+    "scripts",
+    "dist"
+  ],
   "rules": {
     "linebreak-style": "off",
     "no-else-return": "error",

@@ -6,6 +6,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
 const SitemapPlugin = require('sitemap-webpack-plugin').default;
 const CssMqpackerPlugin = require('css-mqpacker-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const { homepage } = require('./package.json');
 const colors = require('./src/js/colorConstants.json');
@@ -158,6 +159,12 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
         'process.env.NODE_ENV': JSON.stringify(nodeEnv),
         'process.env': 'undefined',
         'process': 'undefined',
+      }),
+      new ForkTsCheckerWebpackPlugin({
+        async: isDev,
+        typescript: {
+          configFile: appPaths.appTsConfig,
+        },
       }),
       isProd && new MiniCssExtractPlugin(),
       isProd && new HTMLInlineCSSWebpackPlugin(),

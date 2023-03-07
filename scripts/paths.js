@@ -14,4 +14,5 @@ exports.appPaths = {
   appSrc: resolveApp('src'),
   distHtml: resolveApp('dist/index.html'),
   colorPicker: resolveApp('node_modules/vanilla-colorful/hex-alpha-color-picker.js'),
+  appTsConfig: resolveApp('tsconfig.json'),
 };
