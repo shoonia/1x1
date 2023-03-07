@@ -20,7 +20,7 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
     bail: isProd,
     devtool: isDev && 'cheap-module-source-map',
     entry: [
-      appPaths.indexJs,
+      appPaths.index,
       appPaths.colorPicker,
     ],
     output: {
@@ -80,6 +80,8 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
       ],
       extensions: [
         '.js',
+        '.ts',
+        '.tsx',
       ],
     },
     module: {
@@ -87,27 +89,20 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
       rules: [
         {
           oneOf: [
-            // {
-            //   test: /\.js$/,
-            //   include: appPaths.src,
-            //   loader: 'babel-loader',
-            //   options: {
-            //     cacheDirectory: true,
-            //     cacheCompression: false,
-            //     compact: isProd,
-            //     presets: [
-            //       [
-            //         '@babel/preset-env',
-            //         {
-            //           loose: true,
-            //           browserslistEnv: nodeEnv,
-            //           configPath: appPaths.appDirectory,
-            //           useBuiltIns: 'entry',
-            //         },
-            //       ],
-            //     ],
-            //   },
-            // },
+            {
+              test: /\.[jt]sx?$/,
+              include: appPaths.src,
+              loader: 'babel-loader',
+              options: {
+                cacheDirectory: true,
+                cacheCompression: false,
+                compact: isProd,
+                presets: [
+                  '@babel/typescript',
+                  'jsx-dom-runtime/babel-preset',
+                ],
+              },
+            },
             {
               test: /\.css$/,
               use: [
