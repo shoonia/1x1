@@ -1,3 +1,4 @@
+import './global.css';
 import { App } from './components/App';
 import { readyStore } from './store';
 

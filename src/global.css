@@ -1,0 +1,13 @@
+:root {
+  --header-h: 70px;
+  --footer-h: 70px;
+  --toolbar-w: 250px;
+  --spacing: 1em;
+}
+
+body {
+  height: 100%;
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+}
