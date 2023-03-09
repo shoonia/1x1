@@ -1,0 +1,48 @@
+.box {
+  display: flex;
+  align-items: center;
+  margin: 1em 0;
+  gap: 0.5em;
+}
+
+.label {
+  display: inline-block;
+  min-width: 1em;
+}
+
+.number {
+  text-align: center;
+}
+
+.range {
+  appearance: none;
+  height: 1em;
+  margin-top: 0.2em;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+}
+
+.range::range-track {
+  background-color: var(--c-pr);
+  height: 5px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.range::range-thumb {
+  appearance: none;
+  height: 1.5em;
+  width: 1.5em;
+  background-color: #fff;
+  border: 4px solid var(--c-pr);
+  border-radius: 50%;
+  cursor: pointer;
+  place-content: center center;
+  transform: translateY(calc(-50% + 2px));
+}
+
+.range:focus {
+  outline: none;
+}

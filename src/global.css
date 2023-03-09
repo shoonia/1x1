@@ -1,8 +1,10 @@
 :root {
   --header-h: 70px;
   --footer-h: 70px;
-  --toolbar-w: 250px;
+  --toolbar-w: 300px;
   --spacing: 1em;
+  --c-pr: #dc5a60;
+  --c-sh: rgb(0 0 0 / 30%);
 }
 
 ::placeholder {

@@ -10,3 +10,5 @@ export interface IEvents {
   'set/hex': unknown;
   'set/rgb': unknown;
 }
+
+export type TRgba = keyof Pick<IState, 'r' | 'g' | 'b' | 'a'>;
