@@ -1,4 +1,7 @@
 import s from './App.css';
+import { ColorPicker } from './ColorPicker';
+import { HexInputs } from './HexInputs';
+import { RgbaInputs } from './RgbaInputs';
 
 export const App: FC = () => {
   return (
@@ -9,7 +12,11 @@ export const App: FC = () => {
         </a>
         <div class={s.right}></div>
       </header>
-      <aside class={s.toolbar}></aside>
+      <aside class={s.toolbar}>
+        <HexInputs />
+        <RgbaInputs />
+        <ColorPicker />
+      </aside>
       <main class={s.main}>
         <h1>
           One pixel Base64 encoded transparent PNG generator
