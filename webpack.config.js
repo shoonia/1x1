@@ -158,6 +158,7 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
         templateParameters: {
           homepage,
           isProd,
+          colors,
         },
       }),
       new webpack.DefinePlugin({

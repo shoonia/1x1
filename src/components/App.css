@@ -18,6 +18,7 @@
 .toolbar {
   grid-area: toolbar;
   background-color: #313541;
+  padding: 1em 0;
 }
 
 .main {
