@@ -23,7 +23,7 @@
 
 .main {
   grid-area: main;
-  padding: var(--spacing);
+  padding: 2em;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;

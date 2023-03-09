@@ -1,7 +1,7 @@
 .box {
   display: grid;
   grid-template-columns: auto 4em;
-  grid-gap: 0.5em;
+  grid-gap: 1em;
   align-items: end;
 }
 
@@ -11,7 +11,6 @@
 
 .inp {
   width: 100%;
-  font-size: 1em;
   margin: 0.5em 0;
   padding: 0.3em 1em;
   box-sizing: border-box;

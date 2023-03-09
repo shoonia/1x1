@@ -2,7 +2,6 @@
   --header-h: 70px;
   --footer-h: 70px;
   --toolbar-w: 300px;
-  --spacing: 1em;
   --c-pr: #dc5a60;
   --c-sh: rgb(0 0 0 / 30%);
 }
@@ -32,6 +31,7 @@ html,
 kbd,
 input,
 button {
+  font-size: 16px;
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -54,6 +54,7 @@ input {
   cursor: pointer;
   white-space: nowrap;
   transition: all 0.1s ease-in;
+  font-size: 1em;
 }
 
 a {
