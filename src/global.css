@@ -54,6 +54,14 @@ input {
   transition: all 0.1s ease-in;
 }
 
+a {
+  color: #116dff;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 body,
 input {
   color: #2b5672;

@@ -1,4 +1,6 @@
 import s from './App.css';
+import { RandomColor } from './RandomColor';
+import { SupportUkraine } from './SupportUkraine';
 import { ColorPicker } from './ColorPicker';
 import { HexInputs } from './HexInputs';
 import { RgbaInputs } from './RgbaInputs';
@@ -10,7 +12,10 @@ export const App: FC = () => {
         <a href="/" class={s.left}>
           1x1 Pixel PNG
         </a>
-        <div class={s.right}></div>
+        <div class={s.right}>
+          <SupportUkraine />
+          <RandomColor />
+        </div>
       </header>
       <aside class={s.toolbar}>
         <HexInputs />
