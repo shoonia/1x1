@@ -12,4 +12,10 @@ export const app: StoreonModule<IState, IEvents> = (store) => {
       hex: 'ffffffff',
     };
   });
+
+  store.on('set/rgba', (_, [param, value]) => {
+    return {
+      [param]: value,
+    };
+  });
 };
