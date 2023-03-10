@@ -2,9 +2,11 @@ import { useRef } from 'jsx-dom-runtime';
 
 import s from './styles.css';
 import { TextInput } from './TextInput';
+import { Download } from '../Download';
 import { connect, setState } from '../../store';
 
 export const Output: FC = () => {
+  const view = useRef<HTMLDivElement>();
   const dataUrl = useRef<HTMLInputElement>();
   const dataLink = useRef<HTMLInputElement>();
   const dataBytes = useRef<HTMLInputElement>();
@@ -23,22 +25,23 @@ export const Output: FC = () => {
   });
 
   return (
-    <fieldset class={s.box}>
-      <legend>
-        Output
-      </legend>
-      <TextInput ref={dataUrl} label="Data: URL" />
-      <TextInput ref={dataBase64} label="Base64:" />
-      <div class={s.bytes}>
-        <TextInput ref={dataBytes} label="Bytes:" />
-        <select ref={changeRadix} class={s.radix}>
-          <option value="16">16</option>
-          <option value="10">10</option>
-          <option value="8">8</option>
-          <option value="2">2</option>
-        </select>
-      </div>
-      <TextInput ref={dataLink} label="Share Link:" />
-    </fieldset>
+    <>
+      <div ref={view} class={s.view} />
+      <fieldset class={s.box}>
+        <TextInput ref={dataUrl} label="Data: URL" />
+        <TextInput ref={dataBase64} label="Base64:" />
+        <div class={s.bytes}>
+          <TextInput ref={dataBytes} label="Bytes:" />
+          <select ref={changeRadix} class={s.radix}>
+            <option value="16">16</option>
+            <option value="10">10</option>
+            <option value="8">8</option>
+            <option value="2">2</option>
+          </select>
+        </div>
+        <TextInput ref={dataLink} label="Share Link:" />
+      </fieldset>
+      <Download />
+    </>
   );
 };
