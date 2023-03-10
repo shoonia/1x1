@@ -12,6 +12,7 @@ export const app: StoreonModule<IState, IEvents> = (store) => {
       b: 255,
       a: 255,
       hex: 'ffffffff',
+      radix: 16,
     };
   });
 
