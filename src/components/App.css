@@ -62,3 +62,18 @@
   width: 100%;
   padding: 0 1em;
 }
+
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+@media (max-width: 700px) {
+  .page {
+    display: block;
+  }
+
+  .left {
+    display: none;
+  }
+}

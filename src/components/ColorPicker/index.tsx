@@ -4,8 +4,9 @@ import s from './styles.css';
 import { Group } from '../Group';
 import { connect, dispatch } from '../../store';
 
-export const ColorPicker: FC = () => {
+const isBigScreen = window.matchMedia('(min-width:700px)').matches;
 
+export const ColorPicker: FC = () => {
   const ready = (node: HexColorPicker) => {
     connect('hex', (state) => {
       node.color = '#' + state.hex;
@@ -17,7 +18,7 @@ export const ColorPicker: FC = () => {
   };
 
   return (
-    <Group open title="Picker">
+    <Group open={isBigScreen} title="Picker">
       <hex-alpha-color-picker
         ref={ready}
         class={s.picker}

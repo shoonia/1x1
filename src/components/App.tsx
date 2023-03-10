@@ -25,10 +25,12 @@ export const App: FC = () => {
         <ColorPicker />
       </aside>
       <main class={s.main}>
-        <h1>
-          One pixel Base64 encoded transparent PNG generator
-        </h1>
-        <Output />
+        <div class={s.content}>
+          <h1>
+            One pixel Base64 encoded transparent PNG generator
+          </h1>
+          <Output />
+        </div>
       </main>
       <footer class={s.footer}>
         <div class={s.left}>
