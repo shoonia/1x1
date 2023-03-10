@@ -66,7 +66,8 @@ a:hover {
 }
 
 body,
-input {
+input,
+button {
   color: #2b5672;
 }
 
