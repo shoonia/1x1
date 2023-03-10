@@ -7,7 +7,7 @@ export interface IState {
 }
 
 export interface IEvents {
-  'set/hex': unknown;
+  'set/hex': string;
   'set/rgba': [TRgba, number];
 }
 

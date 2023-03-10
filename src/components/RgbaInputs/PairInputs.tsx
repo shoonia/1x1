@@ -14,7 +14,7 @@ export const PairInputs: FC<Props> = ({ param }) => {
 
   const input: EventListener = (event) => {
     const el = event.target as HTMLInputElement;
-    const val = el.valueAsNumber;
+    const val = ~~el.valueAsNumber;
 
     dispatch('set/rgba', [param, val > 255 ? 255 : val]);
   };

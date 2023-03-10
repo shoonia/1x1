@@ -1,6 +1,7 @@
 import type { StoreonModule } from 'storeon-velo';
 
 import type { IEvents, IState } from './types';
+import { getDiff } from './helpers';
 import { createHex } from '../utils';
 
 export const app: StoreonModule<IState, IEvents> = (store) => {
@@ -14,13 +15,29 @@ export const app: StoreonModule<IState, IEvents> = (store) => {
     };
   });
 
-  store.on('set/rgba', (state, [param, value]) => {
+  store.on('set/rgba', (state, [key, val]) => {
     return {
       hex: createHex({
         ...state,
-        [param]: value,
+        [key]: val,
       }),
-      [param]: value,
+      [key]: val,
     };
+  });
+
+  store.on('set/hex', (state, val) => {
+    const hex = val.length < 8 ? val + 'ff' : val;
+    const i = parseInt(hex, 16);
+
+    return getDiff(
+      state,
+      {
+        r: i >> 24 & 255,
+        g: i >> 16 & 255,
+        b: i >> 8 & 255,
+        a: i & 255,
+        hex,
+      },
+    );
   });
 };

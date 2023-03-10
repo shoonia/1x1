@@ -2,7 +2,7 @@ declare global {
   namespace JSX {
     interface IntrinsicElements {
       'hex-alpha-color-picker': {
-        ref?: { readonly current: import('vanilla-colorful').HexColorPicker };
+        ref?: (node: import('vanilla-colorful').HexColorPicker) => void;
         class?: string;
       }
     }
