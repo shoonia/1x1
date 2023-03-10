@@ -20,7 +20,6 @@
   height: 1em;
   margin-top: 0.2em;
   background-color: transparent;
-  cursor: pointer;
   border: none;
   width: 100%;
 }
@@ -28,20 +27,23 @@
 .range::range-track {
   background-color: var(--c-pr);
   height: 5px;
-  cursor: pointer;
   border-radius: 10px;
 }
 
 .range::range-thumb {
   appearance: none;
-  height: 1.5em;
-  width: 1.5em;
-  background-color: #fff;
-  border: 4px solid var(--c-pr);
+  height: 28px;
+  width: 28px;
+  background-color: var(--c-pr);
+  border: 2px solid #fff;
   border-radius: 50%;
-  cursor: pointer;
   place-content: center center;
   transform: translateY(calc(-50% + 2px));
+  box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
+}
+
+.range::range-thumb:hover {
+  transform: translateY(calc(-50% + 2px)) scale(1.1);
 }
 
 .range:focus {
