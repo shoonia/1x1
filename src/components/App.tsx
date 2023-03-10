@@ -6,6 +6,7 @@ import { HexInputs } from './HexInputs';
 import { RgbaInputs } from './RgbaInputs';
 import { Output } from './Output';
 import { HotKeys } from './HotKeys';
+import { Download } from './Download';
 
 export const App: FC = () => {
   return (
@@ -26,10 +27,11 @@ export const App: FC = () => {
       </aside>
       <main class={s.main}>
         <div class={s.content}>
-          <h1>
+          <h1 class={s.title}>
             One pixel Base64 encoded transparent PNG generator
           </h1>
           <Output />
+          <Download />
         </div>
       </main>
       <footer class={s.footer}>

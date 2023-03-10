@@ -63,6 +63,10 @@
   padding: 0 1em;
 }
 
+.title {
+  font-size: 2em;
+}
+
 .content {
   max-width: 900px;
   margin: 0 auto;
@@ -75,5 +79,9 @@
 
   .left {
     display: none;
+  }
+
+  .title {
+    font-size: 1.5em;
   }
 }

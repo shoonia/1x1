@@ -1,3 +1,7 @@
+.box {
+  padding: 1em 0;
+}
+
 .bytes {
   width: 100%;
   align-items: flex-end;

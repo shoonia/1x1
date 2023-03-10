@@ -23,7 +23,7 @@ export const Output: FC = () => {
   });
 
   return (
-    <fieldset>
+    <fieldset class={s.box}>
       <legend>
         Output
       </legend>
