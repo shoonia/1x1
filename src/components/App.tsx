@@ -5,6 +5,7 @@ import { ColorPicker } from './ColorPicker';
 import { HexInputs } from './HexInputs';
 import { RgbaInputs } from './RgbaInputs';
 import { Output } from './Output';
+import { HotKeys } from './HotKeys';
 
 export const App: FC = () => {
   return (
@@ -31,7 +32,7 @@ export const App: FC = () => {
       </main>
       <footer class={s.footer}>
         <div class={s.left}>
-          1x1
+          <HotKeys />
         </div>
         <div class={s.right}></div>
       </footer>

@@ -1,0 +1,31 @@
+.box {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 1em;
+  font-size: 0.9em;
+  text-align: center;
+  line-height: 1.5em;
+}
+
+.btn {
+  border: none;
+  background: none;
+  appearance: none;
+}
+
+.comb {
+  font-size: 0.9em;
+  white-space: normal;
+  display: flex;
+  gap: 0.2em;
+}
+
+.key {
+  background-color: #fff;
+  border: 1px solid #116dff;
+  border-radius: 2px;
+  color: #555;
+  line-height: 1;
+  padding: 2px 6px;
+}
