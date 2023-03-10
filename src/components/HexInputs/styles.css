@@ -5,10 +5,6 @@
   align-items: end;
 }
 
-.label {
-  box-sizing: border-box;
-}
-
 .inp {
   width: 100%;
   margin: 0.5em 0;

@@ -10,7 +10,7 @@ export const Group: FC<Props> = ({ open, title, children }) => (
     <summary class={s.title}>
       {title}
     </summary>
-    <fieldset class={s.set}>
+    <fieldset>
       {children}
     </fieldset>
   </details>

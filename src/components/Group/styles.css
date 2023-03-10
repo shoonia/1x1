@@ -31,9 +31,3 @@
 .box[open] .title::after {
   content: "-";
 }
-
-.set {
-  border: none;
-  margin: 0;
-  padding: 0;
-}

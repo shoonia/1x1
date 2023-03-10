@@ -40,7 +40,7 @@ export const HexInputs: FC = () => {
   return (
     <Group open title="HEX">
       <div class={s.box}>
-        <label class={s.label} aria-label="color">
+        <label aria-label="color">
           <input
             ref={color}
             type="text"
@@ -53,7 +53,7 @@ export const HexInputs: FC = () => {
           />
           <DataList id={listId} />
         </label>
-        <label class={s.label} aria-label="alpha (opacity)">
+        <label aria-label="alpha (opacity)">
           <input
             ref={alpha}
             type="text"
