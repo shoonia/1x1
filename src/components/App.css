@@ -23,7 +23,7 @@
 
 .main {
   grid-area: main;
-  padding: 2em;
+  padding: 3em 2em;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
@@ -42,7 +42,7 @@
   align-items: center;
   height: var(--footer-h);
   color: #4e5561;
-  background-color: #1d2127;
+  background-color: #0d1117;
 }
 
 .left {
@@ -57,7 +57,7 @@
 
 .right {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100%;
   padding: 0 1em;

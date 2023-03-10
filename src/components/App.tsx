@@ -6,6 +6,7 @@ import { HexInputs } from './HexInputs';
 import { RgbaInputs } from './RgbaInputs';
 import { Output } from './Output';
 import { HotKeys } from './HotKeys';
+import { Stars } from './Stars';
 
 export const App: FC = () => {
   return (
@@ -36,7 +37,9 @@ export const App: FC = () => {
         <div class={s.left}>
           <HotKeys />
         </div>
-        <div class={s.right}></div>
+        <div class={s.right}>
+          <Stars />
+        </div>
       </footer>
     </div>
   );
