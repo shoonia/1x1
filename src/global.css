@@ -2,7 +2,7 @@
   --header-h: 70px;
   --footer-h: 70px;
   --toolbar-w: 300px;
-  --c-pr: #dc5a60;
+  --c-pr: #b94147;
   --c-sh: rgb(0 0 0 / 30%);
 }
 
@@ -68,7 +68,7 @@ a:hover {
 body,
 input,
 button {
-  color: #2b5672;
+  color: #0d1117;
 }
 
 fieldset {

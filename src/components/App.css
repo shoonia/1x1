@@ -17,7 +17,7 @@
 
 .toolbar {
   grid-area: toolbar;
-  background: linear-gradient(180deg, #313541 10%, #330e66 90%);
+  background: linear-gradient(180deg, #0d1117 20%, #330e66 80%);
   padding: 1em 0;
 }
 
@@ -41,7 +41,7 @@
   justify-content: space-between;
   align-items: center;
   height: var(--footer-h);
-  color: #4e5561;
+  color: #c9d1d9;
   background-color: #0d1117;
 }
 

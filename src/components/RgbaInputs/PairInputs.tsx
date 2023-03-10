@@ -11,6 +11,7 @@ interface Props {
 export const PairInputs: FC<Props> = ({ param }) => {
   const number = useRef<HTMLInputElement>();
   const range = useRef<HTMLInputElement>();
+  const label = `color channel "${param}"`;
 
   const input: EventListener = (event) => {
     const el = event.target as HTMLInputElement;
@@ -39,6 +40,7 @@ export const PairInputs: FC<Props> = ({ param }) => {
         max={255}
         min={0}
         step={1}
+        aria-label={label}
       />
       <input
         ref={range}
@@ -48,6 +50,7 @@ export const PairInputs: FC<Props> = ({ param }) => {
         max={255}
         min={0}
         step={1}
+        aria-label={label}
       />
     </div>
   );
