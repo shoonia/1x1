@@ -4,12 +4,26 @@ import s from './styles.css';
 import { Group } from '../Group';
 import { DataList } from './DataList';
 import { randomHex } from '../../utils';
-import { connect } from '../../store';
+import { connect, dispatch } from '../../store';
+
+const NOT_HEXADECIMAL = /[^\da-f]/ig;
 
 export const HexInputs: FC = () => {
   const color = useRef<HTMLInputElement>();
   const alpha = useRef<HTMLInputElement>();
   const listId = 'e' + randomHex(4);
+
+  const changeAlpha: EventListener = () => {
+    const val = alpha.current.value
+      .trim()
+      .toLowerCase()
+      .replace(NOT_HEXADECIMAL, '');
+
+    dispatch('set/rgba', [
+      'a',
+      val.length !== 2 ? 255 : parseInt(val, 16),
+    ]);
+  };
 
   connect('hex', ({ hex }) => {
     color.current.value = hex.slice(0, 6);
@@ -39,6 +53,7 @@ export const HexInputs: FC = () => {
             maxLength={2}
             spellcheck="false"
             class={s.inp}
+            onchange={changeAlpha}
           />
         </label>
       </div>
