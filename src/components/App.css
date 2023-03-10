@@ -17,7 +17,7 @@
 
 .toolbar {
   grid-area: toolbar;
-  background-color: #313541;
+  background: linear-gradient(180deg, #313541 10%, #330e66 90%);
   padding: 1em 0;
 }
 

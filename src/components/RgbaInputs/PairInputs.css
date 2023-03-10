@@ -12,6 +12,7 @@
 
 .number {
   text-align: center;
+  min-width: 3em;
 }
 
 .range {
