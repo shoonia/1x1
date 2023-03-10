@@ -4,6 +4,7 @@ import { SupportUkraine } from './SupportUkraine';
 import { ColorPicker } from './ColorPicker';
 import { HexInputs } from './HexInputs';
 import { RgbaInputs } from './RgbaInputs';
+import { Output } from './Output';
 
 export const App: FC = () => {
   return (
@@ -26,6 +27,7 @@ export const App: FC = () => {
         <h1>
           One pixel Base64 encoded transparent PNG generator
         </h1>
+        <Output />
       </main>
       <footer class={s.footer}>
         <div class={s.left}>

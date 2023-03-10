@@ -74,3 +74,14 @@ button {
 h1 {
   margin: 0;
 }
+
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+label {
+  width: 100%;
+  display: block;
+}
