@@ -10,7 +10,7 @@ const CssMqpackerPlugin = require('css-mqpacker-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const { homepage } = require('./package.json');
-const colors = require('./src/js/colorConstants.json');
+const colors = require('./src/utils/colors.json');
 const { appPaths } = require('./scripts/paths');
 
 module.exports = ({ NODE_ENV: nodeEnv }) => {

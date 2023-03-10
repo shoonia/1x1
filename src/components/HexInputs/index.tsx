@@ -3,10 +3,9 @@ import { useRef } from 'jsx-dom-runtime';
 import s from './styles.css';
 import { Group } from '../Group';
 import { DataList } from './DataList';
-import { randomHex } from '../../utils';
+import { NOT_HEXADECIMAL, randomHex, parseHex } from '../../utils';
 import { connect, dispatch } from '../../store';
 
-const NOT_HEXADECIMAL = /[^\da-f]/ig;
 
 export const HexInputs: FC = () => {
   const color = useRef<HTMLInputElement>();
@@ -23,6 +22,14 @@ export const HexInputs: FC = () => {
       'a',
       val.length !== 2 ? 255 : parseInt(val, 16),
     ]);
+  };
+
+  const changeColor: EventListener = () => {
+    const [isValid, hex] = parseHex(color.current.value);
+
+    if (isValid) {
+      dispatch('set/hex', hex);
+    }
   };
 
   connect('hex', ({ hex }) => {
@@ -42,6 +49,7 @@ export const HexInputs: FC = () => {
             placeholder="ffffff"
             spellcheck="false"
             class={s.inp}
+            onchange={changeColor}
           />
           <DataList id={listId} />
         </label>
