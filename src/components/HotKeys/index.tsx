@@ -1,9 +1,8 @@
 import tinykeys from 'tinykeys';
 
+import s from './styles.css';
 import { dispatch, getState } from '../../store';
 import { parseHex } from '../../utils';
-
-import s from './styles.css';
 
 const isMacOs = /Mac OS/i.test(navigator.userAgent);
 
