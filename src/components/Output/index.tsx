@@ -1,4 +1,4 @@
-import { useRef } from 'jsx-dom-runtime';
+import { useRef, useText } from 'jsx-dom-runtime';
 
 import s from './styles.css';
 import { TextInput } from './TextInput';
@@ -14,6 +14,7 @@ export const Output: FC = () => {
   const dataLink = useRef<HTMLInputElement>();
   const dataBytes = useRef<HTMLInputElement>();
   const dataBase64 = useRef<HTMLInputElement>();
+  const [size, setSize] = useText('1x1 (82 bytes)');
 
   let timeout: number;
 
@@ -35,6 +36,7 @@ export const Output: FC = () => {
       const bytes = Array.from(new Uint8Array(fileReader.result), (i) => i.toString(radix));
 
       dataBytes.current.value = bytes.join(' ');
+      setSize(`1x1 (${bytes.length} bytes)`);
     }
   });
 
@@ -56,7 +58,7 @@ export const Output: FC = () => {
 
     clearTimeout(timeout);
     timeout = window.setTimeout(() => {
-      document.title = '1x1 Pixel GIF | ' + hex8;
+      document.title = '1x1 Pixel PNG | ' + hex8;
       location.hash = hex8;
       favicon.href = createFavicon(hex8);
       console.log('%c  ', css, hex8);
@@ -65,7 +67,11 @@ export const Output: FC = () => {
 
   return (
     <>
-      <div ref={view} class={s.view} />
+      <div ref={view} class={s.view}>
+        <span class={s.size}>
+          {size}
+        </span>
+      </div>
       <fieldset class={s.box}>
         <TextInput ref={dataUrl} label="Data: URL" />
         <TextInput ref={dataBase64} label="Base64:" />

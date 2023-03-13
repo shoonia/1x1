@@ -3,6 +3,7 @@
   background-color: transparent;
   margin-top: 2em;
   box-shadow: 0 3px 10px rgb(0 0 0 / 30%);
+  position: relative;
 }
 
 .box {
@@ -25,4 +26,15 @@
   background-position: right 0.1em top 0.3em;
   background-repeat: no-repeat;
   background-color: #fff;
+}
+
+.size {
+  background-color: hsla(0, 0%, 100%, 0.5);
+  border-radius: 6px;
+  bottom: 10px;
+  font-size: 14px;
+  padding: 5px 10px;
+  position: absolute;
+  right: 10px;
+  user-select: none;
 }
