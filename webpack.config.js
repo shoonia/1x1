@@ -115,12 +115,11 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
                   options: {
                     importLoaders: 1,
                     sourceMap: isDev,
-                    modules: isDev
-                    // ? {
-                    //   localIdentName: '[file]--[local]_[hash:base64:4]',
-                    // } : {
-                    //   localIdentName: '_[hash:base64:4]',
-                    // },
+                    modules: isDev ? {
+                      localIdentName: '[file]--[local]_[hash:base64:4]',
+                    } : {
+                      getLocalIdent: createLocalIdent(),
+                    },
                   },
                 },
                 {
