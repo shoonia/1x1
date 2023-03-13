@@ -21,6 +21,7 @@ export const Output: FC = () => {
   connect('hex', ({ hex }) => {
     const hex8 = '#' + hex;
 
+    location.hash = hex8;
     dataLink.current.value = 'https://shoonia.github.io/1x1/' + hex8;
   });
 
