@@ -1,0 +1,51 @@
+.box {
+  display: flex;
+  align-items: center;
+  margin: 1em 0;
+  gap: 0.5em;
+}
+
+.label {
+  display: inline-block;
+  min-width: 1em;
+}
+
+.number {
+  text-align: center;
+  min-width: 3em;
+}
+
+.range {
+  appearance: none;
+  height: 1em;
+  margin-top: 0.2em;
+  background-color: transparent;
+  border: none;
+  width: 100%;
+}
+
+.range::range-track {
+  background-color: var(--c-pr);
+  height: 5px;
+  border-radius: 10px;
+}
+
+.range::range-thumb {
+  appearance: none;
+  height: 28px;
+  width: 28px;
+  background-color: var(--c-pr);
+  border: 2px solid #fff;
+  border-radius: 50%;
+  place-content: center center;
+  transform: translateY(calc(-50% + 2px));
+  box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
+}
+
+.range::range-thumb:hover {
+  transform: translateY(calc(-50% + 2px)) scale(1.1);
+}
+
+.range:focus {
+  outline: none;
+}

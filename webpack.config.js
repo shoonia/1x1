@@ -2,13 +2,15 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const createLocalIdent = require('mini-css-class-name/css-loader');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
 const SitemapPlugin = require('sitemap-webpack-plugin').default;
 const CssMqpackerPlugin = require('css-mqpacker-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const { homepage } = require('./package.json');
-const colors = require('./src/js/colorConstants.json');
+const colors = require('./src/utils/colors.json');
 const { appPaths } = require('./scripts/paths');
 
 module.exports = ({ NODE_ENV: nodeEnv }) => {
@@ -20,7 +22,7 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
     bail: isProd,
     devtool: isDev && 'cheap-module-source-map',
     entry: [
-      appPaths.indexJs,
+      appPaths.index,
       appPaths.colorPicker,
     ],
     output: {
@@ -80,6 +82,8 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
       ],
       extensions: [
         '.js',
+        '.ts',
+        '.tsx',
       ],
     },
     module: {
@@ -87,27 +91,20 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
       rules: [
         {
           oneOf: [
-            // {
-            //   test: /\.js$/,
-            //   include: appPaths.src,
-            //   loader: 'babel-loader',
-            //   options: {
-            //     cacheDirectory: true,
-            //     cacheCompression: false,
-            //     compact: isProd,
-            //     presets: [
-            //       [
-            //         '@babel/preset-env',
-            //         {
-            //           loose: true,
-            //           browserslistEnv: nodeEnv,
-            //           configPath: appPaths.appDirectory,
-            //           useBuiltIns: 'entry',
-            //         },
-            //       ],
-            //     ],
-            //   },
-            // },
+            {
+              test: /\.[jt]sx?$/,
+              include: appPaths.src,
+              loader: 'babel-loader',
+              options: {
+                cacheDirectory: true,
+                cacheCompression: false,
+                compact: isProd,
+                presets: [
+                  '@babel/typescript',
+                  'jsx-dom-runtime/babel-preset',
+                ],
+              },
+            },
             {
               test: /\.css$/,
               use: [
@@ -118,6 +115,11 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
                   options: {
                     importLoaders: 1,
                     sourceMap: isDev,
+                    modules: isDev ? {
+                      localIdentName: '[file]--[local]_[hash:base64:4]',
+                    } : {
+                      getLocalIdent: createLocalIdent(),
+                    },
                   },
                 },
                 {
@@ -156,6 +158,7 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
         templateParameters: {
           homepage,
           isProd,
+          colors,
         },
       }),
       new webpack.DefinePlugin({
@@ -163,6 +166,12 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
         'process.env.NODE_ENV': JSON.stringify(nodeEnv),
         'process.env': 'undefined',
         'process': 'undefined',
+      }),
+      new ForkTsCheckerWebpackPlugin({
+        async: isDev,
+        typescript: {
+          configFile: appPaths.appTsConfig,
+        },
       }),
       isProd && new MiniCssExtractPlugin(),
       isProd && new HTMLInlineCSSWebpackPlugin(),

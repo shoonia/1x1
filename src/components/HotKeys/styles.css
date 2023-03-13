@@ -1,0 +1,36 @@
+.box {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 1em;
+  font-size: 0.9em;
+  text-align: center;
+  line-height: 1.5em;
+}
+
+.btn {
+  border: none;
+  background: none;
+  appearance: none;
+}
+
+.comb {
+  font-size: 0.9em;
+  white-space: normal;
+  display: flex;
+  gap: 0.2em;
+}
+
+.key {
+  background-color: var(--c-pr);
+  border: 1px solid #fff;
+  border-radius: 2px;
+  color: #fff;
+  line-height: 1;
+  padding: 2px 6px;
+}
+
+.btn:hover .key,
+.btn:focus .key {
+  background-color: #000;
+}
