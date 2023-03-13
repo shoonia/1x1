@@ -1,4 +1,5 @@
 import type { HexColorPicker } from 'vanilla-colorful';
+import 'vanilla-colorful/hex-alpha-color-picker.js';
 
 import s from './styles.css';
 import { Group } from '../Group';

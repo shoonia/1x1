@@ -21,10 +21,7 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
     mode: nodeEnv,
     bail: isProd,
     devtool: isDev && 'cheap-module-source-map',
-    entry: [
-      appPaths.index,
-      appPaths.colorPicker,
-    ],
+    entry: appPaths.index,
     output: {
       path: isProd ? appPaths.dist : undefined,
       pathinfo: isDev,
