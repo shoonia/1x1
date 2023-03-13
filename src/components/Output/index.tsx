@@ -3,6 +3,7 @@ import { useRef, useText } from 'jsx-dom-runtime';
 import s from './styles.css';
 import { TextInput } from './TextInput';
 import { Download } from '../Download';
+import { Preset } from '../Preset';
 import { connect, getState, setState } from '../../store';
 import { createCanvas, createFavicon } from '../../utils/canvas';
 
@@ -71,6 +72,9 @@ export const Output: FC = () => {
         <span class={s.size}>
           {size}
         </span>
+        <div class={s.preset}>
+          <Preset />
+        </div>
       </div>
       <fieldset class={s.box}>
         <TextInput ref={dataUrl} label="Data: URL" />

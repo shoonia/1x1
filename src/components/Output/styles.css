@@ -38,3 +38,9 @@
   right: 10px;
   user-select: none;
 }
+
+.preset {
+  position: absolute;
+  right: -28px;
+  top: 0;
+}
