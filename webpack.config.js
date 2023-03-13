@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const createLocalIdent = require('mini-css-class-name/css-loader');
+const createLocalIdent = require('mini-css-class-name/css-loader');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
 const SitemapPlugin = require('sitemap-webpack-plugin').default;
@@ -115,11 +115,12 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
                   options: {
                     importLoaders: 1,
                     sourceMap: isDev,
-                    modules: isDev ? {
-                      localIdentName: '[file]--[local]_[hash:base64:4]',
-                    } : {
-                      localIdentName: '_[hash:base64:4]',
-                    },
+                    modules: isDev
+                    // ? {
+                    //   localIdentName: '[file]--[local]_[hash:base64:4]',
+                    // } : {
+                    //   localIdentName: '_[hash:base64:4]',
+                    // },
                   },
                 },
                 {
