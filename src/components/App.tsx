@@ -7,6 +7,7 @@ import { RgbaInputs } from './RgbaInputs';
 import { Output } from './Output';
 import { HotKeys } from './HotKeys';
 import { Stars } from './Stars';
+import { PixelGIF } from './PixelGIF';
 
 export const App: FC = () => {
   return (
@@ -39,6 +40,7 @@ export const App: FC = () => {
         </div>
         <div class={s.right}>
           <Stars />
+          <PixelGIF />
         </div>
       </footer>
     </div>
