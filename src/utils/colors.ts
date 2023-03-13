@@ -1,5 +1,7 @@
 
-export type TColors = Readonly<typeof import('./colors.json')>;
+import type T from './colors.json';
+
+export type TColors = Readonly<typeof T>;
 
 export const isColorsKey = (val: string): val is keyof TColors => {
   return val in colors;
