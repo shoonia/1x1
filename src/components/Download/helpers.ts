@@ -1,5 +1,5 @@
 import { getState } from '../../store';
-import { createCanvas } from '../../utils/elements';
+import { createCanvas } from '../../utils/canvas';
 
 const TYPE = 'image/png';
 const QUALITY = 0.1;

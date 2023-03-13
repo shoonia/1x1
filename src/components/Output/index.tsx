@@ -4,15 +4,18 @@ import s from './styles.css';
 import { TextInput } from './TextInput';
 import { Download } from '../Download';
 import { connect, getState, setState } from '../../store';
-import { createCanvas } from '../../utils/elements';
+import { createCanvas, createFavicon } from '../../utils/canvas';
 
 export const Output: FC = () => {
   const fileReader = new FileReader();
+  const favicon = document.querySelector('link[rel="icon"]') as HTMLLinkElement;
   const view = useRef<HTMLDivElement>();
   const dataUrl = useRef<HTMLInputElement>();
   const dataLink = useRef<HTMLInputElement>();
   const dataBytes = useRef<HTMLInputElement>();
   const dataBase64 = useRef<HTMLInputElement>();
+
+  let timeout: number;
 
   const changeRadix = (node: HTMLSelectElement) => {
     node.addEventListener('change', () => {
@@ -44,13 +47,20 @@ export const Output: FC = () => {
     const url = `url(${data})`;
     const css = 'display:inline-block;border:1px solid #c6e2f7;border-radius:50%;width:1em;height:1em;background-image:' + url;
 
-    console.log('%c  ', css, hex8);
     canvas.toBlob(readAsArrayBuffer);
     location.hash = hex8;
     view.current.style.backgroundImage = url;
     dataUrl.current.value = data;
     dataBase64.current.value = data.slice(22);
     dataLink.current.value = 'https://shoonia.github.io/1x1/' + hex8;
+
+    clearTimeout(timeout);
+    timeout = window.setTimeout(() => {
+      document.title = '1x1 Pixel GIF | ' + hex8;
+      location.hash = hex8;
+      favicon.href = createFavicon(hex8);
+      console.log('%c  ', css, hex8);
+    }, 300);
   });
 
   return (
