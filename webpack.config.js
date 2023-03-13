@@ -4,7 +4,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const createLocalIdent = require('mini-css-class-name/css-loader');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
+// const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
 const SitemapPlugin = require('sitemap-webpack-plugin').default;
 const CssMqpackerPlugin = require('css-mqpacker-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
@@ -174,7 +174,7 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
         },
       }),
       isProd && new MiniCssExtractPlugin(),
-      isProd && new HTMLInlineCSSWebpackPlugin(),
+      // isProd && new HTMLInlineCSSWebpackPlugin(),
       isProd && new SitemapPlugin({
         base: homepage,
         options: {
