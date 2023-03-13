@@ -13,7 +13,7 @@ export const App: FC = () => {
   return (
     <div class={s.page}>
       <header class={s.header}>
-        <a href="/" class={s.left}>
+        <a href="./" class={s.left}>
           1x1 Pixel PNG
         </a>
         <div class={s.right}>
