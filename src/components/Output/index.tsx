@@ -4,6 +4,7 @@ import s from './styles.css';
 import { TextInput } from './TextInput';
 import { Download } from '../Download';
 import { connect, setState } from '../../store';
+import { createCanvas } from '../../utils/elements';
 
 export const Output: FC = () => {
   const view = useRef<HTMLDivElement>();
@@ -18,10 +19,20 @@ export const Output: FC = () => {
     });
   };
 
-  connect('hex', ({ hex }) => {
+  connect('hex', ({ hex, a }) => {
     const hex8 = '#' + hex;
 
+    const canvas = createCanvas(hex, a);
+    const data = canvas.toDataURL('image/png', 0.1);
+
+    const url = `url(${data})`;
+    const css = 'display:inline-block;border:1px solid #c6e2f7;border-radius:50%;width:1em;height:1em;background-image:' + url;
+
+    console.log('%c  ', css, hex8);
     location.hash = hex8;
+    view.current.style.backgroundImage = url;
+    dataUrl.current.value = data;
+    dataBase64.current.value = data.slice(22);
     dataLink.current.value = 'https://shoonia.github.io/1x1/' + hex8;
   });
 
