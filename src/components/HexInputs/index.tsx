@@ -34,6 +34,9 @@ export const HexInputs: FC = () => {
 
   connect('hex', ({ hex }) => {
     color.current.value = hex.slice(0, 6);
+  });
+
+  connect('a', ({ hex }) => {
     alpha.current.value = hex.slice(6);
   });
 
