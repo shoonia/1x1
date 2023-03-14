@@ -26,10 +26,10 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="preload" as="fetch" href="https://api.github.com/repos/shoonia/1x1" crossorigin>
   <title><%= title %></title>
   <% if (isProd) { %>
     <base href="<%= homepage %>">
+    <link rel="preload" as="fetch" href="https://api.github.com/repos/shoonia/1x1" crossorigin>
   <% } %>
   <link rel="canonical" href="<%= homepage %>">
   <link rel="sitemap" href="sitemap.xml" type="application/xml" title="<%= title %>">
