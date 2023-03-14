@@ -7,7 +7,7 @@ export const getDiff = <T>(prev: T, next: Partial<T>): Partial<T> => {
 
   for (key in next) {
     if (prev[key] !== next[key]) {
-      Object.assign(diff, { [key]: next[key] });
+      diff[key] = next[key];
     }
   }
 
