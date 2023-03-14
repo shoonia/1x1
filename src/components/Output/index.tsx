@@ -46,12 +46,9 @@ export const Output: FC = () => {
 
     const canvas = createCanvas(hex, a);
     const data = canvas.toDataURL('image/png', 0.1);
-
     const url = `url(${data})`;
-    const css = 'display:inline-block;border:1px solid #c6e2f7;border-radius:50%;width:1em;height:1em;background-image:' + url;
 
     canvas.toBlob(readAsArrayBuffer);
-    location.hash = hex8;
     view.current.style.backgroundImage = url;
     dataUrl.current.value = data;
     dataBase64.current.value = data.slice(22);
@@ -59,6 +56,8 @@ export const Output: FC = () => {
 
     clearTimeout(timeout);
     timeout = window.setTimeout(() => {
+      const css = 'display:inline-block;border:1px solid #c6e2f7;border-radius:50%;width:1em;height:1em;background-image:' + url;
+  
       document.title = '1x1 Pixel PNG | ' + hex8;
       location.hash = hex8;
       favicon.href = createFavicon(hex8);
