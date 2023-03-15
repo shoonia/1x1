@@ -26,6 +26,10 @@ export const createHex = ({ r, g, b, a }: IState) => {
   return [r, g, b, a].map(decimalToHex).join('');
 };
 
+const duplicate = (hex: string): string => {
+  return hex.split('').map((i) => i + i).join('');
+};
+
 export const parseHex = (value: string): string | undefined => {
   let color = value
     .trim()
@@ -52,10 +56,10 @@ export const parseHex = (value: string): string | undefined => {
       return color + 'ff';
     }
     case 4: {
-      return color.split('').map((i) => i + i).join('');
+      return duplicate(color);
     }
     case 3: {
-      return color + color;
+      return duplicate(color) + 'ff';
     }
   }
 };
