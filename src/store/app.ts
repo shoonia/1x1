@@ -7,11 +7,11 @@ import { createHex } from '../utils';
 export const app: StoreonModule<IState, IEvents> = (store) => {
   store.on('@init', () => {
     return {
-      r: 255,
-      g: 255,
-      b: 255,
-      a: 255,
-      hex: 'ffffffff',
+      r: 0,
+      g: 0,
+      b: 0,
+      a: 0,
+      hex: '00000000',
       radix: 16,
     };
   });
