@@ -48,6 +48,10 @@ export const parseHex = (value: string) => {
     color += color;
   }
 
+  if (color.length === 4) {
+    color = color.split('').map((i) => i + i).join('');
+  }
+
   if (color.length === 6) {
     color += 'ff';
   }
