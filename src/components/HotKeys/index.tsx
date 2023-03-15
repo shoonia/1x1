@@ -22,9 +22,9 @@ window.addEventListener('popstate', () => {
     return;
   }
 
-  const [isValid, hex] = parseHex(hash);
+  const hex = parseHex(hash);
 
-  if (isValid) {
+  if (hex) {
     dispatch('set/hex', hex);
   }
 });

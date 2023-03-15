@@ -4,7 +4,7 @@ import type { IState } from '../store/types';
 import { colors, isColorsKey } from './colors';
 
 const SYMBOL_HASH = /^#/;
-export const NOT_HEXADECIMAL = /[^\da-f]/ig;
+export const NOT_HEXADECIMAL = /[^\da-f]/;
 
 export const randomHex = (size: number): string => {
   let hex = '';
@@ -26,7 +26,7 @@ export const createHex = ({ r, g, b, a }: IState) => {
   return [r, g, b, a].map(decimalToHex).join('');
 };
 
-export const parseHex = (value: string) => {
+export const parseHex = (value: string): string | undefined => {
   let color = value
     .trim()
     .toLowerCase()
@@ -40,25 +40,22 @@ export const parseHex = (value: string) => {
     try {
       color = rgbHex(value);
     } catch {
-      return [false] as const;
+      return;
     }
   }
 
-  if (color.length === 3) {
-    color += color;
+  switch (color.length) {
+    case 8: {
+      return color;
+    }
+    case 6: {
+      return color + 'ff';
+    }
+    case 4: {
+      return color.split('').map((i) => i + i).join('');
+    }
+    case 3: {
+      return color + color;
+    }
   }
-
-  if (color.length === 4) {
-    color = color.split('').map((i) => i + i).join('');
-  }
-
-  if (color.length === 6) {
-    color += 'ff';
-  }
-
-  if (color.length !== 8) {
-    return [false] as const;
-  }
-
-  return [true, color] as const;
 };

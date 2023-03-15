@@ -25,9 +25,9 @@ export const HexInputs: FC = () => {
   };
 
   const changeColor: EventListener = () => {
-    const [isValid, hex] = parseHex(color.current.value);
+    const hex = parseHex(color.current.value);
 
-    if (isValid) {
+    if (hex) {
       dispatch('set/hex', hex);
     }
   };
