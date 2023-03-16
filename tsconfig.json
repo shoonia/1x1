@@ -7,8 +7,6 @@
     "jsxImportSource": "jsx-dom-runtime",
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "importsNotUsedAsValues": "error",
-    "isolatedModules": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "noEmit": true,
