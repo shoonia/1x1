@@ -1,3 +1,6 @@
+const { resolve } = require('node:path');
+const { realpathSync } = require('node:fs');
+
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -11,7 +14,9 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const { homepage } = require('./package.json');
 const colors = require('./src/utils/colors.json');
-const { appPaths } = require('./scripts/paths');
+
+const appDirectory = realpathSync(process.cwd());
+const resolveApp = (relativePath) => resolve(appDirectory, relativePath);
 
 module.exports = ({ NODE_ENV: nodeEnv }) => {
   const isDev = nodeEnv === 'development';
@@ -21,9 +26,9 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
     mode: nodeEnv,
     bail: isProd,
     devtool: isDev && 'cheap-module-source-map',
-    entry: appPaths.index,
+    entry: resolveApp('src/index.tsx'),
     output: {
-      path: isProd ? appPaths.dist : undefined,
+      path: isProd ? resolveApp('dist') : undefined,
       pathinfo: isDev,
       filename: '[name].[contenthash:4].js',
       publicPath: isProd ? homepage : '',
@@ -75,7 +80,7 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
     resolve: {
       modules: [
         'node_modules',
-        appPaths.nodeModules,
+        resolveApp('node_modules'),
       ],
       extensions: [
         '.js',
@@ -90,7 +95,7 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
           oneOf: [
             {
               test: /\.[jt]sx?$/,
-              include: appPaths.src,
+              include: resolveApp('src'),
               loader: 'babel-loader',
               options: {
                 cacheDirectory: true,
@@ -141,9 +146,9 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
       new HtmlWebpackPlugin({
         filename: 'index.html',
         inject: 'head',
-        template: appPaths.indexHtml,
+        template: resolveApp('src/index.ejs'),
         scriptLoading: 'defer',
-        favicon: appPaths.favicon,
+        favicon: resolveApp('src/favicon.png'),
         minify: isProd && {
           collapseWhitespace: true,
           removeComments: true,
@@ -167,7 +172,7 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
       new ForkTsCheckerWebpackPlugin({
         async: isDev,
         typescript: {
-          configFile: appPaths.appTsConfig,
+          configFile: resolveApp('tsconfig.json'),
         },
       }),
       isProd && new MiniCssExtractPlugin(),
@@ -215,7 +220,7 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
     devServer: {
       hot: true,
       compress: true,
-      static: appPaths.appSrc,
+      static: resolveApp('src'),
       port: 3000,
     },
   };
