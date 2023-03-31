@@ -1,4 +1,3 @@
-
 import type T from './colors.json';
 
 export type TColors = Readonly<typeof T>;

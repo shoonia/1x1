@@ -33,6 +33,7 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
       filename: '[name].[contenthash:4].js',
       publicPath: isProd ? homepage : '',
       clean: isProd,
+      chunkLoadingGlobal: 'e',
     },
     optimization: {
       minimize: isProd,
