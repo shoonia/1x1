@@ -1,13 +1,9 @@
 import type { HexColorPicker } from 'vanilla-colorful';
+import 'vanilla-colorful/hex-alpha-color-picker.js';
 
 import s from './styles.css';
 import { Group } from '../Group';
 import { connect, dispatch } from '../../store';
-
-import(
-  /* webpackChunkName: "hex-alpha-color-picker" */
-  'vanilla-colorful/hex-alpha-color-picker.js'
-);
 
 export const ColorPicker: FC = () => {
   const isBigScreen = window.matchMedia('(min-width:700px)').matches;
