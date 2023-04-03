@@ -73,7 +73,7 @@
   margin: 0 auto;
 }
 
-@media (max-width: 700px) {
+@media (width <= 700px) {
   .page {
     display: block;
   }
