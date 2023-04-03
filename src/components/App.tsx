@@ -12,7 +12,7 @@ import { PixelGIF } from './PixelGIF';
 export const App: FC = () => (
   <div class={s.page}>
     <header class={s.header}>
-      <a href="./" class={s.left}>
+      <a href="./" class={s.left} aria-current="page">
         1x1 Pixel PNG
       </a>
       <div class={s.right}>
