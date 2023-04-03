@@ -5,23 +5,21 @@ interface Props {
 }
 
 export const DataList: FC<Props> = ({ id }) => {
-  const ready = (node: HTMLDataListElement) => {
-    const fragment = <></>;
+  const options = <></>;
 
-    let key: keyof TColors;
+  let key: keyof TColors;
 
-    for (key in colors) {
-      fragment.append(
-        <option value={colors[key]}>
-          {key}
-        </option>,
-      );
-    }
-
-    node.append(fragment);
-  };
+  for (key in colors) {
+    options.append(
+      <option value={colors[key]}>
+        {key}
+      </option>,
+    );
+  }
 
   return (
-    <datalist ref={ready} id={id} />
+    <datalist id={id}>
+      {options}
+    </datalist>
   );
 };
