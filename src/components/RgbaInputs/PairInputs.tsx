@@ -30,7 +30,7 @@ export const PairInputs: FC<Props> = ({ param }) => {
   return (
     <div class={s.box}>
       <span class={s.label}>
-        {param.toUpperCase()}
+        {param}
       </span>
       <input
         ref={number}

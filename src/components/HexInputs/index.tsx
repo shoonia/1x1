@@ -43,30 +43,28 @@ export const HexInputs: FC = () => {
   return (
     <Group open title="HEX">
       <div class={s.box}>
-        <label aria-label="color">
-          <input
-            ref={color}
-            type="text"
-            list={listId}
-            autoComplete="on"
-            placeholder="ffffff"
-            spellcheck="false"
-            class={s.inp}
-            onchange={changeColor}
-          />
-          <DataList id={listId} />
-        </label>
-        <label aria-label="alpha (opacity)">
-          <input
-            ref={alpha}
-            type="text"
-            placeholder="ff"
-            maxLength={2}
-            spellcheck="false"
-            class={s.inp}
-            onchange={changeAlpha}
-          />
-        </label>
+        <input
+          ref={color}
+          type="text"
+          list={listId}
+          autoComplete="on"
+          placeholder="ffffff"
+          spellcheck="false"
+          class={s.inp}
+          onchange={changeColor}
+          aria-label="color"
+        />
+        <DataList id={listId} />
+        <input
+          ref={alpha}
+          type="text"
+          placeholder="ff"
+          maxLength={2}
+          spellcheck="false"
+          class={s.inp}
+          onchange={changeAlpha}
+          aria-label="alpha (opacity)"
+        />
       </div>
     </Group>
   );
