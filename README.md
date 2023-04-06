@@ -17,4 +17,6 @@ Uses a Canvas for drawing pixel images. The size of images depends on the browse
 
 ---
 
-[One pixel GIF](https://shoonia.github.io/pixel-gif/)
+One pixel GIF
+
+[https://shoonia.github.io/pixel-gif/](https://shoonia.github.io/pixel-gif/)
