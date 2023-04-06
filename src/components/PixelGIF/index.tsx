@@ -12,7 +12,12 @@ export const PixelGIF: FC = () => {
   };
 
   return (
-    <a ref={ready} href={url.href} class={s.link}>
+    <a
+      ref={ready}
+      href={url.href}
+      class={s.link}
+      aria-label="One pixel Base64 encoded GIF generator"
+    >
       1x1 Pixel GIF
     </a>
   );

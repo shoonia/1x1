@@ -76,7 +76,7 @@ export const Output: FC = () => {
         </div>
       </div>
       <fieldset class={s.box}>
-        <TextInput ref={dataUrl} label="Data: URL" />
+        <TextInput ref={dataUrl} label="Data URL:" />
         <TextInput ref={dataBase64} label="Base64:" />
         <div class={s.bytes}>
           <TextInput ref={dataBytes} label="Bytes:" />

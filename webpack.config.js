@@ -8,7 +8,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const createLocalIdent = require('mini-css-class-name/css-loader');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
-const SitemapPlugin = require('sitemap-webpack-plugin').default;
 const CssMqpackerPlugin = require('css-mqpacker-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
@@ -165,7 +164,6 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
         },
       }),
       new webpack.DefinePlugin({
-        'process.platform': JSON.stringify(process.platform),
         'process.env.NODE_ENV': JSON.stringify(nodeEnv),
         'process.env': 'undefined',
         'process': 'undefined',
@@ -179,38 +177,6 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
       isProd && new MiniCssExtractPlugin(),
       isProd && new HTMLInlineCSSWebpackPlugin({
         styleTagFactory: ({ style }) => `<style>${style}</style>`,
-      }),
-      isProd && new SitemapPlugin({
-        base: homepage,
-        options: {
-          filename: 'sitemap.xml',
-        },
-        paths: (() => {
-          const lastmod = new Date().toISOString();
-          const link = new URL(homepage);
-
-          const items = [
-            {
-              path: homepage,
-              lastmod,
-              priority: 1.0,
-              changefreq: 'monthly',
-            },
-          ];
-
-          for (const key in colors) {
-            link.hash = key;
-
-            items.push({
-              path: link.href,
-              lastmod,
-              priority: 0.8,
-              changefreq: 'monthly',
-            });
-          }
-
-          return items;
-        })(),
       }),
     ].filter(Boolean),
     node: false,

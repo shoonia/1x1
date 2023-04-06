@@ -1,7 +1,10 @@
-export const createCanvas = (hex: string, alpha: number): HTMLCanvasElement => {
-  const canvas = <canvas width={1} height={1} /> as HTMLCanvasElement;
+const pixel = <canvas width={1} height={1} />;
+const favicon = <canvas width={50} height={50} />;
 
-  const ctx = canvas.getContext('2d', {
+export const createCanvas = (hex: string, alpha: number): HTMLCanvasElement => {
+  const el = pixel.cloneNode() as HTMLCanvasElement;
+
+  const ctx = el.getContext('2d', {
     alpha: alpha !== 255,
     desynchronized: true,
     colorSpace: 'srgb',
@@ -13,15 +16,16 @@ export const createCanvas = (hex: string, alpha: number): HTMLCanvasElement => {
     ctx.fill();
   }
 
-  return canvas;
+  return el;
 };
 
 export const createFavicon = (color: string): string => {
-  const canvas = <canvas width={50} height={50} /> as HTMLCanvasElement;
+  const el = favicon.cloneNode() as HTMLCanvasElement;
 
-  const ctx = canvas.getContext('2d', {
+  const ctx = el.getContext('2d', {
     alpha: true,
     desynchronized: true,
+    colorSpace: 'srgb',
   });
 
   if (ctx) {
@@ -31,5 +35,5 @@ export const createFavicon = (color: string): string => {
     ctx.fill();
   }
 
-  return canvas.toDataURL('image/png', 0.1);
+  return el.toDataURL('image/png', 0.1);
 };

@@ -6,7 +6,6 @@ import { DataList } from './DataList';
 import { NOT_HEXADECIMAL, randomHex, parseHex } from '../../utils';
 import { connect, dispatch } from '../../store';
 
-
 export const HexInputs: FC = () => {
   const color = useRef<HTMLInputElement>();
   const alpha = useRef<HTMLInputElement>();

@@ -25,14 +25,12 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title><%= title %></title>
   <% if (isProd) { %>
     <base href="<%= homepage %>">
-    <link rel="preload" as="fetch" href="https://api.github.com/repos/shoonia/1x1" crossorigin>
+    <link rel="preload" as="fetch" href="https://api.github.com/repos/shoonia/1x1" crossorigin="anonymous">
   <% } %>
   <link rel="canonical" href="<%= homepage %>">
-  <link rel="sitemap" href="sitemap.xml" type="application/xml" title="<%= title %>">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   <meta name="google-site-verification" content="JkNxAfkbyATcDv733CZNZPVT9UPc4rJNXxd31OgDwvY">
   <meta name="theme-color" content="#ffffff">
@@ -49,10 +47,10 @@
 </head>
 
 <body>
-  <div style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">
+  <div style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap">
     <%= description %>
   </div>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <noscript>You need to enable JavaScript to run this app</noscript>
   <script id="colors" type="application/json">
     <%= JSON.stringify(colors) %>
   </script>
