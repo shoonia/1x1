@@ -16,7 +16,9 @@ export const Output: FC = () => {
   const dataLink = useRef<HTMLInputElement>();
   const dataBytes = useRef<HTMLInputElement>();
   const dataBase64 = useRef<HTMLInputElement>();
+
   const [size, setSize] = useText('1x1 (82 bytes)');
+  const [color, setColor] = useText('#00000000');
 
   let timeout: number;
 
@@ -43,6 +45,7 @@ export const Output: FC = () => {
     const data = canvas.toDataURL('image/png', 0.1);
     const url = `url(${data})`;
 
+    setColor(hex8);
     canvas.toBlob(readAsArrayBuffer);
     view.current.style.backgroundImage = url;
     dataUrl.current.value = data;
@@ -63,9 +66,12 @@ export const Output: FC = () => {
   return (
     <>
       <div ref={view} class={s.view}>
-        <span class={s.size}>
+        <code class={s.color}>
+          {color}
+        </code>
+        <code class={s.size}>
           {size}
-        </span>
+        </code>
         <div class={s.preset}>
           <Preset />
         </div>
