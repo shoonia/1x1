@@ -20,7 +20,7 @@ window.addEventListener('popstate', () => {
     const hex = parseHex(hash);
 
     if (hex) {
-      dispatch('set/hex', hex);
+      dispatch('hex', hex);
     }
   }
 });

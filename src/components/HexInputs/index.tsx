@@ -17,7 +17,7 @@ export const HexInputs: FC = () => {
       .toLowerCase()
       .replace(NOT_HEXADECIMAL, '');
 
-    dispatch('set/rgba', [
+    dispatch('rgba', [
       'a',
       val.length !== 2 ? 255 : parseInt(val, 16),
     ]);
@@ -27,7 +27,7 @@ export const HexInputs: FC = () => {
     const hex = parseHex(color.current.value);
 
     if (hex) {
-      dispatch('set/hex', hex);
+      dispatch('hex', hex);
     }
   };
 
