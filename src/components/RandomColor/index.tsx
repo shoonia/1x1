@@ -4,7 +4,7 @@ import { randomHex } from '../../utils';
 
 export const RandomColor: FC = () => {
   const click: EventListener = () => {
-    dispatch('set/hex', randomHex(6) + 'ff');
+    dispatch('hex', randomHex(6) + 'ff');
   };
 
   return (

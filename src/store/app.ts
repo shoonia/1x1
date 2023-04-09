@@ -16,7 +16,7 @@ export const app: StoreonModule<IState, IEvents> = (store) => {
     };
   });
 
-  store.on('set/rgba', (state, [key, val]) => {
+  store.on('rgba', (state, [key, val]) => {
     return {
       hex: createHex({
         ...state,
@@ -26,7 +26,7 @@ export const app: StoreonModule<IState, IEvents> = (store) => {
     };
   });
 
-  store.on('set/hex', (state, val) => {
+  store.on('hex', (state, val) => {
     const hex = val.length < 8 ? val + 'ff' : val;
     const i = parseInt(hex, 16);
 

@@ -1,7 +1,9 @@
 .inp {
   width: 100%;
   margin: 0.5em 0;
-  padding: 0.3em 1em;
+  padding: var(--inp-pdg);
+  border: var(--border);
+  border-radius: var(--radius);
   box-sizing: border-box;
   cursor: copy;
 }

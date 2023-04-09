@@ -4,7 +4,8 @@ import s from './styles.css';
 import { TextInput } from './TextInput';
 import { Download } from '../Download';
 import { Preset } from '../Preset';
-import { connect, getState, setState } from '../../store';
+import { RadixSelect } from './RadixSelect';
+import { connect, getState } from '../../store';
 import { createCanvas, createFavicon } from '../../utils/canvas';
 
 export const Output: FC = () => {
@@ -18,12 +19,6 @@ export const Output: FC = () => {
   const [size, setSize] = useText('1x1 (82 bytes)');
 
   let timeout: number;
-
-  const changeRadix = (node: HTMLSelectElement) => {
-    node.addEventListener('change', () => {
-      setState({ radix: ~~node.value });
-    });
-  };
 
   const readAsArrayBuffer = (blob: Blob | null) => {
     if (fileReader.readyState !== 1 && blob) {
@@ -80,12 +75,7 @@ export const Output: FC = () => {
         <TextInput ref={dataBase64} label="Base64:" />
         <div class={s.bytes}>
           <TextInput ref={dataBytes} label="Bytes:" />
-          <select ref={changeRadix} class={s.radix}>
-            <option value="16">16</option>
-            <option value="10">10</option>
-            <option value="8">8</option>
-            <option value="2">2</option>
-          </select>
+          <RadixSelect />
         </div>
         <TextInput ref={dataLink} label="Share Link:" />
       </fieldset>

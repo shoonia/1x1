@@ -4,6 +4,9 @@
   --toolbar-w: 300px;
   --c-pr: #b94147;
   --c-sh: rgb(0 0 0 / 30%);
+  --border: 1px solid #767676;
+  --radius: 4px;
+  --inp-pdg: 0.4em 1em;
 }
 
 ::placeholder {
@@ -30,6 +33,7 @@ body {
 html,
 kbd,
 input,
+select,
 button {
   font-size: 16px;
   font-family:
@@ -47,6 +51,7 @@ button {
 
 a,
 button,
+select,
 input {
   -webkit-touch-callout: none;
   text-decoration: none;
@@ -54,7 +59,6 @@ input {
   cursor: pointer;
   white-space: nowrap;
   transition: all 0.1s ease-in;
-  font-size: 1em;
 }
 
 a {

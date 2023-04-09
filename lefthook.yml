@@ -2,7 +2,8 @@ pre-commit:
   parallel: true
   commands:
     eslint:
-      run: npm run lint
-      skip:
-        - merge
-        - rebase
+      run: npx eslint 'src/**/*.{ts,tsx}'
+    stylelint:
+      run: npx stylelint src/**/*.css
+    tsc:
+      run: npx tsc --noEmit

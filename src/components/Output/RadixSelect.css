@@ -1,0 +1,14 @@
+.radix {
+  appearance: none;
+  padding: var(--inp-pdg);
+  width: 4em;
+  margin: 0.5em 0;
+  border: var(--border);
+  border-radius: var(--radius);
+  background:
+    #fff
+    url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%230057b8'%3E%3Cpath d='M7.41 7.84 12 12.42l4.59-4.58L18 9.25l-6 6-6-6z'/%3E%3C/svg%3E")
+    no-repeat
+    right 0.1em
+    top 0.3em;
+}

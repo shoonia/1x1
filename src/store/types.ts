@@ -8,8 +8,8 @@ export interface IState {
 }
 
 export interface IEvents {
-  'set/hex': string;
-  'set/rgba': [TRgba, number];
+  'hex': string;
+  'rgba': [TRgba, number];
 }
 
 export type TRgba = keyof Pick<IState, 'r' | 'g' | 'b' | 'a'>;
