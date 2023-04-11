@@ -8,7 +8,9 @@ const color = parseHex(location.hash);
 const hex = color ? color : randomHex(6) + 'ff';
 
 dispatch('hex', hex);
-
 history.pushState(1, '', '#' + hex);
-document.body.append(<App ready={readyStore} />);
-document.head.append(<Analytics />);
+
+document.body.append(
+  <App ready={readyStore} />,
+  <Analytics />,
+);
