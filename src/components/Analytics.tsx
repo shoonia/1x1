@@ -7,16 +7,10 @@ function gtag(..._: unknown[]): void {
 }
 
 export const Analytics: FC = () => {
-  const load: EventListener = () => {
-    gtag('js', new Date());
-    gtag('config', 'G-2W35Q7B86C');
-  };
+  gtag('js', new Date());
+  gtag('config', 'G-2W35Q7B86C');
 
-  return process.env.NODE_ENV === 'production' ? (
-    <script
-      onload={load}
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-2W35Q7B86C"
-    />
-  ) : null;
+  return process.env.NODE_ENV === 'production'
+    ? <script async src="https://www.googletagmanager.com/gtag/js?id=G-2W35Q7B86C" />
+    : null;
 };
