@@ -3,7 +3,7 @@ import { useRef } from 'jsx-dom-runtime';
 import s from './styles.css';
 import { Group } from '../Group';
 import { DataList } from './DataList';
-import { NOT_HEXADECIMAL, randomHex, parseHex } from '../../utils';
+import { NOT_HEXADECIMAL, randomHex, getHex } from '../../utils';
 import { connect, dispatch } from '../../store';
 
 export const HexInputs: FC = () => {
@@ -24,7 +24,7 @@ export const HexInputs: FC = () => {
   };
 
   const changeColor: EventListener = () => {
-    const hex = parseHex(color.current.value);
+    const hex = getHex(color.current.value);
 
     if (hex) {
       dispatch('hex', hex);

@@ -30,7 +30,7 @@ const duplicate = (hex: string): string => {
   return hex.split('').map((i) => i + i).join('');
 };
 
-export const parseHex = (value: string): string | undefined => {
+export const getHex = (value: string): string | undefined => {
   let color = value
     .trim()
     .toLowerCase()

@@ -2,7 +2,7 @@ import tinykeys from 'tinykeys';
 
 import s from './styles.css';
 import { dispatch, getState } from '../../store';
-import { parseHex } from '../../utils';
+import { getHex } from '../../utils';
 
 const undo = () => {
   if (history.state === null) {
@@ -17,7 +17,7 @@ window.addEventListener('popstate', () => {
   const hash = location.hash.slice(1);
 
   if (hash !== state.hex) {
-    const hex = parseHex(hash);
+    const hex = getHex(hash);
 
     if (hex) {
       dispatch('hex', hex);

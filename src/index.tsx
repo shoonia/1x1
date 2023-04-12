@@ -2,9 +2,9 @@ import './global.css';
 import { App } from './components/App';
 import { Analytics } from './components/Analytics';
 import { dispatch, readyStore } from './store';
-import { parseHex, randomHex } from './utils';
+import { getHex, randomHex } from './utils';
 
-const color = parseHex(location.hash);
+const color = getHex(location.hash);
 const hex = color ? color : randomHex(6) + 'ff';
 
 dispatch('hex', hex);
