@@ -1,4 +1,4 @@
-window.dataLayer = [];
+window.dataLayer ??= [];
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function gtag(..._: unknown[]): void {

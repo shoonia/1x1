@@ -56,7 +56,6 @@ export const Output: FC = () => {
     timeout = window.setTimeout(() => {
       const css = 'display:inline-block;border:1px solid #c6e2f7;border-radius:50%;width:1em;height:1em;background-image:' + url;
 
-      document.title = '1x1 Pixel PNG | ' + hex8;
       location.hash = hex8;
       favicon.href = createFavicon(hex8);
       console.log('%c  ', css, hex8);
