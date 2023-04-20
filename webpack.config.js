@@ -17,16 +17,18 @@ const colors = require('./src/utils/colors.json');
 const appDirectory = realpathSync(process.cwd());
 const resolveApp = (relativePath) => resolve(appDirectory, relativePath);
 
-module.exports = ({ NODE_ENV: nodeEnv }) => {
-  const isDev = nodeEnv === 'development';
-  const isProd = nodeEnv === 'production';
+module.exports = ({ NODE_ENV }) => {
+  const isDev = NODE_ENV === 'development';
+  const isProd = NODE_ENV === 'production';
 
   return {
-    mode: nodeEnv,
+    mode: NODE_ENV,
     bail: isProd,
     devtool: isDev && 'cheap-module-source-map',
     entry: resolveApp('src/index.tsx'),
     output: {
+      iife: false,
+      scriptType: 'module',
       path: isProd ? resolveApp('dist') : undefined,
       pathinfo: isDev,
       filename: '[name].[contenthash:4].js',
@@ -148,7 +150,7 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
         filename: 'index.html',
         inject: 'head',
         template: resolveApp('src/index.ejs'),
-        scriptLoading: 'defer',
+        scriptLoading: 'module',
         favicon: resolveApp('src/favicon.png'),
         minify: isProd && {
           collapseWhitespace: true,
@@ -165,7 +167,7 @@ module.exports = ({ NODE_ENV: nodeEnv }) => {
         },
       }),
       new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(nodeEnv),
+        'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
         'process.env': 'undefined',
         'process': 'undefined',
       }),
