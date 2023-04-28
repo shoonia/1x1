@@ -46,7 +46,7 @@ export const HexInputs: FC = () => {
           ref={color}
           type="text"
           list={listId}
-          autoComplete="on"
+          autocomplete="on"
           placeholder="ffffff"
           spellcheck="false"
           class={s.inp}
