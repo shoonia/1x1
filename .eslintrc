@@ -12,7 +12,7 @@
     "sourceType": "module"
   },
   "ignorePatterns": [
-    "webpack.config.js",
+    "webpack.config.cjs",
     "scripts",
     "dist"
   ],
