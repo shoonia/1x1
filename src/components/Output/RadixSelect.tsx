@@ -8,7 +8,7 @@ export const RadixSelect: FC = () => {
     });
   };
 
-  const options = [16, 10, 8, 2].map((i) => (
+  const options = /*#__PURE__*/ [16, 10, 8, 2].map((i) => (
     <option value={i}>
       {i}
     </option>

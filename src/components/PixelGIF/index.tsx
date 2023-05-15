@@ -1,9 +1,9 @@
 import s from './styles.css';
 import { connect } from '../../store';
 
-export const PixelGIF: FC = () => {
-  const url = new URL('https://shoonia.github.io/pixel-gif/');
+const url = new URL('https://shoonia.github.io/pixel-gif/');
 
+export const PixelGIF: FC = () => {
   const ready = (a: HTMLAnchorElement) => {
     connect('hex', (state) => {
       url.hash = state.hex.slice(0, 6);

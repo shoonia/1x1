@@ -9,7 +9,7 @@ export const Item: FC<Props> = ({ color, title }) => (
   <li class={s.item}>
     <a
       href={color}
-      style={`background-color:${color}`}
+      style={{ backgroundColor: color }}
       class={s.link}
       title={title}
     />

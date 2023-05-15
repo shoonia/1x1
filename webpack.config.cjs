@@ -32,7 +32,7 @@ module.exports = ({ NODE_ENV }) => {
       path: isProd ? resolveApp('dist') : undefined,
       pathinfo: isDev,
       filename: '[name].[contenthash:4].js',
-      publicPath: isProd ? homepage : '',
+      publicPath: '',
       clean: isProd,
       chunkLoadingGlobal: 'e',
     },

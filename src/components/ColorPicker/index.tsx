@@ -6,7 +6,7 @@ import { Group } from '../Group';
 import { connect, dispatch } from '../../store';
 
 export const ColorPicker: FC = () => {
-  const isBigScreen = window.matchMedia('(min-width:700px)').matches;
+  const isBigScreen = /*#__PURE__*/ window.matchMedia('(min-width:700px)').matches;
 
   const ready = (node: HexColorPicker) => {
     connect('hex', (state) => {
