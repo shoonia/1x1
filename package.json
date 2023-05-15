@@ -10,7 +10,7 @@
     "lint": "eslint 'src/**/*.{ts,tsx}' && stylelint src/**/*.css"
   },
   "dependencies": {
-    "jsx-dom-runtime": "^0.41.0",
+    "jsx-dom-runtime": "^0.46.0",
     "rgb-hex": "^4.0.1",
     "storeon-velo": "^4.1.2",
     "tinykeys": "^1.4.0",
