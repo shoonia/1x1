@@ -1,67 +1,63 @@
-import { useRef } from 'jsx-dom-runtime';
-
 import s from './styles.css';
 import { Group } from '../Group';
 import { DataList } from './DataList';
-import { NOT_HEXADECIMAL, randomHex, getHex } from '../../utils';
+import { NOT_HEXADECIMAL, getHex } from '../../utils';
 import { connect, dispatch } from '../../store';
 
 export const HexInputs: FC = () => {
-  const color = useRef<HTMLInputElement>();
-  const alpha = useRef<HTMLInputElement>();
-  const listId = 'e' + randomHex(4);
+  const readyColor = (color: HTMLInputElement) => {
+    color.addEventListener('change', () => {
+      const hex = getHex(color.value);
 
-  const changeAlpha: EventListener = () => {
-    const val = alpha.current.value
-      .trim()
-      .toLowerCase()
-      .replace(NOT_HEXADECIMAL, '');
+      if (hex) {
+        dispatch('hex', hex);
+      }
+    });
 
-    dispatch('rgba', [
-      'a',
-      val.length !== 2 ? 255 : parseInt(val, 16),
-    ]);
+    connect('hex', (state) => {
+      color.value = state.hex.slice(0, 6);
+    });
   };
 
-  const changeColor: EventListener = () => {
-    const hex = getHex(color.current.value);
+  const readyAlpha = (alpha: HTMLInputElement) => {
+    alpha.addEventListener('change', () => {
+      const val = alpha.value
+        .trim()
+        .toLowerCase()
+        .replace(NOT_HEXADECIMAL, '');
 
-    if (hex) {
-      dispatch('hex', hex);
-    }
+      dispatch('rgba', [
+        'a',
+        val.length !== 2 ? 255 : parseInt(val, 16),
+      ]);
+    });
+
+    connect('a', (state) => {
+      alpha.value = state.hex.slice(6);
+    });
   };
-
-  connect('hex', ({ hex }) => {
-    color.current.value = hex.slice(0, 6);
-  });
-
-  connect('a', ({ hex }) => {
-    alpha.current.value = hex.slice(6);
-  });
 
   return (
     <Group open title="HEX">
       <div class={s.box}>
         <input
-          ref={color}
+          ref={readyColor}
           type="text"
-          list={listId}
+          list="color-list"
           autocomplete="on"
           placeholder="ffffff"
           spellcheck="false"
           class={s.inp}
-          onchange={changeColor}
           aria-label="color"
         />
-        <DataList id={listId} />
+        <DataList />
         <input
-          ref={alpha}
+          ref={readyAlpha}
           type="text"
           placeholder="ff"
           maxLength={2}
           spellcheck="false"
           class={s.inp}
-          onchange={changeAlpha}
           aria-label="alpha (opacity)"
         />
       </div>

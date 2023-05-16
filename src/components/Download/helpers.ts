@@ -6,7 +6,7 @@ const QUALITY = 0.1;
 
 export const createName = (hex: string) => `1x1_#${hex.toUpperCase()}.png`;
 
-export const savePngLink = (link: HTMLAnchorElement): void => {
+export const linkHandler = (link: HTMLAnchorElement): void => {
   link.addEventListener('click', () => {
     const { hex, a } = getState();
     const canvas = createCanvas(hex, a);
@@ -16,28 +16,26 @@ export const savePngLink = (link: HTMLAnchorElement): void => {
   });
 };
 
-export const savePngButton = (button: HTMLButtonElement) => {
-  button.addEventListener('click', async () => {
-    const { hex, a } = getState();
-    const canvas = createCanvas(hex, a);
+export const buttonHandler: EventListener = async () => {
+  const { hex, a } = getState();
+  const canvas = createCanvas(hex, a);
 
-    const file = await window.showSaveFilePicker({
-      suggestedName: createName(hex),
-    });
-
-    const state = await file.queryPermission();
-
-    if (state === 'granted') {
-      const [writable, blob] = await Promise.all([
-        file.createWritable(),
-        new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, TYPE, QUALITY)),
-      ]);
-
-      if (blob) {
-        await writable.write(blob);
-      }
-
-      await writable.close();
-    }
+  const file = await window.showSaveFilePicker({
+    suggestedName: createName(hex),
   });
+
+  const state = await file.queryPermission();
+
+  if (state === 'granted') {
+    const [writable, blob] = await Promise.all([
+      file.createWritable(),
+      new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, TYPE, QUALITY)),
+    ]);
+
+    if (blob) {
+      await writable.write(blob);
+    }
+
+    await writable.close();
+  }
 };

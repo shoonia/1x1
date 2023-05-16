@@ -1,5 +1,5 @@
 import s from './styles.css';
-import { savePngButton, savePngLink } from './helpers';
+import { buttonHandler, linkHandler } from './helpers';
 
 const content = (
   <>
@@ -16,11 +16,11 @@ const content = (
 export const Download: FC = () => {
   return typeof window.showSaveFilePicker === 'function'
     ? (
-      <button ref={savePngButton} type="button" class={s.btn}>
+      <button onclick={buttonHandler} type="button" class={s.btn}>
         {content}
       </button>
     ) : (
-      <a ref={savePngLink} role="button" class={s.btn} href="#">
+      <a ref={linkHandler} role="button" class={s.btn} href="#">
         {content}
       </a>
     );
