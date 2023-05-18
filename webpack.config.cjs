@@ -100,7 +100,7 @@ module.exports = ({ NODE_ENV }) => {
               include: resolveApp('src'),
               loader: 'babel-loader',
               options: {
-                cacheDirectory: true,
+                cacheDirectory: false,
                 cacheCompression: false,
                 compact: isProd,
                 presets: [
