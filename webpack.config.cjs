@@ -121,7 +121,7 @@ module.exports = ({ NODE_ENV }) => {
                     importLoaders: 1,
                     sourceMap: isDev,
                     modules: isDev ? {
-                      localIdentName: '[file]--[local]_[hash:base64:4]',
+                      localIdentName: '[file]--[local]',
                     } : {
                       getLocalIdent: createLocalIdent(),
                     },
@@ -186,6 +186,7 @@ module.exports = ({ NODE_ENV }) => {
     performance: false,
     experiments: {
       backCompat: false,
+      outputModule: true,
     },
     devServer: {
       hot: true,
