@@ -17,7 +17,6 @@
     "dist"
   ],
   "rules": {
-    "linebreak-style": "off",
     "no-else-return": "error",
     "no-trailing-spaces": "error",
     "indent": [
