@@ -1,5 +1,11 @@
 import s from './styles.css';
-import { buttonHandler, linkHandler } from './helpers';
+import { getState } from '../../store';
+import { createCanvas } from '../../utils/canvas';
+
+const TYPE = 'image/png';
+const QUALITY = 0.1;
+
+const createName = (hex: string) => `1x1_#${hex.toUpperCase()}.png`;
 
 const content = (
   <>
@@ -14,6 +20,36 @@ const content = (
 );
 
 export const Download: FC = () => {
+  const linkHandler = (link: HTMLAnchorElement): void => {
+    link.addEventListener('click', () => {
+      const { hex, a } = getState();
+      const canvas = createCanvas(hex, a);
+
+      link.download = createName(hex);
+      link.href = canvas.toDataURL(TYPE, QUALITY);
+    });
+  };
+
+  const buttonHandler: EventListener = async () => {
+    const { hex, a } = getState();
+    const canvas = createCanvas(hex, a);
+
+    const file = await window.showSaveFilePicker({
+      suggestedName: createName(hex),
+    });
+
+    const blob = await new Promise<Blob | null>(
+      (resolve) => canvas.toBlob(resolve, TYPE, QUALITY),
+    );
+
+    if (blob) {
+      const writable = await file.createWritable();
+
+      await writable.write(blob);
+      await writable.close();
+    }
+  };
+
   return typeof window.showSaveFilePicker === 'function'
     ? (
       <button onclick={buttonHandler} type="button" class={s.btn}>

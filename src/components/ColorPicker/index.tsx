@@ -13,9 +13,9 @@ export const ColorPicker: FC = () => {
       node.color = '#' + state.hex;
     });
 
-    node.addEventListener('color-changed', (event) => {
-      dispatch('hex', event.detail.value.slice(1));
-    });
+    node.addEventListener('color-changed', (event) =>
+      dispatch('hex', event.detail.value.slice(1)),
+    );
   };
 
   return (
