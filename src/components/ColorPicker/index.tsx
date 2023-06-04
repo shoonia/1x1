@@ -1,14 +1,15 @@
-import type { HexColorPicker } from 'vanilla-colorful';
-import 'vanilla-colorful/hex-alpha-color-picker.js';
+import { HexAlphaBase } from 'vanilla-colorful/lib/entrypoints/hex-alpha';
 
 import s from './styles.css';
 import { Group } from '../Group';
 import { connect, dispatch } from '../../store';
 
+customElements.define('color-picker', HexAlphaBase);
+
 export const ColorPicker: FC = () => {
   const isBigScreen = /*#__PURE__*/ window.matchMedia('(min-width:700px)').matches;
 
-  const ready = (node: HexColorPicker) => {
+  const ready = (node: HexAlphaBase) => {
     connect('hex', (state) => {
       node.color = '#' + state.hex;
     });
@@ -20,7 +21,7 @@ export const ColorPicker: FC = () => {
 
   return (
     <Group open={isBigScreen} title="Picker">
-      <hex-alpha-color-picker
+      <color-picker
         ref={ready}
         class={s.picker}
       />
