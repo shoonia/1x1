@@ -14,7 +14,7 @@ const getStars = (): Text => {
   return stars;
 };
 
-export const Stars: FC = () => (
+export const Stars: JSX.FC = () => (
   <div class={s.box}>
     <a
       href="https://github.com/shoonia/1x1"

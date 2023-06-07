@@ -19,7 +19,7 @@ const content = (
   </>
 );
 
-export const Download: FC = () => {
+export const Download: JSX.FC = () => {
   const linkHandler = (link: HTMLAnchorElement): void => {
     link.addEventListener('click', () => {
       const { hex, a } = getState();

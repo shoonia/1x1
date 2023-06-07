@@ -1,6 +1,6 @@
 import s from './styles.css';
 
-export const SupportUkraine: FC = () => (
+export const SupportUkraine: JSX.FC = () => (
   <div class={s.box}>
     <svg aria-label="flag of Ukraine" viewBox="0 0 3 2" width="2em" role="img">
       <path fill="#005bbb" d="M0 0h3v1H0z" />

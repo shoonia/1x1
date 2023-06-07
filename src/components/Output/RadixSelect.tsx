@@ -1,7 +1,7 @@
 import s from './RadixSelect.css';
 import { setState } from '../../store';
 
-export const RadixSelect: FC = () => {
+export const RadixSelect: JSX.FC = () => {
   const ready = (node: HTMLSelectElement) => {
     node.addEventListener('change', () =>
       setState({ radix: ~~node.value }),

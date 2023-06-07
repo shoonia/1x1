@@ -8,7 +8,7 @@ interface Props {
   param: TRgba;
 }
 
-export const PairInputs: FC<Props> = ({ param }) => {
+export const PairInputs: JSX.FC<Props> = ({ param }) => {
   const number = useRef<HTMLInputElement>();
   const range = useRef<HTMLInputElement>();
   const label = `color channel "${param}"`;

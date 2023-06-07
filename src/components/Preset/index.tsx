@@ -1,7 +1,7 @@
 import s from './styles.css';
 import { Item } from './Item';
 
-export const Preset: FC = () => (
+export const Preset: JSX.FC = () => (
   <ul class={s.list}>
     <Item color="#ffffffff" title="White" />
     <Item color="#000000ff" title="Black" />

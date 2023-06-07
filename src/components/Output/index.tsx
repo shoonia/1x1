@@ -8,7 +8,7 @@ import { RadixSelect } from './RadixSelect';
 import { connect, getState } from '../../store';
 import { createCanvas, createFavicon } from '../../utils/canvas';
 
-export const Output: FC = () => {
+export const Output: JSX.FC = () => {
   const fileReader = new FileReader();
   const favicon = document.querySelector('link[rel="icon"]') as HTMLLinkElement;
   const view = useRef<HTMLDivElement>();

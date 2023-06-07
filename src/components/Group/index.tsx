@@ -5,7 +5,7 @@ interface Props {
   title: string;
 }
 
-export const Group: FC<Props> = ({ open, title, children }) => (
+export const Group: JSX.FC<Props> = ({ open, title, children }) => (
   <details open={open} class={s.box}>
     <summary class={s.title}>
       {title}

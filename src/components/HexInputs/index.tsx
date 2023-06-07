@@ -4,7 +4,7 @@ import { DataList } from './DataList';
 import { NOT_HEXADECIMAL, getHex } from '../../utils';
 import { connect, dispatch } from '../../store';
 
-export const HexInputs: FC = () => {
+export const HexInputs: JSX.FC = () => {
   const readyColor = (color: HTMLInputElement) => {
     color.addEventListener('change', () => {
       const hex = getHex(color.value);

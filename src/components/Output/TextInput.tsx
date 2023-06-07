@@ -14,7 +14,7 @@ const copy: EventListener = (event) => {
   navigator.clipboard.writeText(el.value);
 };
 
-export const TextInput: FC<Props> = ({ label, ref }) =>  (
+export const TextInput: JSX.FC<Props> = ({ label, ref }) =>  (
   <label>
     {label}
     <input

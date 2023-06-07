@@ -1,7 +1,7 @@
 import { Group } from '../Group';
 import { PairInputs } from './PairInputs';
 
-export const RgbaInputs: FC = () => (
+export const RgbaInputs: JSX.FC = () => (
   <Group open title="RGBA">
     <PairInputs param="r" />
     <PairInputs param="g" />
