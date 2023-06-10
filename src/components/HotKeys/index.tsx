@@ -1,4 +1,4 @@
-import tinykeys from 'tinykeys';
+import { tinykeys } from 'tinykeys';
 
 import s from './styles.css';
 import { dispatch, getState } from '../../store';
