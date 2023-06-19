@@ -14,7 +14,7 @@
     "jsx-dom-runtime": "^0.56.0",
     "rgb-hex": "^4.0.1",
     "storeon-velo": "^4.1.2",
-    "tinykeys": "^2.0.0",
+    "tinykeys": "^2.1.0",
     "vanilla-colorful": "^0.7.2"
   },
   "devDependencies": {
