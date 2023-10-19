@@ -24,8 +24,7 @@
 .main {
   grid-area: main;
   padding: 3em 2em;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden auto;
   -webkit-overflow-scrolling: touch;
   background-color: #fff;
   background-image:
