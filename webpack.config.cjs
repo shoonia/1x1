@@ -17,12 +17,17 @@ const colors = require('./src/utils/colors.json');
 const appDirectory = realpathSync(process.cwd());
 const resolveApp = (relativePath) => resolve(appDirectory, relativePath);
 
+/**
+ * @param {NodeJS.ProcessEnv} env
+ * @returns {webpack.Configuration}
+ */
 module.exports = ({ NODE_ENV }) => {
   const isDev = NODE_ENV === 'development';
   const isProd = NODE_ENV === 'production';
 
   return {
     mode: NODE_ENV,
+    cache: isDev,
     bail: isProd,
     devtool: isDev && 'cheap-module-source-map',
     entry: resolveApp('src/index.tsx'),
@@ -91,16 +96,20 @@ module.exports = ({ NODE_ENV }) => {
       ],
     },
     module: {
-      strictExportPresence: true,
+      parser: {
+        javascript: {
+          strictExportPresence: true,
+        }
+      },
       rules: [
         {
           oneOf: [
             {
-              test: /\.[jt]sx?$/,
+              test: /\.tsx?$/,
               include: resolveApp('src'),
-              loader: 'babel-loader',
+              loader: require.resolve('babel-loader'),
               options: {
-                cacheDirectory: false,
+                cacheDirectory: isDev,
                 cacheCompression: false,
                 compact: isProd,
                 presets: [
@@ -113,10 +122,10 @@ module.exports = ({ NODE_ENV }) => {
               test: /\.css$/,
               use: [
                 isDev
-                  ? 'style-loader'
+                  ? require.resolve('style-loader')
                   : MiniCssExtractPlugin.loader,
                 {
-                  loader: 'css-loader',
+                  loader: require.resolve('css-loader'),
                   options: {
                     importLoaders: 1,
                     sourceMap: isDev,
@@ -128,7 +137,7 @@ module.exports = ({ NODE_ENV }) => {
                   },
                 },
                 {
-                  loader: 'postcss-loader',
+                  loader: require.resolve('postcss-loader'),
                   options: {
                     sourceMap: isDev,
                     postcssOptions: {
@@ -168,8 +177,6 @@ module.exports = ({ NODE_ENV }) => {
       }),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
-        'process.env': 'undefined',
-        'process': 'undefined',
       }),
       new ForkTsCheckerWebpackPlugin({
         async: isDev,
@@ -189,8 +196,8 @@ module.exports = ({ NODE_ENV }) => {
       outputModule: true,
     },
     devServer: {
-      hot: true,
-      compress: true,
+      hot: false,
+      compress: false,
       static: resolveApp('src'),
       port: 3000,
     },
