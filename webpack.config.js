@@ -1,18 +1,20 @@
-const { resolve } = require('node:path');
-const { realpathSync } = require('node:fs');
+import { resolve } from 'node:path';
+import { realpathSync } from 'node:fs';
 
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const createLocalIdent = require('mini-css-class-name/css-loader');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
-const CssMqpackerPlugin = require('css-mqpacker-webpack-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import createLocalIdent from 'mini-css-class-name/css-loader';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import HTMLInlineCSSWebpackPlugin from 'html-inline-css-webpack-plugin';
+import CssMqpackerPlugin from 'css-mqpacker-webpack-plugin';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import autoprefixer from 'autoprefixer';
+import inputRange from 'postcss-input-range';
 
-const { homepage } = require('./package.json');
-const colors = require('./src/utils/colors.json');
+import pkg from './package.json' assert { type: 'json' };
+import colors from './src/utils/colors.json' assert { type: 'json' };
 
 const appDirectory = realpathSync(process.cwd());
 const resolveApp = (relativePath) => resolve(appDirectory, relativePath);
@@ -21,7 +23,7 @@ const resolveApp = (relativePath) => resolve(appDirectory, relativePath);
  * @param {NodeJS.ProcessEnv} env
  * @returns {webpack.Configuration}
  */
-module.exports = ({ NODE_ENV }) => {
+export default ({ NODE_ENV }) => {
   const isDev = NODE_ENV === 'development';
   const isProd = NODE_ENV === 'production';
 
@@ -99,7 +101,7 @@ module.exports = ({ NODE_ENV }) => {
       parser: {
         javascript: {
           strictExportPresence: true,
-        }
+        },
       },
       rules: [
         {
@@ -107,7 +109,7 @@ module.exports = ({ NODE_ENV }) => {
             {
               test: /\.tsx?$/,
               include: resolveApp('src'),
-              loader: require.resolve('babel-loader'),
+              loader: 'babel-loader',
               options: {
                 cacheDirectory: isDev,
                 cacheCompression: false,
@@ -122,10 +124,10 @@ module.exports = ({ NODE_ENV }) => {
               test: /\.css$/,
               use: [
                 isDev
-                  ? require.resolve('style-loader')
+                  ? 'style-loader'
                   : MiniCssExtractPlugin.loader,
                 {
-                  loader: require.resolve('css-loader'),
+                  loader: 'css-loader',
                   options: {
                     importLoaders: 1,
                     sourceMap: isDev,
@@ -137,13 +139,13 @@ module.exports = ({ NODE_ENV }) => {
                   },
                 },
                 {
-                  loader: require.resolve('postcss-loader'),
+                  loader: 'postcss-loader',
                   options: {
                     sourceMap: isDev,
                     postcssOptions: {
                       plugins: [
-                        isProd && require('autoprefixer'),
-                        require('postcss-input-range'),
+                        isProd && autoprefixer,
+                        inputRange,
                       ].filter(Boolean),
                     },
                   },
@@ -170,7 +172,7 @@ module.exports = ({ NODE_ENV }) => {
           useShortDoctype: true,
         },
         templateParameters: {
-          homepage,
+          homepage: pkg.homepage,
           isProd,
           colors,
         },
@@ -185,7 +187,7 @@ module.exports = ({ NODE_ENV }) => {
         },
       }),
       isProd && new MiniCssExtractPlugin(),
-      isProd && new HTMLInlineCSSWebpackPlugin({
+      isProd && new HTMLInlineCSSWebpackPlugin.default({
         styleTagFactory: ({ style }) => `<style>${style}</style>`,
       }),
     ].filter(Boolean),
