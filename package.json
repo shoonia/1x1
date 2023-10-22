@@ -3,7 +3,8 @@
   "version": "4.0.0",
   "description": "One pixel transparent PNG base64 encoded online generator.",
   "main": "src/index.html",
-  "packageManager": "^npm@9.1.2",
+  "type": "module",
+  "packageManager": "^npm@10.1.0",
   "scripts": {
     "start": "webpack serve --env NODE_ENV=development",
     "build": "webpack build --env NODE_ENV=production",
@@ -11,7 +12,7 @@
     "serve": "python3 -m http.server -d dist"
   },
   "dependencies": {
-    "jsx-dom-runtime": "^0.57.0",
+    "jsx-dom-runtime": "^0.57.1",
     "rgb-hex": "^4.1.0",
     "storeon-velo": "^4.1.2",
     "tinykeys": "^2.1.0",
@@ -27,12 +28,12 @@
     "babel-loader": "^9.1.3",
     "css-loader": "^6.8.1",
     "css-minimizer-webpack-plugin": "^5.0.1",
-    "css-mqpacker-webpack-plugin": "^0.12.9",
-    "eslint": "^8.51.0",
+    "css-mqpacker-webpack-plugin": "^0.13.0",
+    "eslint": "^8.52.0",
     "fork-ts-checker-webpack-plugin": "^9.0.0",
     "html-inline-css-webpack-plugin": "^1.11.2",
     "html-webpack-plugin": "^5.5.3",
-    "mini-css-class-name": "^0.13.2",
+    "mini-css-class-name": "^0.14.0",
     "mini-css-extract-plugin": "^2.7.6",
     "postcss": "^8.4.31",
     "postcss-input-range": "^5.0.0",
@@ -58,7 +59,7 @@
   "author": {
     "name": "Alexander Zaytsev",
     "email": "zaytsev126@gmail.com",
-    "url": "https://twitter.com/_shoonia"
+    "url": "https://x.com/_shoonia"
   },
   "license": "MIT"
 }
