@@ -13,3 +13,8 @@
   border-radius: var(--radius);
   box-sizing: border-box;
 }
+
+.inp::-webkit-search-cancel-button {
+  appearance: none;
+  opacity: 0;
+}
