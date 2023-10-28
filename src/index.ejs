@@ -28,7 +28,7 @@
   <title><%= title %></title>
   <% if (isProd) { %>
     <base href="<%= homepage %>">
-    <link rel="preload" as="fetch" href="https://api.github.com/repos/shoonia/1x1" crossorigin="anonymous">
+    <link rel="preload" as="fetch" fetchpriority="high" href="https://api.github.com/repos/shoonia/1x1" crossorigin="anonymous">
   <% } %>
   <link rel="canonical" href="<%= homepage %>">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
