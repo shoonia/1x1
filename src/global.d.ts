@@ -1,10 +1,10 @@
+import type { HTMLAttributes } from 'jsx-dom-runtime';
+import type { HexAlphaBase } from 'vanilla-colorful/lib/entrypoints/hex-alpha';
+
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'color-picker': {
-        ref?: (node: import('vanilla-colorful/lib/entrypoints/hex-alpha').HexAlphaBase) => void;
-        class?: string;
-      }
+      'color-picker': HTMLAttributes<HexAlphaBase>
     }
   }
 
