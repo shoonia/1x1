@@ -16,7 +16,7 @@ const undo = () => {
 
 const redo = () => history.go(1);
 
-window.addEventListener('popstate', () => {
+addEventListener('popstate', () => {
   const state = getState();
   const hash = location.hash.slice(1);
 

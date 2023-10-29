@@ -20,7 +20,7 @@ export const Output: JSX.FC = () => {
   const [size, setSize] = useText('1x1 (82 bytes)');
   const [color, setColor] = useText('#00000000');
 
-  let timeout: number;
+  let timeout: ReturnType<typeof setTimeout>;
 
   const readAsArrayBuffer = (blob: Blob | null) => {
     if (fileReader.readyState !== 1 && blob) {
@@ -53,7 +53,7 @@ export const Output: JSX.FC = () => {
     dataLink.current.value = 'https://shoonia.github.io/1x1/' + hex8;
 
     clearTimeout(timeout);
-    timeout = window.setTimeout(() => {
+    timeout = setTimeout(() => {
       const css = 'display:inline-block;border:1px solid #c6e2f7;border-radius:50%;width:1em;height:1em;background-image:' + url;
 
       location.hash = hex8;

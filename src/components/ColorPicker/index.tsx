@@ -7,7 +7,7 @@ import { connect, dispatch } from '../../store';
 customElements.define('color-picker', HexAlphaBase);
 
 export const ColorPicker: JSX.FC = () => {
-  const isBigScreen = /*#__PURE__*/ window.matchMedia('(min-width:700px)').matches;
+  const isBigScreen = /*#__PURE__*/ matchMedia('(min-width:700px)').matches;
 
   const ready = (node: HexAlphaBase) => {
     connect('hex', (state) => {
