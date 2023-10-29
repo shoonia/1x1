@@ -8,7 +8,7 @@ const getStars = (): Text => {
   if (process.env.NODE_ENV === 'production') {
     fetch('https://api.github.com/repos/shoonia/1x1')
       .then((response) => response.json())
-      .then((data) => setStars(data.stargazers_count));
+      .then((data) => setStars(data.stargazers_count || '-'));
   }
 
   return stars;
