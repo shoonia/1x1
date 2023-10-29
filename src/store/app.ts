@@ -37,8 +37,8 @@ export const app: StoreonModule<IState, IEvents> = (store) => {
         g: i >> 16 & 255,
         b: i >> 8 & 255,
         a: i & 255,
-        hex,
       },
+      { hex },
     );
   });
 };
