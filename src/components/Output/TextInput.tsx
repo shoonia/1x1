@@ -1,4 +1,5 @@
 import s from './TextInput.css';
+import { setState } from '../../store';
 
 interface Props {
   label: string;
@@ -12,6 +13,7 @@ const copy: EventListener = (event) => {
 
   el.select();
   navigator.clipboard.writeText(el.value);
+  setState({ toast: true });
 };
 
 export const TextInput: JSX.FC<Props> = ({ label, ref }) =>  (
