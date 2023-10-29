@@ -13,6 +13,7 @@ export const app: StoreonModule<IState, IEvents> = (store) => {
       a: 0,
       hex: '00000000',
       radix: 16,
+      toast: false,
     };
   });
 

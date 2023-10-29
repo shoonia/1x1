@@ -5,6 +5,7 @@ export interface IState {
   readonly a: number,
   readonly hex: string,
   readonly radix: number;
+  readonly toast: boolean;
 }
 
 export interface IEvents {
