@@ -5,7 +5,7 @@ export const createCanvas = (hex: string, alpha: number): HTMLCanvasElement => {
   const el = pixel.cloneNode() as HTMLCanvasElement;
 
   const ctx = el.getContext('2d', {
-    alpha: alpha !== 255,
+    alpha: alpha < 255,
     desynchronized: true,
     colorSpace: 'srgb',
   });
