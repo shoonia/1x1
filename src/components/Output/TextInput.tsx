@@ -1,11 +1,11 @@
+import type { RefObject } from 'jsx-dom-runtime';
+
 import s from './TextInput.css';
 import { setState } from '../../store';
 
 interface Props {
   label: string;
-  ref: {
-    readonly current: HTMLInputElement
-  }
+  ref: RefObject<HTMLInputElement>;
 }
 
 const copy: EventListener = (event) => {
