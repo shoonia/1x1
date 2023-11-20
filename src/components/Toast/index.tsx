@@ -5,19 +5,15 @@ export const Toast: JSX.FC = () => {
   const ready = (node: HTMLDivElement) => {
     let timer: ReturnType<typeof setTimeout>;
 
-    const show = () => {
-      clearTimeout(timer);
-      node.classList.add(s.show);
-
-      timer = setTimeout(
-        () => node.classList.remove(s.show),
-        3_000,
-      );
-    };
-
     connect('toast', (state) => {
       if (state.toast) {
-        show();
+        clearTimeout(timer);
+        node.classList.add(s.show);
+
+        timer = setTimeout(
+          () => node.classList.remove(s.show),
+          3_000,
+        );
       }
     });
   };
