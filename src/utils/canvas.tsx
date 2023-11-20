@@ -1,5 +1,6 @@
-const pixel = <canvas width={1} height={1} />;
-const favicon = <canvas width={50} height={50} />;
+import { jsx } from 'jsx-dom-runtime';
+
+const pixel = jsx('canvas', { width: 1, height: 1 });
 
 export const createCanvas = (hex: string, alpha: number): HTMLCanvasElement => {
   const el = pixel.cloneNode() as HTMLCanvasElement;
@@ -19,21 +20,20 @@ export const createCanvas = (hex: string, alpha: number): HTMLCanvasElement => {
   return el;
 };
 
+const favicon = jsx('canvas', { width: 50, height: 50 });
+
+const ctx = favicon.getContext('2d', {
+  alpha: true,
+  desynchronized: true,
+  colorSpace: 'srgb',
+})!;
+
+ctx.arc(25, 25, 24, 0, 2 * Math.PI);
+
 export const createFavicon = (color: string): string => {
-  const el = favicon.cloneNode() as HTMLCanvasElement;
+  ctx.fillStyle = color,
+  ctx.stroke();
+  ctx.fill();
 
-  const ctx = el.getContext('2d', {
-    alpha: true,
-    desynchronized: true,
-    colorSpace: 'srgb',
-  });
-
-  if (ctx) {
-    ctx.fillStyle = color,
-    ctx.arc(25, 25, 24, 0, 2 * Math.PI);
-    ctx.stroke();
-    ctx.fill();
-  }
-
-  return el.toDataURL('image/png', 0.1);
+  return favicon.toDataURL('image/png', 0.1);
 };
