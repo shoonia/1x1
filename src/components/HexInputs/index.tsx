@@ -52,7 +52,6 @@ export const HexInputs: JSX.FC = () => {
           class={s.inp}
           aria-label="color"
         />
-        <DataList />
         <input
           ref={readyAlpha}
           type="text"
@@ -62,6 +61,7 @@ export const HexInputs: JSX.FC = () => {
           class={s.inp}
           aria-label="alpha (opacity)"
         />
+        <DataList />
       </search>
     </Group>
   );

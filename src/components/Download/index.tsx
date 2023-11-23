@@ -20,7 +20,7 @@ const content = (
 );
 
 export const Download: JSX.FC = () => {
-  const linkHandler = (link: HTMLAnchorElement): void => {
+  const linkHandler = (link: HTMLAnchorElement): void =>
     link.addEventListener('click', () => {
       const { hex, a } = getState();
       const canvas = createCanvas(hex, a);
@@ -28,7 +28,6 @@ export const Download: JSX.FC = () => {
       link.download = createName(hex);
       link.href = canvas.toDataURL(TYPE, QUALITY);
     });
-  };
 
   const buttonHandler: EventListener = async () => {
     const { hex, a } = getState();

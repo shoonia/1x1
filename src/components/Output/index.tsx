@@ -17,7 +17,7 @@ export const Output: JSX.FC = () => {
   const dataBytes = useRef<HTMLInputElement>();
   const dataBase64 = useRef<HTMLInputElement>();
 
-  const [size, setSize] = useText('1x1 (82 bytes)');
+  const [size, setSize] = useText(0);
   const [color, setColor] = useText('#00000000');
 
   let timeout: ReturnType<typeof setTimeout>;
@@ -34,7 +34,7 @@ export const Output: JSX.FC = () => {
       const bytes = Array.from(new Uint8Array(fileReader.result), (i) => i.toString(radix));
 
       dataBytes.current.value = bytes.join(' ');
-      setSize(`1x1 (${bytes.length} bytes)`);
+      setSize(bytes.length);
     }
   });
 
@@ -69,7 +69,7 @@ export const Output: JSX.FC = () => {
           {color}
         </code>
         <code class={s.size}>
-          {size}
+          1x1 ({size} bytes)
         </code>
         <div class={s.preset}>
           <Preset />
