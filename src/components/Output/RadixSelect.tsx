@@ -7,19 +7,17 @@ export const RadixSelect: JSX.FC = () => {
       setState({ radix: ~~node.value }),
     );
 
-  const options = /*#__PURE__*/ [16, 10, 8, 2].map((i) => (
-    <option value={i}>
-      {i}
-    </option>
-  ));
-
   return (
     <select
       ref={ready}
       class={s.radix}
       aria-label="byte base"
     >
-      {options}
+      {[16, 10, 8, 2].map((i) =>
+        <option value={i}>
+          {i}
+        </option>,
+      )}
     </select>
   );
 };
