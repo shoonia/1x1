@@ -1,15 +1,16 @@
+import type { RefCallback } from 'jsx-dom-runtime';
+
 import s from './styles.css';
 import { connect } from '../../store';
 
 const url = new URL('https://shoonia.github.io/pixel-gif/');
 
 export const PixelGIF: JSX.FC = () => {
-  const ready = (a: HTMLAnchorElement) => {
+  const ready: RefCallback<HTMLAnchorElement> = (a) =>
     connect('hex', (state) => {
       url.hash = state.hex.slice(0, 6);
       a.href = url.href;
     });
-  };
 
   return (
     <a

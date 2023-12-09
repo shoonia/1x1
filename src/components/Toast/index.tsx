@@ -1,8 +1,10 @@
+import type { RefCallback } from 'jsx-dom-runtime';
+
 import s from './styles.css';
 import { connect } from '../../store';
 
 export const Toast: JSX.FC = () => {
-  const ready = (node: HTMLDivElement) => {
+  const ready: RefCallback<HTMLDivElement> = (node) => {
     let timer: ReturnType<typeof setTimeout>;
 
     connect('toast', (state) => {

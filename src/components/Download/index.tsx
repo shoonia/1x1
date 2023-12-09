@@ -1,3 +1,5 @@
+import type { RefCallback } from 'jsx-dom-runtime';
+
 import s from './styles.css';
 import { getState } from '../../store';
 import { createCanvas } from '../../utils/canvas';
@@ -20,7 +22,7 @@ const content = (
 );
 
 export const Download: JSX.FC = () => {
-  const linkHandler = (link: HTMLAnchorElement): void =>
+  const linkHandler: RefCallback<HTMLAnchorElement> = (link) =>
     link.addEventListener('click', () => {
       const { hex, a } = getState();
       const canvas = createCanvas(hex, a);

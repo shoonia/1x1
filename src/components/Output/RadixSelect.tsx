@@ -1,8 +1,10 @@
+import type { RefCallback } from 'jsx-dom-runtime';
+
 import s from './RadixSelect.css';
 import { setState } from '../../store';
 
 export const RadixSelect: JSX.FC = () => {
-  const ready = (node: HTMLSelectElement) =>
+  const ready: RefCallback<HTMLSelectElement> = (node) =>
     node.addEventListener('change', () =>
       setState({ radix: ~~node.value }),
     );
