@@ -23,6 +23,7 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
+    "verbatimModuleSyntax": true,
     "lib": [
       "ESNext",
       "DOM"
