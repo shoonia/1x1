@@ -1,4 +1,4 @@
-import type { RefCallback } from 'jsx-dom-runtime';
+import type { MouseEventHandler } from 'jsx-dom-runtime';
 
 import s from './styles.css';
 import { getState } from '../../store';
@@ -22,14 +22,13 @@ const content = (
 );
 
 export const Download: JSX.FC = () => {
-  const linkHandler: RefCallback<HTMLAnchorElement> = (link) =>
-    link.addEventListener('click', () => {
-      const { hex, a } = getState();
-      const canvas = createCanvas(hex, a);
+  const linkHandler: MouseEventHandler<HTMLAnchorElement> = ({ currentTarget: link }) => {
+    const { hex, a } = getState();
+    const canvas = createCanvas(hex, a);
 
-      link.download = createName(hex);
-      link.href = canvas.toDataURL(TYPE, QUALITY);
-    });
+    link.download = createName(hex);
+    link.href = canvas.toDataURL(TYPE, QUALITY);
+  };
 
   const buttonHandler: EventListener = async () => {
     const { hex, a } = getState();
@@ -57,7 +56,7 @@ export const Download: JSX.FC = () => {
         {content}
       </button>
     ) : (
-      <a ref={linkHandler} role="button" class={s.btn} href="#">
+      <a onclick={linkHandler} role="button" class={s.btn} href="#">
         {content}
       </a>
     );

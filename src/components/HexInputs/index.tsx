@@ -1,3 +1,5 @@
+import type { RefCallback } from 'jsx-dom-runtime';
+
 import s from './styles.css';
 import { Group } from '../Group';
 import { DataList } from './DataList';
@@ -5,7 +7,7 @@ import { NOT_HEXADECIMAL, getHex } from '../../utils';
 import { connect, dispatch } from '../../store';
 
 export const HexInputs: JSX.FC = () => {
-  const readyColor = (color: HTMLInputElement) => {
+  const readyColor: RefCallback<HTMLInputElement> = (color) => {
     color.addEventListener('change', () => {
       const hex = getHex(color.value);
 
@@ -19,7 +21,7 @@ export const HexInputs: JSX.FC = () => {
     });
   };
 
-  const readyAlpha = (alpha: HTMLInputElement) => {
+  const readyAlpha: RefCallback<HTMLInputElement> = (alpha) => {
     alpha.addEventListener('change', () => {
       const val = alpha.value
         .trim()
