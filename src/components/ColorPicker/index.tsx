@@ -1,3 +1,4 @@
+import type { RefCallback } from 'jsx-dom-runtime';
 import { HexAlphaBase } from 'vanilla-colorful/lib/entrypoints/hex-alpha';
 
 import s from './styles.css';
@@ -9,7 +10,7 @@ customElements.define('color-picker', HexAlphaBase);
 export const ColorPicker: JSX.FC = () => {
   const isBigScreen = /*#__PURE__*/ matchMedia('(min-width:700px)').matches;
 
-  const ready = (node: HexAlphaBase) => {
+  const ready: RefCallback<HexAlphaBase> = (node) => {
     connect('hex', (state) => {
       node.color = '#' + state.hex;
     });

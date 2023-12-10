@@ -12,7 +12,7 @@
     "serve": "python3 -m http.server -d dist"
   },
   "dependencies": {
-    "jsx-dom-runtime": "^0.59.0",
+    "jsx-dom-runtime": "^0.60.0",
     "rgb-hex": "^4.1.0",
     "storeon-velo": "^5.0.0-rc.0",
     "tinykeys": "^2.1.0",

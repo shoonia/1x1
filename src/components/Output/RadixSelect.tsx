@@ -1,17 +1,15 @@
-import type { RefCallback } from 'jsx-dom-runtime';
+import type { GenericEventHandler } from 'jsx-dom-runtime';
 
 import s from './RadixSelect.css';
 import { setState } from '../../store';
 
 export const RadixSelect: JSX.FC = () => {
-  const ready: RefCallback<HTMLSelectElement> = (node) =>
-    node.addEventListener('change', () =>
-      setState({ radix: ~~node.value }),
-    );
+  const change: GenericEventHandler<HTMLSelectElement> = (event) =>
+    setState({ radix: ~~event.currentTarget.value });
 
   return (
     <select
-      ref={ready}
+      onchange={change}
       class={s.radix}
       aria-label="byte base"
     >

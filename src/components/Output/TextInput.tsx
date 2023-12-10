@@ -1,4 +1,4 @@
-import type { RefObject } from 'jsx-dom-runtime';
+import type { RefObject, MouseEventHandler } from 'jsx-dom-runtime';
 
 import s from './TextInput.css';
 import { setState } from '../../store';
@@ -8,11 +8,9 @@ interface Props {
   ref: RefObject<HTMLInputElement>;
 }
 
-const copy: EventListener = (event) => {
-  const el = event.target as HTMLInputElement;
-
-  el.select();
-  navigator.clipboard.writeText(el.value);
+const copy: MouseEventHandler<HTMLInputElement> = ({ currentTarget: input }) => {
+  input.select();
+  navigator.clipboard.writeText(input.value);
   setState({ toast: true });
 };
 
