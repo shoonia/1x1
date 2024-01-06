@@ -6,7 +6,7 @@
   --c-sh: rgb(0 0 0 / 30%);
   --border: 1px solid #767676;
   --radius: 4px;
-  --inp-pdg: 0.4em 1em;
+  --pdg: 0.4em 1em;
 }
 
 ::placeholder {

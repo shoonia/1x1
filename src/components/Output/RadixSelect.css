@@ -1,6 +1,6 @@
 .radix {
   appearance: none;
-  padding: var(--inp-pdg);
+  padding: var(--pdg);
   width: 4em;
   margin: 0.5em 0;
   border: var(--border);
