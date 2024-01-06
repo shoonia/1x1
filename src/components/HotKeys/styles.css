@@ -18,16 +18,15 @@
   font-size: 0.9em;
   white-space: normal;
   display: flex;
-  gap: 0.2em;
+  gap: 0.4em;
 }
 
 .key {
-  background-color: var(--c-pr);
   border: 1px solid #fff;
   border-radius: 2px;
   color: #fff;
   line-height: 1;
-  padding: 2px 6px;
+  padding: 0.2em 0.5em;
 }
 
 .btn:hover .key,

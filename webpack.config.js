@@ -14,8 +14,8 @@ import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import inputRange from 'postcss-input-range';
 
-import pkg from './package.json' assert { type: 'json' };
-import colors from './src/utils/colors.json' assert { type: 'json' };
+import pkg from './package.json' with { type: 'json' };
+import colors from './src/utils/colors.json' with { type: 'json' };
 
 const appDirectory = realpathSync(process.cwd());
 const resolveApp = (relativePath) => resolve(appDirectory, relativePath);
