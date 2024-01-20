@@ -52,9 +52,6 @@ export default ({ NODE_ENV }) => {
             ecma: 2020,
             module: true,
             toplevel: true,
-            parse: {
-              ecma: 2020,
-            },
             compress: {
               ecma: 2020,
               module: true,
@@ -64,6 +61,10 @@ export default ({ NODE_ENV }) => {
               passes: 3,
               toplevel: true,
               pure_getters: true,
+              unsafe_arrows: true,
+              unsafe_undefined: true,
+              unsafe_math: true,
+              unsafe_symbols: true,
             },
             output: {
               ecma: 2020,
