@@ -48,6 +48,7 @@ export default ({ NODE_ENV }) => {
       minimize: isProd,
       minimizer: [
         new TerserPlugin({
+          extractComments: false,
           terserOptions: {
             ecma: 2020,
             module: true,
@@ -65,10 +66,6 @@ export default ({ NODE_ENV }) => {
               unsafe_undefined: true,
               unsafe_math: true,
               unsafe_symbols: true,
-            },
-            output: {
-              ecma: 2020,
-              comments: false,
             },
           },
         }),
