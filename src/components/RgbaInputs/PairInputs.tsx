@@ -13,11 +13,8 @@ export const PairInputs: JSX.FC<Props> = ({ param }) => {
   const range = useRef<HTMLInputElement>();
   const label = `color channel "${param}"`;
 
-  const input: InputEventHandler<HTMLInputElement> = (event) => {
-    const val = ~~event.currentTarget.valueAsNumber;
-
-    dispatch('rgba', [param, val > 255 ? 255 : val]);
-  };
+  const input: InputEventHandler<HTMLInputElement> = (event) =>
+    dispatch('rgba', [param, event.currentTarget.valueAsNumber]);
 
   connect(param, (state) => {
     const val = state[param];

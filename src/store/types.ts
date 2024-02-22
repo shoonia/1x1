@@ -10,7 +10,7 @@ export interface IState {
 
 export interface IEvents {
   'hex': string;
-  'rgba': [TRgba, number];
+  'rgba': readonly [param: TRgba, value: number];
 }
 
 export type TRgba = keyof Pick<IState, 'r' | 'g' | 'b' | 'a'>;

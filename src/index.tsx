@@ -4,7 +4,7 @@ import { dispatch } from './store';
 import { getHex, randomHex } from './utils';
 
 const color = getHex(location.hash);
-const hex = color ? color : randomHex(6) + 'ff';
+const hex = color ? color : randomHex();
 
 dispatch('hex', hex);
 history.replaceState(1, '', '#' + hex);

@@ -2,17 +2,13 @@ import { useText } from 'jsx-dom-runtime';
 
 import s from './styles.css';
 
-const getStars = (): Text => {
-  const [stars, setStars] = useText('-');
+const [stars, setStars] = useText('-');
 
-  if (process.env.NODE_ENV === 'production') {
-    fetch('https://api.github.com/repos/shoonia/1x1')
-      .then((response) => response.json())
-      .then((data) => setStars(data.stargazers_count || '-'));
-  }
-
-  return stars;
-};
+if (process.env.NODE_ENV === 'production') {
+  fetch('https://api.github.com/repos/shoonia/1x1')
+    .then((response) => response.json())
+    .then((data) => setStars(data.stargazers_count || '-'));
+}
 
 export const Stars: JSX.FC = () => (
   <div class={s.box}>
@@ -32,7 +28,7 @@ export const Stars: JSX.FC = () => (
       tabIndex={0}
       class={s.stars}
     >
-      {getStars()}
+      {stars}
     </a>
   </div>
 );
