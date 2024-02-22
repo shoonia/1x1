@@ -17,13 +17,16 @@ export const app: StoreonModule<IState, IEvents> = (store) => {
     };
   });
 
-  store.on('rgba', (state, [key, val]) => {
+  store.on('rgba', (state, [key, value]) => {
+    const v = value | 0;
+    const i = v > 255 ? 255 : v < 0 ? 0 : v;
+
     return {
       hex: createHex({
         ...state,
-        [key]: val,
+        [key]: i,
       }),
-      [key]: val,
+      [key]: i,
     };
   });
 

@@ -8,14 +8,12 @@ export const NOT_HEXADECIMAL = /[^\da-f]/;
 
 export const randomHex = () => crypto.randomUUID().slice(-6) + 'ff';
 
-export const decimalToHex = (i: number): string => {
-  const hex = i.toString(16);
-
-  return hex.length < 2 ? '0' + hex : hex;
-};
-
 export const createHex = ({ r, g, b, a }: IState) => {
-  return [r, g, b, a].map(decimalToHex).join('');
+  return [r, g, b, a].map((i) => {
+    const hex = i.toString(16);
+
+    return hex.length < 2 ? '0' + hex : hex;
+  }).join('');
 };
 
 const duplicate = (hex: string): string => {
