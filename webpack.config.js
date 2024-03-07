@@ -62,6 +62,7 @@ export default ({ NODE_ENV }) => {
               passes: 3,
               toplevel: true,
               pure_getters: true,
+              unsafe: true,
               unsafe_arrows: true,
               unsafe_undefined: true,
               unsafe_math: true,
