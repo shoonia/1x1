@@ -12,7 +12,6 @@ import HTMLInlineCSSWebpackPlugin from 'html-inline-css-webpack-plugin';
 import CssMqpackerPlugin from 'css-mqpacker-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import autoprefixer from 'autoprefixer';
-import inputRange from 'postcss-input-range';
 
 import pkg from './package.json' with { type: 'json' };
 import colors from './src/utils/colors.json' with { type: 'json' };
@@ -113,9 +112,16 @@ export default ({ NODE_ENV }) => {
               options: {
                 cacheDirectory: isDev,
                 cacheCompression: false,
+                comments: isDev,
                 compact: isProd,
+                minified: isProd,
                 presets: [
-                  '@babel/typescript',
+                  [
+                    '@babel/preset-typescript',
+                    {
+                      optimizeConstEnums: true,
+                    },
+                  ],
                   'jsx-dom-runtime/babel-preset',
                 ],
               },
@@ -138,19 +144,18 @@ export default ({ NODE_ENV }) => {
                     },
                   },
                 },
-                {
+                isProd && {
                   loader: 'postcss-loader',
                   options: {
                     sourceMap: isDev,
                     postcssOptions: {
                       plugins: [
-                        isProd && autoprefixer,
-                        inputRange,
-                      ].filter(Boolean),
+                        autoprefixer,
+                      ],
                     },
                   },
                 },
-              ],
+              ].filter(Boolean),
             },
           ],
         },

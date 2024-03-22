@@ -4,15 +4,6 @@
     "stylelint-config-css-modules"
   ],
   "rules": {
-    "media-feature-range-notation": "prefix",
-    "selector-pseudo-element-no-unknown": [
-      true,
-      {
-        "ignorePseudoElements": [
-          "range-track",
-          "range-thumb"
-        ]
-      }
-    ]
+    "media-feature-range-notation": "prefix"
   }
 }
