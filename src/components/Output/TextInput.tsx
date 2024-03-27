@@ -1,11 +1,11 @@
-import type { RefObject, MouseEventHandler } from 'jsx-dom-runtime';
+import type { MouseEventHandler } from 'jsx-dom-runtime';
 
 import s from './TextInput.css';
 import { setState } from '../../store';
 
 interface Props {
   label: string;
-  ref: RefObject<HTMLInputElement>;
+  ref: JSX.Ref<HTMLInputElement>;
 }
 
 const copy: MouseEventHandler<HTMLInputElement> = ({ currentTarget: input }) => {
