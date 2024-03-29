@@ -1,7 +1,5 @@
 /* eslint-env node */
 import { resolve } from 'node:path';
-import { realpathSync } from 'node:fs';
-
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
@@ -16,7 +14,7 @@ import autoprefixer from 'autoprefixer';
 import pkg from './package.json' with { type: 'json' };
 import colors from './src/utils/colors.json' with { type: 'json' };
 
-const appDirectory = realpathSync(process.cwd());
+const appDirectory = process.cwd();
 const resolveApp = (relativePath) => resolve(appDirectory, relativePath);
 
 /**
