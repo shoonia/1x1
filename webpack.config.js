@@ -16,6 +16,8 @@ import colors from './src/utils/colors.json' with { type: 'json' };
 
 const appDirectory = process.cwd();
 const resolveApp = (relativePath) => resolve(appDirectory, relativePath);
+const nodeModulesDir = resolveApp('node_modules');
+const srcDir = resolveApp('src');
 
 /**
  * @param {NodeJS.ProcessEnv} env
@@ -87,7 +89,7 @@ export default ({ NODE_ENV }) => {
     resolve: {
       modules: [
         'node_modules',
-        resolveApp('node_modules'),
+        nodeModulesDir,
       ],
       extensions: [
         '.js',
@@ -105,8 +107,28 @@ export default ({ NODE_ENV }) => {
         {
           oneOf: [
             {
+              test: /\.js?$/,
+              include: nodeModulesDir,
+              loader: 'babel-loader',
+              options: {
+                cacheDirectory: isDev,
+                cacheCompression: false,
+                comments: isDev,
+                compact: isProd,
+                minified: isProd,
+                plugins: [
+                  [
+                    'babel-plugin-transform-remove-polyfill',
+                    {
+                      globalObjects: ['navigator'],
+                    },
+                  ],
+                ],
+              },
+            },
+            {
               test: /\.tsx?$/,
-              include: resolveApp('src'),
+              include: srcDir,
               loader: 'babel-loader',
               options: {
                 cacheDirectory: isDev,
@@ -206,7 +228,7 @@ export default ({ NODE_ENV }) => {
     devServer: {
       hot: false,
       compress: false,
-      static: resolveApp('src'),
+      static: srcDir,
       port: 3000,
     },
   };
