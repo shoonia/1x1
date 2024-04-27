@@ -52,11 +52,11 @@ export const Download: JSX.FC = () => {
 
   return typeof showSaveFilePicker === 'function'
     ? (
-      <button onclick={buttonHandler} type="button" class={s.btn}>
+      <button on:click={buttonHandler} type="button" class={s.btn}>
         {content}
       </button>
     ) : (
-      <a onclick={linkHandler} role="button" class={s.btn} href="#">
+      <a on:click={linkHandler} role="button" class={s.btn} href="#">
         {content}
       </a>
     );

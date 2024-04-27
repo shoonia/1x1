@@ -38,7 +38,7 @@ export const HotKeys: JSX.FC = () => (
   <div class={s.box}>
     <div>
       <div>Undo:</div>
-      <button type="button" class={s.btn} onclick={undo}>
+      <button type="button" class={s.btn} on:click={undo}>
         <kbd class={s.comb}>
           <span class={s.key}>{$mod}</span>
           <span class={s.key}>z</span>
@@ -47,7 +47,7 @@ export const HotKeys: JSX.FC = () => (
     </div>
     <div>
       <div>Redo:</div>
-      <button type="button" class={s.btn} onclick={redo}>
+      <button type="button" class={s.btn} on:click={redo}>
         <kbd class={s.comb}>
           <span class={s.key}>{$mod}</span>
           <span class={s.key}>Shift</span>

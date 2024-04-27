@@ -32,7 +32,7 @@ export const PairInputs: JSX.FC<Props> = ({ param }) => {
         ref={number}
         type="number"
         class={s.number}
-        oninput={input}
+        on:input={input}
         max={255}
         min={0}
         step={1}
@@ -42,7 +42,7 @@ export const PairInputs: JSX.FC<Props> = ({ param }) => {
         ref={range}
         type="range"
         class={s.range}
-        oninput={input}
+        on:input={input}
         max={255}
         min={0}
         step={1}

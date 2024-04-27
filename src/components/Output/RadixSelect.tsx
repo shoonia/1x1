@@ -9,7 +9,7 @@ export const RadixSelect: JSX.FC = () => {
 
   return (
     <select
-      onchange={change}
+      on:change={change}
       class={s.radix}
       aria-label="byte base"
     >

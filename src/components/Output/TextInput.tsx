@@ -19,7 +19,7 @@ export const TextInput: JSX.FC<Props> = ({ label, ref }) =>  (
     {label}
     <input
       ref={ref}
-      onclick={copy}
+      on:click={copy}
       class={s.inp}
       type="text"
       spellcheck="false"
