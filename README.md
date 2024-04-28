@@ -17,6 +17,6 @@ Uses a Canvas for drawing pixel images. The size of images depends on the browse
 
 ---
 
-Online generator creating one pixel GIF image (43 bytes) in Base64 encoded, Bytes or Download:
+Online generator creating one pixel GIF image (35 bytes) in Base64 encoded, Bytes or Download:
 
 [https://shoonia.github.io/pixel-gif/](https://shoonia.github.io/pixel-gif/)

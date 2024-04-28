@@ -16,7 +16,7 @@ export const PixelGIF: JSX.FC = () => {
       class={s.link}
       aria-label="One pixel Base64 encoded GIF generator"
     >
-      1x1 Pixel GIF <small>(43 bytes)</small>
+      1x1 Pixel GIF <small>(35 bytes)</small>
     </a>
   );
 };
