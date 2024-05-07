@@ -1,5 +1,3 @@
-import type { MouseEventHandler } from 'jsx-dom-runtime';
-
 import s from './TextInput.css';
 import { setState } from '../../store';
 
@@ -8,13 +6,13 @@ interface Props {
   ref: JSX.Ref<HTMLInputElement>;
 }
 
-const copy: MouseEventHandler<HTMLInputElement> = ({ currentTarget: input }) => {
+const copy: JSX.EventListener<HTMLInputElement> = ({ currentTarget: input }) => {
   input.select();
   navigator.clipboard.writeText(input.value);
   setState({ toast: true });
 };
 
-export const TextInput: JSX.FC<Props> = ({ label, ref }) =>  (
+export const TextInput: JSX.FC<Props> = ({ label, ref }) =>
   <label>
     {label}
     <input
@@ -25,5 +23,4 @@ export const TextInput: JSX.FC<Props> = ({ label, ref }) =>  (
       spellcheck="false"
       readOnly
     />
-  </label>
-);
+  </label>;

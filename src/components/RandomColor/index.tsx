@@ -3,7 +3,7 @@ import { dispatch } from '../../store';
 import { randomHex } from '../../utils';
 
 export const RandomColor: JSX.FC = () => {
-  const click: EventListener = () =>
+  const click: JSX.EventListener = () =>
     dispatch('hex', randomHex());
 
   return (

@@ -1,5 +1,3 @@
-import type { MouseEventHandler } from 'jsx-dom-runtime';
-
 import s from './styles.css';
 import { getState } from '../../store';
 import { createCanvas } from '../../utils/canvas';
@@ -22,7 +20,7 @@ const content = (
 );
 
 export const Download: JSX.FC = () => {
-  const linkHandler: MouseEventHandler<HTMLAnchorElement> = ({ currentTarget: link }) => {
+  const linkHandler: JSX.EventListener<HTMLAnchorElement> = ({ currentTarget: link }) => {
     const { hex, a } = getState();
     const canvas = createCanvas(hex, a);
 
@@ -30,7 +28,7 @@ export const Download: JSX.FC = () => {
     link.href = canvas.toDataURL(TYPE, QUALITY);
   };
 
-  const buttonHandler: EventListener = async () => {
+  const buttonHandler: JSX.EventListener = async () => {
     const { hex, a } = getState();
     const canvas = createCanvas(hex, a);
 

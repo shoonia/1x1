@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'production') {
     .then((data) => setStars(data.stargazers_count || '-'));
 }
 
-export const Stars: JSX.FC = () => (
+export const Stars: JSX.FC = () =>
   <div class={s.box}>
     <a
       href="https://github.com/shoonia/1x1"
@@ -30,5 +30,4 @@ export const Stars: JSX.FC = () => (
     >
       {stars}
     </a>
-  </div>
-);
+  </div>;

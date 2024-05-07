@@ -1,6 +1,6 @@
 import s from './styles.css';
 
-export const SupportUkraine: JSX.FC = () => (
+export const SupportUkraine: JSX.FC = () =>
   <div class={s.box}>
     <a class={s.link} href="https://u24.gov.ua/">
       <svg aria-label="flag of Ukraine" viewBox="0 0 3 2" width="2em">
@@ -9,5 +9,4 @@ export const SupportUkraine: JSX.FC = () => (
       </svg>
       Support Ukraine
     </a>
-  </div>
-);
+  </div>;

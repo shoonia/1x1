@@ -1,10 +1,8 @@
-import type { GenericEventHandler } from 'jsx-dom-runtime';
-
 import s from './RadixSelect.css';
 import { setState } from '../../store';
 
 export const RadixSelect: JSX.FC = () => {
-  const change: GenericEventHandler<HTMLSelectElement> = (event) =>
+  const change: JSX.EventListener<HTMLSelectElement> = (event) =>
     setState({ radix: ~~event.currentTarget.value });
 
   return (

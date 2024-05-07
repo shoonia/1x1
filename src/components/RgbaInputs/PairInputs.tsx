@@ -1,4 +1,4 @@
-import { useRef, type InputEventHandler } from 'jsx-dom-runtime';
+import { useRef } from 'jsx-dom-runtime';
 
 import s from './PairInputs.css';
 import type { TRgba } from '../../store/types';
@@ -13,7 +13,7 @@ export const PairInputs: JSX.FC<Props> = ({ param }) => {
   const range = useRef<HTMLInputElement>();
   const label = `color channel "${param}"`;
 
-  const input: InputEventHandler<HTMLInputElement> = (event) =>
+  const input: JSX.InputEventListener<HTMLInputElement> = (event) =>
     dispatch('rgba', [param, event.currentTarget.valueAsNumber]);
 
   connect(param, (state) => {

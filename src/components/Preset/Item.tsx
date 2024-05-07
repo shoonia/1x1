@@ -5,7 +5,7 @@ interface Props {
   title: string;
 }
 
-export const Item: JSX.FC<Props> = ({ color, title }) => (
+export const Item: JSX.FC<Props> = ({ color, title }) =>
   <li class={s.item}>
     <a
       href={color}
@@ -13,5 +13,4 @@ export const Item: JSX.FC<Props> = ({ color, title }) => (
       class={s.link}
       title={title}
     />
-  </li>
-);
+  </li>;

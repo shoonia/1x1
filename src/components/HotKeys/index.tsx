@@ -34,7 +34,7 @@ tinykeys(window, {
   '$mod+Shift+z': redo,
 });
 
-export const HotKeys: JSX.FC = () => (
+export const HotKeys: JSX.FC = () =>
   <div class={s.box}>
     <div>
       <div>Undo:</div>
@@ -55,5 +55,4 @@ export const HotKeys: JSX.FC = () => (
         </kbd>
       </button>
     </div>
-  </div>
-);
+  </div>;
