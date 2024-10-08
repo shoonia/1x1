@@ -31,7 +31,7 @@ const ctx = favicon.getContext('2d', {
 ctx.arc(25, 25, 24, 0, 2 * Math.PI);
 
 export const createFavicon = (color: string): string => {
-  ctx.fillStyle = color,
+  ctx.fillStyle = color;
   ctx.stroke();
   ctx.fill();
 
