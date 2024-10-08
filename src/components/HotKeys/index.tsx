@@ -1,4 +1,4 @@
-import { tinykeys } from 'tinykeys';
+import { createKeybindingsHandler } from 'tinykeys';
 
 import s from './styles.css';
 import { dispatch, getState } from '../../store';
@@ -29,10 +29,10 @@ addEventListener('popstate', () => {
   }
 });
 
-tinykeys(window, {
+addEventListener('keydown', createKeybindingsHandler({
   '$mod+z': undo,
   '$mod+Shift+z': redo,
-});
+}));
 
 export const HotKeys: JSX.FC = () =>
   <div class={s.box}>
