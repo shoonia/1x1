@@ -2,7 +2,6 @@ import { useRef, useText } from 'jsx-dom-runtime';
 
 import s from './styles.css';
 import { TextInput } from './TextInput';
-import { Download } from '../Download';
 import { Preset } from '../Preset';
 import { RadixSelect } from './RadixSelect';
 import { connect, getState } from '../../store';
@@ -84,7 +83,6 @@ export const Output: JSX.FC = () => {
         </div>
         <TextInput ref={dataLink} label="Share Link:" />
       </fieldset>
-      <Download />
     </>
   );
 };

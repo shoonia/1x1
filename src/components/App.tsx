@@ -9,6 +9,7 @@ import { HotKeys } from './HotKeys';
 import { Stars } from './Stars';
 import { PixelGIF } from './PixelGIF';
 import { Toast } from './Toast';
+import { Download } from './Download';
 import { readyStore } from '../store';
 
 export const App: JSX.FC = () =>
@@ -33,6 +34,7 @@ export const App: JSX.FC = () =>
           One pixel Base64 encoded transparent PNG generator
         </h1>
         <Output />
+        <Download />
       </div>
     </main>
     <Toast />
