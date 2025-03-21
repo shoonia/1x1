@@ -2,7 +2,8 @@
   display: grid;
   height: 100vh;
   grid-template:
-    "header header" var(--header-h) "toolbar main" 1fr
+    "header header" var(--header-h)
+    "toolbar main" 1fr
     "footer footer" var(--footer-h) / var(--toolbar-w) 1fr;
 }
 
