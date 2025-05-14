@@ -1,5 +1,5 @@
 import s from './TextInput.css';
-import { setState } from '../../store';
+import { dispatch } from '../../store';
 
 interface Props {
   label: string;
@@ -9,7 +9,7 @@ interface Props {
 const copy: JSX.EventListener<HTMLInputElement> = ({ currentTarget: input }) => {
   input.select();
   navigator.clipboard.writeText(input.value);
-  setState({ toast: true });
+  dispatch('copy');
 };
 
 export const TextInput: JSX.FC<Props> = ({ label, ref }) =>

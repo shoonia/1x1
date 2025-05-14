@@ -45,4 +45,13 @@ export const app: StoreonModule<IState, IEvents> = (store) => {
       { hex },
     );
   });
+
+  store.on('copy', (state) => {
+    clearTimeout(state.timeout);
+
+    return {
+      toast: true,
+      timeout: setTimeout(() => store.set({ toast: false }), 2000),
+    };
+  });
 };

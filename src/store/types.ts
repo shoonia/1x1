@@ -6,11 +6,13 @@ export interface IState {
   readonly hex: string,
   readonly radix: number;
   readonly toast: boolean;
+  readonly timeout: ReturnType<typeof setTimeout> | undefined;
 }
 
 export interface IEvents {
   'hex': string;
   'rgba': readonly [param: TRgba, value: number];
+  'copy': void;
 }
 
 export type TRgba = keyof Pick<IState, 'r' | 'g' | 'b' | 'a'>;

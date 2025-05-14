@@ -3,17 +3,11 @@ import { connect } from '../../store';
 
 export const Toast: JSX.FC = () => {
   const ready: JSX.Ref<HTMLDivElement> = (node) => {
-    let timer: ReturnType<typeof setTimeout>;
-
     connect('toast', (state) => {
       if (state.toast) {
-        clearTimeout(timer);
         node.classList.add(s.show);
-
-        timer = setTimeout(
-          () => node.classList.remove(s.show),
-          3_000,
-        );
+      } else {
+        node.classList.remove(s.show);
       }
     });
   };
