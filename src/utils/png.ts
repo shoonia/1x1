@@ -1,16 +1,15 @@
 type R = readonly number[];
 
 const PNG_HEADER: R = [137, 80, 78, 71, 13, 10, 26, 10];
-const IHDR_DATA_RGB: R = [0, 0, 0, 1, 0, 0, 0, 1, 8, 2, 0, 0, 0];
-const IHDR_DATA_RGBA: R = [0, 0, 0, 1, 0, 0, 0, 1, 8, 6, 0, 0, 0];
 const ZLIB_HEADER: R = [120, 1];
 const IEND: R = [0, 0, 0, 0, 73, 69, 78, 68, 174, 66, 96, 130];
 
 const CRC32_INIT = 4294967295;
 const ADLER32_MOD = 65521;
 const CRC32_POLY = 3988292384;
+const DEFLATE_NLEN_MASK = 65535;
 
-const CRC32_TABLE: R = (() => {
+const createCrc32Table = (): R => {
   const table: number[] = [];
   for (let i = 0; i < 256; i++) {
     let c = i;
@@ -20,7 +19,9 @@ const CRC32_TABLE: R = (() => {
     table[i] = c >>> 0;
   }
   return table;
-})();
+};
+
+const CRC32_TABLE: R = createCrc32Table();
 
 const u32 = (n: number): R => [
   (n >>> 24) & 255,
@@ -37,8 +38,8 @@ const crc32 = (buf: number[]): number => {
 };
 
 const adler32 = (data: R): number => {
-  let x: number = 1;
-  let y: number = 0;
+  let x = 1;
+  let y = 0;
 
   for (let i = 0; i < data.length; i++) {
     x = (x + data[i]) % ADLER32_MOD;
@@ -48,25 +49,30 @@ const adler32 = (data: R): number => {
 };
 
 export const makePixelPng = (r: number, g: number, b: number, a: number): R => {
-  const scanline: number[] = [0, r % 256, g % 256, b % 256];
-  const isRGBA = a !== 255;
+  const isOpaque = a === 255;
 
-  if (isRGBA) {
+  const ihdr: R = [
+    0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 1, 0, 0, 0, 1, 8,
+    isOpaque ? 2 : 6,
+    0, 0, 0,
+  ];
+
+  const scanline = [0, r % 256, g % 256, b % 256];
+
+  if (!isOpaque) {
     scanline.push(a % 256);
   }
 
-  const IHDR_DATA = isRGBA ? IHDR_DATA_RGBA : IHDR_DATA_RGB;
-  const ihdr = [...u32(13), 73, 72, 68, 82, ...IHDR_DATA];
   const ihdrCrc = crc32(ihdr.slice(4));
-  const ihdrFinal = [...ihdr, ...u32(ihdrCrc)];
+  const ihdrFinal: R = [...ihdr, ...u32(ihdrCrc)];
   const len = scanline.length;
-  const nlen = (~len) & 65535;
-  const deflateBlock = [1, len & 255, (len >> 8), nlen & 255, (nlen >> 8), ...scanline];
-  const adler = u32(adler32(scanline));
-  const zlibData = [...ZLIB_HEADER, ...deflateBlock, ...adler];
-  const idat = [...u32(zlibData.length), 73, 68, 65, 84, ...zlibData];
+  const nlen = (~len) & DEFLATE_NLEN_MASK;
+  const deflateBlock: R = [1, len & 255, (len >> 8), nlen & 255, (nlen >> 8), ...scanline];
+  const adler: R = u32(adler32(scanline));
+  const zlibData: R = [...ZLIB_HEADER, ...deflateBlock, ...adler];
+  const idat: R = [...u32(zlibData.length), 73, 68, 65, 84, ...zlibData];
   const idatCrc = crc32(idat.slice(4));
-  const idatFinal = [...idat, ...u32(idatCrc)];
+  const idatFinal: R = [...idat, ...u32(idatCrc)];
 
   return [...PNG_HEADER, ...ihdrFinal, ...idatFinal, ...IEND];
 };

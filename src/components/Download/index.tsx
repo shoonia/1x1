@@ -32,7 +32,6 @@ export const Download: JSX.FC = () => {
       suggestedName: createName(hex),
     });
 
-
     const writable = await file.createWritable();
 
     await writable.write(
