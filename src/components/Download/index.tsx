@@ -1,9 +1,6 @@
 import s from './styles.css';
 import { getState } from '../../store';
-import { createCanvas } from '../../utils/canvas';
-
-const TYPE = 'image/png';
-const QUALITY = 0.1;
+import { getDataUrl, makePixelPng } from '../../utils/png';
 
 const createName = (hex: string) => `1x1_#${hex.toUpperCase()}.png`;
 
@@ -21,31 +18,30 @@ const content = (
 
 export const Download: JSX.FC = () => {
   const linkHandler: JSX.EventListener<HTMLAnchorElement> = ({ currentTarget: link }) => {
-    const { hex, a } = getState();
-    const canvas = createCanvas(hex, a);
+    const { hex, r, g, b, a } = getState();
 
     link.download = createName(hex);
-    link.href = canvas.toDataURL(TYPE, QUALITY);
+    link.href = getDataUrl(r, g, b, a);
   };
 
   const buttonHandler: JSX.EventListener = async () => {
-    const { hex, a } = getState();
-    const canvas = createCanvas(hex, a);
+    const { hex, r, g, b, a } = getState();
+    const bytes = makePixelPng(r, g, b, a);
 
     const file = await showSaveFilePicker({
       suggestedName: createName(hex),
     });
 
-    const blob = await new Promise<Blob | null>(
-      (resolve) => canvas.toBlob(resolve, TYPE, QUALITY),
+
+    const writable = await file.createWritable();
+
+    await writable.write(
+      new Blob(
+        [new Uint8Array(bytes)],
+        { type: 'image/png' },
+      ),
     );
-
-    if (blob) {
-      const writable = await file.createWritable();
-
-      await writable.write(blob);
-      await writable.close();
-    }
+    await writable.close();
   };
 
   return typeof showSaveFilePicker === 'function'
