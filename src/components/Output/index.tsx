@@ -19,7 +19,7 @@ export const Output: JSX.FC = () => {
   const [size, setSize] = useText(0);
   const [color, setColor] = useText('#00000000');
 
-  let timeout: ReturnType<typeof setTimeout>;
+  let timeout: NodeJS.Timeout | number;
 
   connect('hex', 'radix', ({ hex, r, g, b, a }) => {
     const hex8 = '#' + hex;

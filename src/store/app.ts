@@ -51,7 +51,7 @@ export const app: StoreonModule<IState, IEvents> = (store) => {
 
     return {
       toast: true,
-      timeout: setTimeout(() => store.set({ toast: false }), 2000),
+      timeout: setTimeout(store.set, 2000, { toast: false }),
     };
   });
 };

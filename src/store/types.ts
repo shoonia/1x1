@@ -6,7 +6,7 @@ export interface IState {
   readonly hex: string,
   readonly radix: number;
   readonly toast: boolean;
-  readonly timeout: ReturnType<typeof setTimeout> | undefined;
+  readonly timeout?: NodeJS.Timeout | number;
 }
 
 export interface IEvents {
