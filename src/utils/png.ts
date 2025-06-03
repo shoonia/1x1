@@ -1,9 +1,5 @@
 type R = readonly number[];
 
-const PNG_HEADER: R = [137, 80, 78, 71, 13, 10, 26, 10];
-const ZLIB_HEADER: R = [120, 1];
-const IEND: R = [0, 0, 0, 0, 73, 69, 78, 68, 174, 66, 96, 130];
-
 const CRC32_INIT = 4294967295;
 const ADLER32_MOD = 65521;
 const CRC32_POLY = 3988292384;
@@ -66,15 +62,29 @@ export const makePixelPng = (r: number, g: number, b: number, a: number): R => {
   const ihdrCrc = crc32(ihdr.slice(4));
   const ihdrFinal: R = [...ihdr, ...u32(ihdrCrc)];
   const len = scanline.length;
-  const nlen = (~len) & DEFLATE_NLEN_MASK;
-  const deflateBlock: R = [1, len & 255, (len >> 8), nlen & 255, (nlen >> 8), ...scanline];
+  const nlen = ~len & DEFLATE_NLEN_MASK;
   const adler: R = u32(adler32(scanline));
-  const zlibData: R = [...ZLIB_HEADER, ...deflateBlock, ...adler];
+
+  const zlibData: R = [
+    120, 1, 1,
+    len & 255,
+    len >> 8,
+    nlen & 255,
+    nlen >> 8,
+    ...scanline,
+    ...adler,
+  ];
+
   const idat: R = [...u32(zlibData.length), 73, 68, 65, 84, ...zlibData];
   const idatCrc = crc32(idat.slice(4));
   const idatFinal: R = [...idat, ...u32(idatCrc)];
 
-  return [...PNG_HEADER, ...ihdrFinal, ...idatFinal, ...IEND];
+  return [
+    137, 80, 78, 71, 13, 10, 26, 10,
+    ...ihdrFinal,
+    ...idatFinal,
+    0, 0, 0, 0, 73, 69, 78, 68, 174, 66, 96, 130,
+  ];
 };
 
 export const getDataUrl = (r: number, g: number, b: number, a: number): string =>
