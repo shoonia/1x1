@@ -45,17 +45,17 @@ const adler32 = (data: R): number => {
 };
 
 export const makePixelPng = (r: number, g: number, b: number, a: number): R => {
-  const isOpaque = a === 255;
+  const hasAlpha = a !== 255;
 
   const ihdr: R = [
     0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 1, 0, 0, 0, 1, 8,
-    isOpaque ? 2 : 6,
+    hasAlpha ? 6 : 2,
     0, 0, 0,
   ];
 
   const scanline = [0, r % 256, g % 256, b % 256];
 
-  if (!isOpaque) {
+  if (hasAlpha) {
     scanline.push(a % 256);
   }
 
