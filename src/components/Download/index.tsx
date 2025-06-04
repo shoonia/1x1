@@ -1,6 +1,5 @@
 import s from './styles.css';
 import { getState } from '../../store';
-import { getDataUrl, makePixelPng } from '../../utils/png';
 
 const createName = (hex: string) => `1x1_#${hex.toUpperCase()}.png`;
 
@@ -18,15 +17,14 @@ const content = (
 
 export const Download: JSX.FC = () => {
   const linkHandler: JSX.EventListener<HTMLAnchorElement> = ({ currentTarget: link }) => {
-    const { hex, r, g, b, a } = getState();
+    const { hex, url } = getState();
 
     link.download = createName(hex);
-    link.href = getDataUrl(r, g, b, a);
+    link.href = url;
   };
 
   const buttonHandler: JSX.EventListener = async () => {
-    const { hex, r, g, b, a } = getState();
-    const bytes = makePixelPng(r, g, b, a);
+    const { hex, bytes } = getState();
 
     const file = await showSaveFilePicker({
       suggestedName: createName(hex),

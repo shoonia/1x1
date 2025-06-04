@@ -1,12 +1,19 @@
-export interface IState {
-  readonly r: number,
-  readonly g: number,
-  readonly b: number,
-  readonly a: number,
-  readonly hex: string,
+export interface IRgba {
+  readonly r: number;
+  readonly g: number;
+  readonly b: number;
+  readonly a: number;
+}
+
+export interface IState extends IRgba {
   readonly radix: number;
   readonly toast: boolean;
   readonly timeout?: NodeJS.Timeout | number;
+  readonly hex: string;
+  readonly color: string;
+  readonly bytes: readonly number[];
+  readonly base64: string;
+  readonly url: string;
 }
 
 export interface IEvents {
@@ -15,4 +22,4 @@ export interface IEvents {
   'copy': void;
 }
 
-export type TRgba = keyof Pick<IState, 'r' | 'g' | 'b' | 'a'>;
+export type TRgba = keyof IRgba;

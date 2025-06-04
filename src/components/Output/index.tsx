@@ -6,7 +6,6 @@ import { Preset } from '../Preset';
 import { RadixSelect } from './RadixSelect';
 import { connect } from '../../store';
 import { createFavicon } from '../../utils/canvas';
-import { makePixelPng } from '../../utils/png';
 
 export const Output: JSX.FC = () => {
   const favicon = document.querySelector('link[rel="icon"]') as HTMLLinkElement;
@@ -21,29 +20,25 @@ export const Output: JSX.FC = () => {
 
   let timeout: NodeJS.Timeout | number;
 
-  connect('hex', 'radix', ({ hex, r, g, b, a }) => {
-    const hex8 = '#' + hex;
+  connect('bytes', 'radix', ({ url, color, bytes, base64, radix }) => {
+    const cssUrl = `url(${url})`;
 
-    const bytes = makePixelPng(r, g, b, a);
-    const data = 'data:image/png;base64,' + btoa(String.fromCharCode(...bytes));
-    const url = `url(${data})`;
+    setColor(color);
+    view.current.style.backgroundImage = cssUrl;
+    dataUrl.current.value = url;
+    dataBase64.current.value = base64;
+    dataLink.current.value = 'https://shoonia.github.io/1x1/' + color;
 
-    setColor(hex8);
-    view.current.style.backgroundImage = url;
-    dataUrl.current.value = data;
-    dataBase64.current.value = data.slice(22);
-    dataLink.current.value = 'https://shoonia.github.io/1x1/' + hex8;
-
-    dataBytes.current.value = bytes.join(' ');
+    dataBytes.current.value = bytes.map((i) => i.toString(radix)).join(' ');
     setSize(bytes.length);
 
     clearTimeout(timeout);
     timeout = setTimeout(() => {
-      const css = 'display:inline-block;border:1px solid #c6e2f7;border-radius:50%;width:1em;height:1em;background-image:' + url;
+      const css = 'display:inline-block;border:1px solid #c6e2f7;border-radius:50%;width:1em;height:1em;background-image:' + cssUrl;
 
-      location.hash = hex8;
-      favicon.href = createFavicon(hex8);
-      console.log('%c  ', css, hex8);
+      location.hash = color;
+      favicon.href = createFavicon(color);
+      console.log('%c  ', css, color);
     }, 300);
   });
 

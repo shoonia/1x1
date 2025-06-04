@@ -1,3 +1,5 @@
+import type { IRgba } from '../store/types';
+
 type R = readonly number[];
 
 const CRC32_INIT = 4294967295;
@@ -44,7 +46,7 @@ const adler32 = (data: R): number => {
   return ((y << 16) | x) >>> 0;
 };
 
-export const makePixelPng = (r: number, g: number, b: number, a: number): R => {
+export const makePixelPng = ({ r, g, b, a }: IRgba): R => {
   const hasAlpha = a !== 255;
 
   const ihdr: R = [
@@ -86,6 +88,3 @@ export const makePixelPng = (r: number, g: number, b: number, a: number): R => {
     0, 0, 0, 0, 73, 69, 78, 68, 174, 66, 96, 130,
   ];
 };
-
-export const getDataUrl = (r: number, g: number, b: number, a: number): string =>
-  'data:image/png;base64,' + btoa(String.fromCharCode(...makePixelPng(r, g, b, a)));
