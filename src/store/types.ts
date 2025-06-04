@@ -14,12 +14,14 @@ export interface IState extends IRgba {
   readonly bytes: readonly number[];
   readonly base64: string;
   readonly url: string;
+  readonly history: string[];
 }
 
 export interface IEvents {
-  'hex': string;
-  'rgba': readonly [param: TRgba, value: number];
-  'copy': void;
+  hex: string;
+  rgba: readonly [param: TRgba, value: number];
+  copy: never;
+  history: string;
 }
 
 export type TRgba = keyof IRgba;

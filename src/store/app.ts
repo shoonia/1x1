@@ -4,6 +4,7 @@ import type { IEvents, IRgba, IState } from './types';
 import { getDiff } from './helpers';
 import { createHex } from '../utils';
 import { makePixelPng } from '../utils/png';
+import { getHistory, HISTORY_LENGTH, saveHistory } from './storage';
 
 const calc = (hex: string, rgba: IRgba): Partial<IState> => {
   const bytes = makePixelPng(rgba);
@@ -30,9 +31,20 @@ export const app: StoreonModule<IState, IEvents> = (store) => {
     return {
       radix: 16,
       toast: false,
+      history: getHistory(),
       ...rgba,
       ...calc('', rgba),
     };
+  });
+
+  store.on('history', ({ history }, hex) => {
+    if (history.every((i) => i !== hex)) {
+      const newHistory = [hex].concat(history.slice(0, HISTORY_LENGTH - 1));
+
+      saveHistory(newHistory);
+
+      return { history: newHistory };
+    }
   });
 
   store.on('rgba', (state, [key, value]) => {
@@ -41,6 +53,7 @@ export const app: StoreonModule<IState, IEvents> = (store) => {
     const rgba: IRgba = { ...state, [key]: i };
     const hex = createHex(rgba);
 
+    store.dispatch('history', hex);
 
     return {
       [key]: i,
@@ -58,6 +71,8 @@ export const app: StoreonModule<IState, IEvents> = (store) => {
       b: i >> 8 & 255,
       a: i & 255,
     };
+
+    store.dispatch('history', hex);
 
     return getDiff(
       state,

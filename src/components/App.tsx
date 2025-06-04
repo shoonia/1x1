@@ -10,6 +10,7 @@ import { Stars } from './Stars';
 import { PixelGIF } from './PixelGIF';
 import { Toast } from './Toast';
 import { Download } from './Download';
+import { History } from './History';
 import { readyStore } from '../store';
 
 export const App: JSX.FC = () =>
@@ -37,6 +38,9 @@ export const App: JSX.FC = () =>
         <Download />
       </div>
     </main>
+    <aside class={s.history}>
+      <History />
+    </aside>
     <Toast />
     <footer class={s.footer}>
       <div class={s.left}>
