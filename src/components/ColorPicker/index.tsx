@@ -9,7 +9,7 @@ customElements.define('color-picker', HexAlphaBase);
 export const ColorPicker: JSX.FC = () => {
   const ready: JSX.Ref<HexAlphaBase> = (node) =>
     connect('hex', (state) => {
-      node.color = '#' + state.hex;
+      node.color = state.color;
     });
 
   const changed = (event: CustomEvent) =>

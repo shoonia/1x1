@@ -1,22 +1,39 @@
-# 1x1
+# 1x1 Pixel PNG Generator
 
 [![Stand with Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua/)
 
-Online generator creating one pixel transparent PNG image in base64 encoded:
+A fast, simple online tool to generate 1x1 pixel PNG images in any color (transparent, white, black, or custom RGBA). Download as PNG, copy as Base64, or get raw bytes for use in web design, CSS, or development.
 
-[https://shoonia.github.io/1x1/](https://shoonia.github.io/1x1/)
-
-Uses a Canvas for drawing pixel images. The size of images depends on the browser engine.
-
-| **Browser**   | white (`#ffffff`) | black (`#000000`) | `transparent` |
-|:-------------:|:-----------------:|:-----------------:|:-----------:|
-| Chrome `v91`  | 69 bytes          | 69 bytes          | 68 bytes    |
-| Firefox `v90` | 70 bytes          | 70 bytes          | 70 bytes    |
-| Chrome `v92`  | 82 bytes          | 82 bytes          | 81 bytes    |
-| Safari `v14`  | 161 bytes         | 163 bytes         | 161 bytes   |
+**Live Demo:** [https://shoonia.github.io/1x1/](https://shoonia.github.io/1x1/)
 
 ---
 
-Online generator creating one pixel GIF image (35 bytes) in Base64 encoded, Bytes or Download:
+## Features
+- Generate 1x1 PNG images in any color (including transparent)
+- Output as PNG file, Base64 string, or raw bytes
+- Copy to clipboard or download instantly
+- Minimal, accessible UI
+- No tracking, no ads, open source
 
-[https://shoonia.github.io/pixel-gif/](https://shoonia.github.io/pixel-gif/)
+## Usage
+1. Visit the [1x1 Pixel PNG Generator](https://shoonia.github.io/1x1/)
+2. Pick a color (or enter RGBA values)
+3. Download the PNG, copy Base64, or use the bytes as needed
+
+### Example: Using in HTML/CSS
+```html
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=" alt="1x1 transparent PNG">
+```
+
+---
+
+## Related Projects
+- **1x1 GIF Generator:** [https://shoonia.github.io/pixel-gif/](https://shoonia.github.io/pixel-gif/) — Create 1x1 GIF images (35 bytes) in Base64, bytes, or download.
+
+## License
+MIT
+
+---
+
+## Stand with Ukraine 🇺🇦
+[Support Ukraine](https://stand-with-ukraine.pp.ua/) in the face of aggression.

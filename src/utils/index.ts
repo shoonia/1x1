@@ -1,6 +1,6 @@
 import rgbHex from 'rgb-hex';
 
-import type { IState } from '../store/types';
+import type { IRgba } from '../store/types';
 import { colors, isColorsKey } from './colors';
 
 const SYMBOL_HASH = /^#/;
@@ -8,7 +8,7 @@ export const NOT_HEXADECIMAL = /[^\da-f]/;
 
 export const randomHex = () => crypto.randomUUID().slice(-6) + 'ff';
 
-export const createHex = ({ r, g, b, a }: IState) => {
+export const createHex = ({ r, g, b, a }: IRgba) => {
   return [r, g, b, a].map((i) => {
     const hex = i.toString(16);
 
