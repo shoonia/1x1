@@ -28,11 +28,13 @@ const u32 = (n: number): R => [
   n & 255,
 ];
 
-const crc32 = (buf: number[]): number => {
+const crc32 = (buf: R): R => {
   let c = CRC32_INIT;
-  for (let i = 0; i < buf.length; i++) c = CRC32_TABLE[(c ^ buf[i]) & 255] ^ (c >>> 8);
+  for (let i = 0; i < buf.length; i++) {
+    c = CRC32_TABLE[(c ^ buf[i]) & 255] ^ (c >>> 8);
+  }
 
-  return (c ^ CRC32_INIT) >>> 0;
+  return u32((c ^ CRC32_INIT) >>> 0);
 };
 
 const adler32 = (data: R): number => {
@@ -47,44 +49,64 @@ const adler32 = (data: R): number => {
 };
 
 export const makePixelPng = ({ r, g, b, a }: IRgba): R => {
-  const hasAlpha = a !== 255;
+  const hasAlpha = a < 255;
 
   const ihdr: R = [
-    0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 1, 0, 0, 0, 1, 8,
+    73, 72, 68, 82, 0, 0, 0, 1, 0, 0, 0, 1, 8,
     hasAlpha ? 6 : 2,
     0, 0, 0,
   ];
 
-  const scanline = [0, r % 256, g % 256, b % 256];
+  const scanline = [0, r, g, b];
 
   if (hasAlpha) {
-    scanline.push(a % 256);
+    scanline.push(a);
   }
 
-  const ihdrCrc = crc32(ihdr.slice(4));
-  const ihdrFinal: R = [...ihdr, ...u32(ihdrCrc)];
   const len = scanline.length;
-  const nlen = ~len & DEFLATE_NLEN_MASK;
-  const adler: R = u32(adler32(scanline));
+  const nlen = DEFLATE_NLEN_MASK - len;
 
   const zlibData: R = [
-    120, 1, 1,
+    // Zlib header
+    120, 1,
+    // Block type (fixed Huffman)
+    1,
+    // Block length (2 bytes)
     len & 255,
     len >> 8,
+    // Block length one's complement (2 bytes)
     nlen & 255,
     nlen >> 8,
+    // Compressed pixel data (scanline)
     ...scanline,
-    ...adler,
+    // Adler-32 checksum (4 bytes)
+    ...u32(adler32(scanline)),
   ];
 
-  const idat: R = [...u32(zlibData.length), 73, 68, 65, 84, ...zlibData];
-  const idatCrc = crc32(idat.slice(4));
-  const idatFinal: R = [...idat, ...u32(idatCrc)];
+  const idat: R = [
+    // IDAT Chunk Type
+    73, 68, 65, 84,
+    // Data (zlibData)
+    ...zlibData,
+  ];
 
   return [
+    // PNG Signature (8 bytes)
     137, 80, 78, 71, 13, 10, 26, 10,
-    ...ihdrFinal,
-    ...idatFinal,
+    // IHDR Chunk
+    // - Length (4 bytes)
+    0, 0, 0, 13,
+    // - Type (4 bytes)
+    ...ihdr,
+    // - CRC (4 bytes)
+    ...crc32(ihdr),
+    // IDAT Chunk
+    // - Length (4 bytes)
+    ...u32(zlibData.length),
+    ...idat,
+    // - CRC (4 bytes)
+    ...crc32(idat),
+    // IEND Chunk (12 bytes)
     0, 0, 0, 0, 73, 69, 78, 68, 174, 66, 96, 130,
   ];
 };
