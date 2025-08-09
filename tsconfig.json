@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "ESNext",
-    "target": "ES2022",
+    "target": "ESNext",
     "moduleResolution": "node",
     "jsx": "react-jsx",
     "jsxImportSource": "jsx-dom-runtime",

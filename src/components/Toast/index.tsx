@@ -13,7 +13,13 @@ export const Toast: JSX.FC = () => {
   };
 
   return (
-    <div ref={ready} class={s.toast} role="status">
+    <div
+      ref={ready}
+      class={s.toast}
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    >
       Copied to clipboard
     </div>
   );

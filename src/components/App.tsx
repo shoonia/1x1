@@ -11,12 +11,13 @@ import { PixelGIF } from './PixelGIF';
 import { Toast } from './Toast';
 import { Download } from './Download';
 import { History } from './History';
+import { Preview } from './Preview';
 import { readyStore } from '../store';
 
 export const App: JSX.FC = () =>
   <div ref={readyStore} class={s.page}>
     <header class={s.header}>
-      <a href="./" class={s.left} aria-current="page">
+      <a href="./" class={s.left} aria-current="page" aria-label="Reload page">
         1x1 Pixel PNG
       </a>
       <div class={s.right}>
@@ -24,7 +25,7 @@ export const App: JSX.FC = () =>
         <RandomColor />
       </div>
     </header>
-    <aside class={s.toolbar}>
+    <aside class={s.toolbar} aria-label="Color input controls">
       <HexInputs />
       <RgbaInputs />
       <ColorPicker />
@@ -34,11 +35,12 @@ export const App: JSX.FC = () =>
         <h1 class={s.title}>
           One pixel Base64 encoded transparent PNG generator
         </h1>
+        <Preview />
         <Output />
         <Download />
       </div>
     </main>
-    <aside class={s.history}>
+    <aside class={s.history} aria-label="Color history">
       <History />
     </aside>
     <Toast />

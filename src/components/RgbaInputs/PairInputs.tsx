@@ -11,7 +11,7 @@ interface Props {
 export const PairInputs: JSX.FC<Props> = ({ param }) => {
   const number = useRef<HTMLInputElement>();
   const range = useRef<HTMLInputElement>();
-  const label = `color channel "${param}"`;
+  const label = `Color channel "${param}"`;
 
   const input: JSX.InputEventListener<HTMLInputElement> = (event) =>
     dispatch('rgba', [param, event.currentTarget.valueAsNumber]);
@@ -31,6 +31,7 @@ export const PairInputs: JSX.FC<Props> = ({ param }) => {
       <input
         ref={number}
         type="number"
+        name={`${param}-number`}
         class={s.number}
         on:input={input}
         max={255}
@@ -41,6 +42,7 @@ export const PairInputs: JSX.FC<Props> = ({ param }) => {
       <input
         ref={range}
         type="range"
+        name={`${param}-range`}
         class={s.range}
         on:input={input}
         max={255}

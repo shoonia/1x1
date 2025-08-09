@@ -24,6 +24,8 @@ export const ColorPicker: JSX.FC = () => {
         ref={ready}
         class={s.picker}
         on:color-changed={changed}
+        aria-label="Color picker"
+        role="group"
       />
     </Group>
   );

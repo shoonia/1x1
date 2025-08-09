@@ -12,5 +12,6 @@ export const Item: JSX.FC<Props> = ({ color, title }) =>
       style={{ backgroundColor: color }}
       class={s.link}
       title={title}
+      aria-label={`Select ${title} color`}
     />
   </li>;

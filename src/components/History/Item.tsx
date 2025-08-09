@@ -10,6 +10,6 @@ export const Item: JSX.FC<Props> = ({ hex }) =>
       class={s.link}
       href={hex}
       style={{ backgroundColor: hex }}
-      aria-label={`color ${hex}`}
+      aria-label={`Color ${hex}`}
     />
   </li>;
