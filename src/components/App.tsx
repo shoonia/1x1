@@ -11,6 +11,7 @@ import { PixelGIF } from './PixelGIF';
 import { Toast } from './Toast';
 import { Download } from './Download';
 import { History } from './History';
+import { Preview } from './Preview';
 import { readyStore } from '../store';
 
 export const App: JSX.FC = () =>
@@ -34,6 +35,7 @@ export const App: JSX.FC = () =>
         <h1 class={s.title}>
           One pixel Base64 encoded transparent PNG generator
         </h1>
+        <Preview />
         <Output />
         <Download />
       </div>
