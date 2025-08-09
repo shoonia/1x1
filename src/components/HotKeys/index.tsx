@@ -43,7 +43,7 @@ export const HotKeys: JSX.FC = () =>
         class={s.btn}
         on:click={undo}
         accessKey="z"
-        aria-label='Undo last action'
+        aria-label="Undo last action"
       >
         <kbd class={s.comb}>
           <span class={s.key}>{$mod}</span>
