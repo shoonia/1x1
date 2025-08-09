@@ -1,11 +1,13 @@
 import s from './styles.css';
 import { getState } from '../../store';
 
+const downloadLabel = 'Download 1x1 pixel PNG';
+
 const createName = (hex: string) => `1x1_#${hex.toUpperCase()}.png`;
 
 const content = (
   <>
-    <svg width="1em" viewBox="0 0 768 768">
+    <svg width="1em" viewBox="0 0 768 768" aria-hidden="true">
       <path
         fill="currentcolor"
         d="M691.199 499.2v153.6c0 10.598-4.262 20.16-11.251 27.149s-16.55 11.251-27.149 11.251H115.2c-10.598 0-20.16-4.262-27.149-11.251S76.8 663.399 76.8 652.8V499.2c0-21.196-17.204-38.4-38.4-38.4S0 478.003 0 499.2v153.6c0 31.796 12.941 60.672 33.754 81.446S83.405 768 115.2 768h537.599c31.795 0 60.672-12.941 81.446-33.754s33.754-49.651 33.754-81.446V499.2c0-21.196-17.203-38.4-38.4-38.4s-38.4 17.203-38.4 38.4zM422.4 406.503V38.401c0-21.197-17.204-38.4-38.4-38.4s-38.4 17.203-38.4 38.4v368.102L219.149 280.052c-15.015-15.015-39.322-15.015-54.298 0s-15.015 39.322 0 54.298L356.85 526.349c3.532 3.533 7.757 6.375 12.442 8.333s9.716 2.919 14.707 2.919c9.831 0 19.66-3.763 27.148-11.251l191.999-191.999c15.015-15.015 15.015-39.322 0-54.298s-39.322-15.015-54.298 0z"
@@ -43,11 +45,11 @@ export const Download: JSX.FC = () => {
 
   return typeof showSaveFilePicker === 'function'
     ? (
-      <button on:click={buttonHandler} type="button" class={s.btn}>
+      <button on:click={buttonHandler} type="button" class={s.btn} aria-label={downloadLabel}>
         {content}
       </button>
     ) : (
-      <a on:click={linkHandler} role="button" class={s.btn} href="#">
+      <a on:click={linkHandler} role="button" class={s.btn} href="#" aria-label={downloadLabel}>
         {content}
       </a>
     );

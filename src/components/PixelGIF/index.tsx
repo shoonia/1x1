@@ -12,7 +12,7 @@ export const PixelGIF: JSX.FC = () => {
       ref={ready}
       href="https://shoonia.github.io/pixel-gif/"
       class={s.link}
-      aria-label="One pixel Base64 encoded GIF generator"
+      aria-label="Generate 1x1 pixel GIF image"
     >
       1x1 Pixel GIF <small>(35 bytes)</small>
     </a>

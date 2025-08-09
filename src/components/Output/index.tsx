@@ -44,25 +44,28 @@ export const Output: JSX.FC = () => {
 
   return (
     <>
-      <div ref={view} class={s.view}>
-        <code class={s.color}>
+      <div ref={view} class={s.view} role="img" aria-label="Color preview">
+        <code class={s.color} aria-label="Current color code">
           {color}
         </code>
-        <code class={s.size}>
+        <code class={s.size} aria-label="PNG image size">
           1x1 ({size} bytes)
         </code>
-        <div class={s.preset}>
+        <div class={s.preset} aria-label="Color presets">
           <Preset />
         </div>
       </div>
       <fieldset class={s.box}>
-        <TextInput ref={dataUrl} label="Data URL:" />
-        <TextInput ref={dataBase64} label="Base64:" />
+        <legend class="sr-only">
+          Output formats
+        </legend>
+        <TextInput ref={dataUrl} label="Data URL" />
+        <TextInput ref={dataBase64} label="Base64" />
         <div class={s.bytes}>
-          <TextInput ref={dataBytes} label="Bytes:" />
+          <TextInput ref={dataBytes} label="Bytes" />
           <RadixSelect />
         </div>
-        <TextInput ref={dataLink} label="Share Link:" />
+        <TextInput ref={dataLink} label="Share Link" />
       </fieldset>
     </>
   );

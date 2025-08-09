@@ -9,7 +9,8 @@ export const RadixSelect: JSX.FC = () => {
     <select
       on:change={change}
       class={s.radix}
-      aria-label="byte base"
+      aria-label="Number base for byte display"
+      name="radix"
     >
       {[16, 10, 8, 2].map((i) =>
         <option value={i}>

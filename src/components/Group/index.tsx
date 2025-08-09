@@ -11,6 +11,9 @@ export const Group: JSX.FC<Props> = ({ open, title, children }) =>
       {title}
     </summary>
     <fieldset>
+      <legend class="sr-only">
+        {title} controls
+      </legend>
       {children}
     </fieldset>
   </details>;

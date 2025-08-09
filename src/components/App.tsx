@@ -16,7 +16,7 @@ import { readyStore } from '../store';
 export const App: JSX.FC = () =>
   <div ref={readyStore} class={s.page}>
     <header class={s.header}>
-      <a href="./" class={s.left} aria-current="page">
+      <a href="./" class={s.left} aria-current="page" aria-label="Reload page">
         1x1 Pixel PNG
       </a>
       <div class={s.right}>
@@ -24,7 +24,7 @@ export const App: JSX.FC = () =>
         <RandomColor />
       </div>
     </header>
-    <aside class={s.toolbar}>
+    <aside class={s.toolbar} aria-label="Color input controls">
       <HexInputs />
       <RgbaInputs />
       <ColorPicker />
@@ -38,7 +38,7 @@ export const App: JSX.FC = () =>
         <Download />
       </div>
     </main>
-    <aside class={s.history}>
+    <aside class={s.history} aria-label="Color history">
       <History />
     </aside>
     <Toast />

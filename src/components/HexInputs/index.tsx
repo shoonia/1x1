@@ -50,7 +50,7 @@ export const HexInputs: JSX.FC = () => {
           maxLength={25}
           spellcheck="false"
           class={s.inp}
-          aria-label="color"
+          aria-label="Hex color code"
         />
         <input
           ref={readyAlpha}
@@ -59,7 +59,7 @@ export const HexInputs: JSX.FC = () => {
           maxLength={2}
           spellcheck="false"
           class={s.inp}
-          aria-label="alpha (opacity)"
+          aria-label="Hex alpha (opacity) code"
         />
         <DataList />
       </search>
