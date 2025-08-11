@@ -76,6 +76,7 @@
 @media (max-width: 700px) {
   .page {
     display: block;
+    height: auto;
   }
 
   .left {
