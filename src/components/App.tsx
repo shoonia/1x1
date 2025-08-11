@@ -43,14 +43,14 @@ export const App: JSX.FC = () =>
     <aside class={s.history} aria-label="Color history">
       <History />
     </aside>
-    <Toast />
     <footer class={s.footer}>
-      <div class={s.left}>
+      <section class={s.left} aria-label="Keyboard shortcuts">
         <HotKeys />
-      </div>
-      <div class={s.right}>
+      </section>
+      <section class={s.right} aria-label="External links">
         <Stars />
         <PixelGIF />
-      </div>
+      </section>
     </footer>
+    <Toast />
   </div>;

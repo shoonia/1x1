@@ -37,7 +37,7 @@ addEventListener('keydown', createKeybindingsHandler({
 export const HotKeys: JSX.FC = () =>
   <div class={s.box}>
     <div>
-      <div>Undo:</div>
+      <div>Undo</div>
       <button
         type="button"
         class={s.btn}
@@ -52,7 +52,7 @@ export const HotKeys: JSX.FC = () =>
       </button>
     </div>
     <div>
-      <div>Redo:</div>
+      <div>Redo</div>
       <button
         type="button"
         class={s.btn}

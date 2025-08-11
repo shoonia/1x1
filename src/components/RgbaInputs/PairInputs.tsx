@@ -11,7 +11,7 @@ interface Props {
 export const PairInputs: JSX.FC<Props> = ({ param }) => {
   const number = useRef<HTMLInputElement>();
   const range = useRef<HTMLInputElement>();
-  const label = `Color channel "${param}"`;
+  const displayName = param.toUpperCase();
 
   const input: JSX.InputEventListener<HTMLInputElement> = (event) =>
     dispatch('rgba', [param, event.currentTarget.valueAsNumber]);
@@ -24,9 +24,9 @@ export const PairInputs: JSX.FC<Props> = ({ param }) => {
   });
 
   return (
-    <div class={s.box}>
+    <div class={s.box} role="group" aria-label={`${displayName} color channel`}>
       <span class={s.label}>
-        {param}
+        {displayName}
       </span>
       <input
         ref={number}
@@ -37,7 +37,7 @@ export const PairInputs: JSX.FC<Props> = ({ param }) => {
         max={255}
         min={0}
         step={1}
-        aria-label={label}
+        aria-label={`${displayName} number input`}
       />
       <input
         ref={range}
@@ -48,7 +48,7 @@ export const PairInputs: JSX.FC<Props> = ({ param }) => {
         max={255}
         min={0}
         step={1}
-        aria-label={label}
+        aria-label={`${displayName} slider`}
       />
     </div>
   );

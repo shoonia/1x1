@@ -39,7 +39,7 @@ export const HexInputs: JSX.FC = () => {
 
   return (
     <Group open title="HEX">
-      <search class={s.box}>
+      <div class={s.box}>
         <input
           ref={readyColor}
           type="search"
@@ -51,6 +51,7 @@ export const HexInputs: JSX.FC = () => {
           spellcheck="false"
           class={s.inp}
           aria-label="Hex color code"
+          name="hex-color"
         />
         <input
           ref={readyAlpha}
@@ -60,9 +61,10 @@ export const HexInputs: JSX.FC = () => {
           spellcheck="false"
           class={s.inp}
           aria-label="Hex alpha (opacity) code"
+          name="hex-alpha"
         />
         <DataList />
-      </search>
+      </div>
     </Group>
   );
 };

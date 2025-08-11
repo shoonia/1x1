@@ -8,7 +8,6 @@
 .label {
   display: inline-block;
   min-width: 1em;
-  text-transform: uppercase;
 }
 
 .number {
