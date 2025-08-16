@@ -17,13 +17,6 @@ export default ts.config(
     rules: {
       'no-else-return': 'error',
       'no-trailing-spaces': 'error',
-      'indent': [
-        'error',
-        2,
-        {
-          'SwitchCase': 1,
-        },
-      ],
       'quotes': [
         'error',
         'single',
