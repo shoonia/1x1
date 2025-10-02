@@ -1,5 +1,5 @@
 import js from '@eslint/js';
-import { defineConfig } from 'eslint/config';
+import { defineConfig } from '@eslint/config-helpers';
 import jsx from 'jsx-dom-runtime/eslint-plugin';
 import ts from 'typescript-eslint';
 
@@ -18,11 +18,11 @@ export default defineConfig(
     rules: {
       'no-else-return': 'error',
       'no-trailing-spaces': 'error',
-      'quotes': [
+      quotes: [
         'error',
         'single',
       ],
-      'semi': [
+      semi: [
         'error',
         'always',
       ],
