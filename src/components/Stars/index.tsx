@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 export const Stars: JSX.FC = () =>
-  <div class={s.box}>
+  <nav class={s.box}>
     <a
       href="https://github.com/shoonia/1x1"
       aria-label="Star this project on GitHub"
@@ -29,4 +29,4 @@ export const Stars: JSX.FC = () =>
     >
       {stars}
     </a>
-  </div>;
+  </nav>;
