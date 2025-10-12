@@ -199,7 +199,7 @@ export default ({ NODE_ENV }) => {
           useShortDoctype: true,
         },
         templateParameters: {
-          homepage: pkg.homepage,
+          pkg,
           isProd,
           colors,
         },
@@ -232,3 +232,4 @@ export default ({ NODE_ENV }) => {
     },
   };
 };
+

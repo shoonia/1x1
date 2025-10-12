@@ -1,22 +1,47 @@
 <%
   var title = '1x1 Pixel PNG';
   var description = 'Generate 1x1 pixel PNG images online. Create transparent, white, or black 1x1 pixel images in Base64, Bytes, or download formats. Perfect for web design and development.';
+  var homepage = pkg.homepage;
   var image = new URL('favicon.png', homepage).href;
 
   var ldJson = JSON.stringify({
     '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    url: homepage,
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: `${homepage}#{color}`,
-      'query-input': {
-        '@type': 'PropertyValueSpecification',
-        valueRequired: true,
-        valueMaxlength: 20,
-        valueName: 'color'
-      }
-    }
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        url: homepage,
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: `${homepage}#{color}`,
+          'query-input': {
+            '@type': 'PropertyValueSpecification',
+            valueRequired: true,
+            valueMaxLength: 20,
+            valueName: 'color',
+          },
+        },
+      },
+      {
+        '@type': 'SoftwareApplication',
+        name: title,
+        description: description,
+        url: homepage,
+        image: image,
+        applicationCategory: 'DeveloperTool',
+        operatingSystem: 'Web',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+        softwareVersion: pkg.version,
+        publisher: {
+          '@type': 'Organization',
+          name: pkg.author.name,
+          url: pkg.author.url,
+        },
+      },
+    ],
   });
 %>
 
