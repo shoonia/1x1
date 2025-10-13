@@ -1,6 +1,6 @@
 import s from './styles.css';
 import { connect, HISTORY_LENGTH } from '../../store';
-import { Item } from './Item';
+import { Item } from '../Item';
 
 let isRendered = false;
 
