@@ -1,0 +1,30 @@
+.item {
+  display: block;
+  margin: 1px;
+  width: var(--size);
+  height: var(--size);
+  border: var(--border);
+}
+
+.link {
+  display: block;
+  width: var(--size);
+  height: var(--size);
+  color: var(--c-txt);
+}
+
+.link::before {
+  content: attr(data-title);
+  position: absolute;
+  right: 2em;
+  font-size: 90%;
+  font-family: monospace;
+  background-color: white;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
+  padding: 1px 1em;
+  display: none;
+}
+
+.link:hover::before {
+  display: block;
+}
