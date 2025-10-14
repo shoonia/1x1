@@ -28,12 +28,12 @@ export const Preview: JSX.FC = () => {
 
   return (
     <div ref={ready} class={s.view} role="img" aria-label="Color preview">
-      <code class={s.color} aria-label="Current color code">
+      <output class={s.color} aria-label="Current color code">
         {color}
-      </code>
-      <code class={s.size} aria-label="PNG image size">
+      </output>
+      <output class={s.size} aria-label="PNG image size">
         1x1 ({size} bytes)
-      </code>
+      </output>
       <div class={s.preset} aria-label="Color presets">
         <Preset />
       </div>
