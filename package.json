@@ -9,7 +9,8 @@
     "start": "NODE_NO_WARNINGS=1 webpack serve --env NODE_ENV=development",
     "build": "NODE_NO_WARNINGS=1 webpack build --env NODE_ENV=production",
     "lint": "eslint 'src/**/*.{ts,tsx}' && stylelint src/**/*.css",
-    "serve": "python3 -m http.server -d dist"
+    "serve": "python3 -m http.server -d dist",
+    "test": "NODE_NO_WARNINGS=1 node --experimental-strip-types --test tests/**/*.spec.ts"
   },
   "dependencies": {
     "jsx-dom-runtime": "^0.78.0",

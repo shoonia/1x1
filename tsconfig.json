@@ -24,12 +24,14 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "verbatimModuleSyntax": true,
+    "allowImportingTsExtensions": true,
     "lib": [
       "ESNext",
       "DOM"
     ]
   },
   "include": [
-    "src"
+    "src",
+    "tests"
   ]
 }

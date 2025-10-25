@@ -7,19 +7,15 @@ const ADLER32_MOD = 65521;
 const CRC32_POLY = 3988292384;
 const DEFLATE_NLEN_MASK = 65535;
 
-const createCrc32Table = (): R => {
-  const table: number[] = [];
-  for (let i = 0; i < 256; i++) {
-    let c = i;
-    for (let k = 0; k < 8; k++) {
-      c = (c & 1) ? (CRC32_POLY ^ (c >>> 1)) : (c >>> 1);
-    }
-    table[i] = c >>> 0;
-  }
-  return table;
-};
+const CRC32_TABLE = Array<number>(256);
 
-const CRC32_TABLE: R = createCrc32Table();
+for (let i = 0; i < 256; i++) {
+  let c = i;
+  for (let k = 0; k < 8; k++) {
+    c = (c & 1) ? (CRC32_POLY ^ (c >>> 1)) : (c >>> 1);
+  }
+  CRC32_TABLE[i] = c >>> 0;
+}
 
 const u32 = (n: number): R => [
   (n >>> 24) & 255,
@@ -51,12 +47,12 @@ const adler32 = (data: R): number => {
 export const makePixelPng = ({ r, g, b, a }: IRgba): R => {
   const hasAlpha = a < 255;
 
-  const ihdr: R = [
-    73, 72, 68, 82, 0, 0, 0, 1, 0, 0, 0, 1, 8,
-    hasAlpha ? 6 : 2,
-    0, 0, 0,
-  ];
+  // IHDR CRC (precomputed)
+  const ihdrCrc = hasAlpha
+    ? [31, 21, 196, 137]
+    : [144, 119, 83, 222];
 
+  // scanline: filter byte + pixel channels
   const scanline = [0, r, g, b];
 
   if (hasAlpha) {
@@ -66,47 +62,43 @@ export const makePixelPng = ({ r, g, b, a }: IRgba): R => {
   const len = scanline.length;
   const nlen = DEFLATE_NLEN_MASK - len;
 
-  const zlibData: R = [
-    // Zlib header
-    120, 1,
-    // Block type (fixed Huffman)
+  // IDAT chunk
+  const idat: R = [
+    // 'IDAT'
+    73, 68, 65, 84,
+    // zlib header
+    120,
     1,
-    // Block length (2 bytes)
+    // deflate stored final block
+    1,
+    // LEN (LE)
     len & 255,
     len >> 8,
-    // Block length one's complement (2 bytes)
+    // NLEN (LE, ~LEN)
     nlen & 255,
     nlen >> 8,
-    // Compressed pixel data (scanline)
+    // scanline
     ...scanline,
-    // Adler-32 checksum (4 bytes)
+    // adler32
     ...u32(adler32(scanline)),
   ];
 
-  const idat: R = [
-    // IDAT Chunk Type
-    73, 68, 65, 84,
-    // Data (zlibData)
-    ...zlibData,
-  ];
-
   return [
-    // PNG Signature (8 bytes)
+    // PNG signature
     137, 80, 78, 71, 13, 10, 26, 10,
-    // IHDR Chunk
-    // - Length (4 bytes)
+    // IHDR len(13) + 'IHDR'
     0, 0, 0, 13,
-    // - Type (4 bytes)
-    ...ihdr,
-    // - CRC (4 bytes)
-    ...crc32(ihdr),
-    // IDAT Chunk
-    // - Length (4 bytes)
-    ...u32(zlibData.length),
+    73, 72, 68, 82,
+    // IHDR: w,h,bit,color,comp,filter,interlace
+    0, 0, 0, 1, 0, 0, 0, 1, 8, hasAlpha ? 6 : 2, 0, 0, 0,
+    // IHDR CRC
+    ...ihdrCrc,
+    // IDAT len + data
+    0, 0, 0, hasAlpha ? 16 : 15,
     ...idat,
-    // - CRC (4 bytes)
+    // IDAT CRC
     ...crc32(idat),
-    // IEND Chunk (12 bytes)
+    // IEND
     0, 0, 0, 0, 73, 69, 78, 68, 174, 66, 96, 130,
   ];
 };

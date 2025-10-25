@@ -21,6 +21,7 @@ jobs:
     - run: npm ci
     - run: npm run lint
     - run: npm run build
+    - run: npm test
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
