@@ -13,7 +13,7 @@ for (let i = 0; i < 256; i++) {
   while (k--) {
     c = (c & 1) ? (CRC32_POLY ^ (c >>> 1)) : (c >>> 1);
   }
-  CRC32_TABLE[i] = c;
+  CRC32_TABLE[i] = c >>> 0;
 }
 
 const u32 = (n: number): R => [
