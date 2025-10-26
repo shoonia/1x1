@@ -4,6 +4,11 @@ import jsx from 'jsx-dom-runtime/eslint-plugin';
 import ts from 'typescript-eslint';
 
 export default defineConfig(
+  {
+    ignores: [
+      'tests'
+    ],
+  },
   js.configs.recommended,
   ts.configs.recommended,
   jsx,
