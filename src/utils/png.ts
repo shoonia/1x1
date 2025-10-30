@@ -61,7 +61,6 @@ export const makePixelPng = ({ r, g, b, a }: IRgba): R => {
 
   // IDAT chunk
   const idat: R = [
-    // 'IDAT'
     73, 68, 65, 84,
     // zlib header
     120,
@@ -83,11 +82,15 @@ export const makePixelPng = ({ r, g, b, a }: IRgba): R => {
   return [
     // PNG signature
     137, 80, 78, 71, 13, 10, 26, 10,
-    // IHDR len(13) + 'IHDR'
-    0, 0, 0, 13,
-    73, 72, 68, 82,
-    // IHDR: w,h,bit,color,comp,filter,interlace
-    0, 0, 0, 1, 0, 0, 0, 1, 8, (hasAlpha ? 6 : 2), 0, 0, 0,
+    0, 0, 0, 13, // IHDR len
+    73, 72, 68, 82, // IHDR
+    0, 0, 0, 1, // width
+    0, 0, 0, 1, // height
+    8, // bit depth
+    hasAlpha ? 6 : 2, // color type
+    0, // compression
+    0, // filter
+    0, // interlace
     // IHDR CRC
     ...ihdrCrc,
     // IDAT len + data
