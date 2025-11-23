@@ -5,6 +5,7 @@
   height: var(--size);
   border: var(--border);
 }
+
 .link {
   color: var(--c-txt);
 }

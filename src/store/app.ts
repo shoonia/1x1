@@ -38,7 +38,7 @@ export const app: StoreonModule<IState, IEvents> = (store) => {
   });
 
   store.on('history', ({ history }, hex) => {
-    if (history.every((i) => i !== hex)) {
+    if (!history.includes(hex)) {
       const newHistory = [hex].concat(history.slice(0, HISTORY_LENGTH - 1));
 
       saveHistory(newHistory);
