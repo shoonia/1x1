@@ -13,7 +13,7 @@
     "test": "NODE_NO_WARNINGS=1 node --experimental-strip-types --test tests/**/*.spec.ts"
   },
   "dependencies": {
-    "jsx-dom-runtime": "^0.78.1",
+    "jsx-dom-runtime": "^0.79.1",
     "rgb-hex": "^4.1.0",
     "storeon-velo": "^5.0.0",
     "tinykeys": "^3.0.0",
