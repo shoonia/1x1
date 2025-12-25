@@ -40,6 +40,16 @@
           name: pkg.author.name,
           url: pkg.author.url,
         },
+        author: {
+          '@type': 'Person',
+          name: pkg.author.name,
+          url: pkg.author.url,
+        },
+        isRelatedTo: {
+          '@type': 'SoftwareApplication',
+          name: '1x1 GIF Generator',
+          url: 'https://shoonia.github.io/pixel-gif/'
+        },
         license: "https://github.com/shoonia/1x1/blob/master/LICENSE"
       },
     ],
@@ -57,6 +67,7 @@
     <link rel="preload" as="fetch" fetchpriority="high" href="https://api.github.com/repos/shoonia/1x1" crossorigin="anonymous">
   <% } %>
   <link rel="canonical" href="<%= homepage %>">
+  <link rel="alternative" type="image/gif" href="https://shoonia.github.io/pixel-gif/" title="1x1 GIF Generator - Create 1x1 GIF images">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   <meta name="google-site-verification" content="JkNxAfkbyATcDv733CZNZPVT9UPc4rJNXxd31OgDwvY">
   <meta name="theme-color" content="#ffffff">
