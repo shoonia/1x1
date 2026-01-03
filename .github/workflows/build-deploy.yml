@@ -16,12 +16,11 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: 24
-        cache: npm
 
-    - run: npm ci
-    - run: npm run lint
-    - run: npm run build
-    - run: npm test
+    - run: yarn install
+    - run: yarn run lint
+    - run: yarn run build
+    - run: yarn test
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3

@@ -4,3 +4,6 @@ dist/
 .DS_Store
 .cache
 *.log*
+yarn.lock
+.yarnrc.yml
+.yarn/

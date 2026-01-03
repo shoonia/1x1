@@ -14,9 +14,8 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: 24
-        cache: npm
 
-    - run: npm ci
+    - run: npm install
     - run: npx tsc --noEmit
     - run: npx eslint 'src/**/*.{ts,tsx}'
     - run: npx stylelint src/**/*.css
