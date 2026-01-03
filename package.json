@@ -10,6 +10,7 @@
     "build": "NODE_NO_WARNINGS=1 webpack build --env NODE_ENV=production",
     "lint": "eslint 'src/**/*.{ts,tsx}' && stylelint src/**/*.css",
     "serve": "python3 -m http.server -d dist",
+    "types": "tsc --noEmit",
     "test": "NODE_NO_WARNINGS=1 node --experimental-strip-types --test tests/**/*.spec.ts"
   },
   "dependencies": {

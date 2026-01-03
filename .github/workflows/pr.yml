@@ -15,7 +15,8 @@ jobs:
       with:
         node-version: 24
 
-    - run: npm install
-    - run: npx tsc --noEmit
-    - run: npx eslint 'src/**/*.{ts,tsx}'
-    - run: npx stylelint src/**/*.css
+    - run: yarn install
+    - run: yarn types
+    - run: yarn run lint
+    - run: yarn run build
+    - run: yarn test

@@ -18,6 +18,7 @@ jobs:
         node-version: 24
 
     - run: yarn install
+    - run: yarn types
     - run: yarn run lint
     - run: yarn run build
     - run: yarn test
