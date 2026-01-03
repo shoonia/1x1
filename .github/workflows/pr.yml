@@ -19,6 +19,8 @@ jobs:
       run: corepack enable
 
     - run: yarn install
+      env:
+        YARN_ENABLE_HARDENED_MODE: 0
     - run: yarn types
     - run: yarn run lint
     - run: yarn run build
