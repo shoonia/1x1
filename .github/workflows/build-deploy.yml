@@ -20,7 +20,7 @@ jobs:
     - name: Enable Corepack (Yarn 4)
       run: corepack enable
 
-    - run: yarn install --immutable=false
+    - run: yarn install
       env:
         YARN_ENABLE_IMMUTABLE_INSTALLS: 0
     - run: yarn types
