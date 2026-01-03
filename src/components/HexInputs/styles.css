@@ -1,7 +1,7 @@
 .box {
   display: grid;
   grid-template-columns: auto 4em;
-  grid-gap: 1em;
+  gap: 1em;
   align-items: end;
 }
 
