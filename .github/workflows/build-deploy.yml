@@ -17,6 +17,9 @@ jobs:
       with:
         node-version: 24
 
+    - name: Enable Corepack (Yarn 4)
+      run: corepack enable
+
     - run: yarn install
     - run: yarn types
     - run: yarn run lint
