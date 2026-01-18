@@ -186,7 +186,7 @@ export default ({ NODE_ENV }) => {
     plugins: [
       new HtmlWebpackPlugin({
         filename: 'index.html',
-        inject: 'head',
+        inject: 'body',
         template: resolveApp('src/index.ejs'),
         scriptLoading: 'module',
         favicon: resolveApp('src/favicon.png'),
