@@ -6,7 +6,7 @@ import ts from 'typescript-eslint';
 export default defineConfig(
   {
     ignores: [
-      'tests'
+      'tests',
     ],
   },
   js.configs.recommended,

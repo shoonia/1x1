@@ -6,12 +6,12 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import createLocalIdent from 'mini-css-class-name/css-loader';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import HTMLInlineCSSWebpackPlugin from 'html-inline-css-webpack-plugin';
+import HTMLInlineScriptWebpackPlugin from 'html-inline-script-webpack-plugin';
 import CssMqpackerPlugin from 'css-mqpacker-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 
 import pkg from './package.json' with { type: 'json' };
-import colors from './src/utils/colors.json' with { type: 'json' };
 
 const appDirectory = process.cwd();
 const resolveApp = (relativePath) => resolve(appDirectory, relativePath);
@@ -201,7 +201,6 @@ export default ({ NODE_ENV }) => {
         templateParameters: {
           pkg,
           isProd,
-          colors,
         },
       }),
       new webpack.DefinePlugin({
@@ -216,6 +215,9 @@ export default ({ NODE_ENV }) => {
       isProd && new MiniCssExtractPlugin(),
       isProd && new HTMLInlineCSSWebpackPlugin.default({
         styleTagFactory: ({ style }) => `<style>${style}</style>`,
+      }),
+      isProd && new HTMLInlineScriptWebpackPlugin({
+        scriptMatchPattern: [/\.js$/],
       }),
     ].filter(Boolean),
     node: false,

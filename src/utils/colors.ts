@@ -1,12 +1,9 @@
-import type T from './colors.json';
+import colors from './colors.json';
 
-export type TColors = Readonly<typeof T>;
-
-export const colors = JSON.parse(
-  // @ts-expect-error @typescript-eslint/ban-ts-comment
-  document.getElementById('colors').textContent,
-) as TColors;
+export type TColors = Readonly<typeof colors>;
 
 export const isColorsKey = (val: string): val is keyof TColors => {
   return val in colors;
 };
+
+export { colors };
