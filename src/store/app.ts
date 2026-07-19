@@ -62,7 +62,7 @@ export const app: StoreonModule<IState, IEvents> = (store) => {
   });
 
   store.on('hex', (state, val) => {
-    const hex = val.length < 8 ? val + 'ff' : val;
+    const hex = val.padEnd(8, 'f');
     const i = parseInt(hex, 16);
 
     const rgba: IRgba = {

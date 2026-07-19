@@ -9,11 +9,7 @@ export const NOT_HEXADECIMAL = /[^\da-f]/;
 export const randomHex = () => crypto.randomUUID().slice(-6) + 'ff';
 
 export const createHex = ({ r, g, b, a }: IRgba) => {
-  return [r, g, b, a].map((i) => {
-    const hex = i.toString(16);
-
-    return hex.length < 2 ? '0' + hex : hex;
-  }).join('');
+  return [r, g, b, a].map((i) => i.toString(16).padStart(2, '0')).join('');
 };
 
 const duplicate = (hex: string): string => {
