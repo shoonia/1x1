@@ -1,4 +1,4 @@
-import { useRef } from 'jsx-dom-runtime';
+import { signal } from 'jsx-dom-runtime';
 
 import s from './styles.css';
 import { TextInput } from './TextInput';
@@ -6,16 +6,16 @@ import { RadixSelect } from './RadixSelect';
 import { connect } from '../../store';
 
 export const Output: JSX.FC = () => {
-  const dataUrl = useRef<HTMLInputElement>();
-  const dataLink = useRef<HTMLInputElement>();
-  const dataBytes = useRef<HTMLInputElement>();
-  const dataBase64 = useRef<HTMLInputElement>();
+  const dataUrl = signal();
+  const dataLink = signal();
+  const dataBytes = signal();
+  const dataBase64 = signal();
 
   connect('color', 'radix', ({ url, color, bytes, base64, radix }) => {
-    dataUrl.current.value = url;
-    dataBase64.current.value = base64;
-    dataLink.current.value = 'https://shoonia.github.io/1x1/' + color;
-    dataBytes.current.value = bytes.map((i) => i.toString(radix)).join(' ');
+    dataUrl.set(url);
+    dataBase64.set(base64);
+    dataLink.set('https://shoonia.github.io/1x1/' + color);
+    dataBytes.set(bytes.map((i) => i.toString(radix)).join(' '));
   });
 
   return (
@@ -23,13 +23,13 @@ export const Output: JSX.FC = () => {
       <legend class="sr-only">
         Output formats
       </legend>
-      <TextInput ref={dataUrl} label="Data URL" />
-      <TextInput ref={dataBase64} label="Base64" />
+      <TextInput value={dataUrl} label="Data URL" />
+      <TextInput value={dataBase64} label="Base64" />
       <div class={s.bytes}>
-        <TextInput ref={dataBytes} label="Bytes" />
+        <TextInput value={dataBytes} label="Bytes" />
         <RadixSelect />
       </div>
-      <TextInput ref={dataLink} label="Share Link" />
+      <TextInput value={dataLink} label="Share Link" />
     </fieldset>
   );
 };

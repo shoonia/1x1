@@ -1,3 +1,5 @@
+import { render } from 'jsx-dom-runtime';
+
 import s from './styles.css';
 import { connect, HISTORY_LENGTH } from '../../store';
 import { Item } from '../Item';
@@ -15,7 +17,7 @@ export const History: JSX.FC = () => {
         node.prepend(<Item hex={`#${history[0]}`} />);
       } else {
         isRendered = true;
-        node.append(...history.map((i) => <Item hex={`#${i}`} />));
+        render(history.map((i) => <Item hex={`#${i}`} />), node);
       }
     });
 

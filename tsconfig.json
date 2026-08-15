@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "ESNext",
     "target": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "jsx": "react-jsx",
     "jsxImportSource": "jsx-dom-runtime",
     "allowSyntheticDefaultImports": true,
@@ -28,6 +28,10 @@
     "lib": [
       "ESNext",
       "DOM"
+    ],
+    "types": [
+      "node",
+      "wicg-file-system-access"
     ]
   },
   "include": [

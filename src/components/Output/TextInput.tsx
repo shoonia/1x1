@@ -1,9 +1,11 @@
+import type { Signal } from 'jsx-dom-runtime';
+
 import s from './TextInput.css';
 import { dispatch } from '../../store';
 
 interface Props {
   label: string;
-  ref: JSX.Ref<HTMLInputElement>;
+  value: Signal<string>;
 }
 
 const copy: JSX.EventListener<HTMLInputElement> = ({ currentTarget: input }) => {
@@ -12,12 +14,12 @@ const copy: JSX.EventListener<HTMLInputElement> = ({ currentTarget: input }) => 
   dispatch('copy');
 };
 
-export const TextInput: JSX.FC<Props> = ({ label, ref }) =>
+export const TextInput: JSX.FC<Props> = ({ label, value }) =>
   <label>
     {label}
     <input
-      ref={ref}
       on:click={copy}
+      prop:value={value}
       class={s.inp}
       name={label.replaceAll(' ', '-')}
       type="text"

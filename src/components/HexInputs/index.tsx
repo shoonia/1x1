@@ -1,3 +1,5 @@
+import { signal } from 'jsx-dom-runtime';
+
 import s from './styles.css';
 import { Group } from '../Group';
 import { DataList } from './DataList';
@@ -5,43 +7,43 @@ import { NOT_HEXADECIMAL, getHex } from '../../utils';
 import { connect, dispatch } from '../../store';
 
 export const HexInputs: JSX.FC = () => {
-  const readyColor: JSX.Ref<HTMLInputElement> = (color) => {
-    color.addEventListener('change', () => {
-      const hex = getHex(color.value);
+  const color = signal();
+  const alpha = signal();
 
-      if (hex) {
-        dispatch('hex', hex);
-      }
-    });
+  const colorChanged: JSX.EventListener<HTMLInputElement> = (event) => {
+    const hex = getHex(event.currentTarget.value);
 
-    connect('hex', (state) => {
-      color.value = state.hex.slice(0, 6);
-    });
+    if (hex) {
+      dispatch('hex', hex);
+    }
   };
 
-  const readyAlpha: JSX.Ref<HTMLInputElement> = (alpha) => {
-    alpha.addEventListener('change', () => {
-      const val = alpha.value
-        .trim()
-        .toLowerCase()
-        .replace(NOT_HEXADECIMAL, '');
+  const alphaChanged: JSX.EventListener<HTMLInputElement> = (event) => {
+    const val = event.currentTarget.value
+      .trim()
+      .toLowerCase()
+      .replace(NOT_HEXADECIMAL, '');
 
-      dispatch('rgba', [
-        'a',
-        val.length !== 2 ? 255 : parseInt(val, 16),
-      ]);
-    });
-
-    connect('a', (state) => {
-      alpha.value = state.hex.slice(6);
-    });
+    dispatch('rgba', [
+      'a',
+      val.length !== 2 ? 255 : parseInt(val, 16),
+    ]);
   };
+
+  connect('hex', (state) =>
+    color.set(state.hex.slice(0, 6)),
+  );
+
+  connect('a', (state) =>
+    alpha.set(state.hex.slice(6)),
+  );
 
   return (
     <Group open title="HEX">
       <div class={s.box}>
         <input
-          ref={readyColor}
+          on:change={colorChanged}
+          prop:value={color}
           type="search"
           list="color-list"
           autocomplete="on"
@@ -54,7 +56,8 @@ export const HexInputs: JSX.FC = () => {
           name="hex-color"
         />
         <input
-          ref={readyAlpha}
+          on:change={alphaChanged}
+          prop:value={alpha}
           type="text"
           placeholder="ff"
           maxLength={2}

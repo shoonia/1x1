@@ -1,3 +1,5 @@
+import { render } from 'jsx-dom-runtime';
+
 import './global.css';
 import { App } from './components/App';
 import { dispatch } from './store';
@@ -8,5 +10,4 @@ const hex = color ? color : randomHex();
 
 dispatch('hex', hex);
 history.replaceState(1, '', '#' + hex);
-
-document.body.append(<App />);
+render(<App />, document.body);
