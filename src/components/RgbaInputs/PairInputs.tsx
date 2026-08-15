@@ -16,7 +16,7 @@ export const PairInputs: JSX.FC<Props> = ({ param }) => {
     dispatch('rgba', [param, event.currentTarget.valueAsNumber]);
 
   connect(param, (state) =>
-    value.set(state[param])
+    value.set(state[param]),
   );
 
   return (

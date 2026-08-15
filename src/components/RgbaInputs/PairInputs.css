@@ -66,6 +66,7 @@
 .range::-webkit-slider-thumb:hover {
   transform: scale(1.1) translateY(calc(-50% + 2px));
 }
+
 .range:focus {
   outline: none;
 }
