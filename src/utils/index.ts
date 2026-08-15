@@ -33,17 +33,9 @@ export const getHex = (value: string): string | undefined => {
   }
 
   switch (color.length) {
-    case 8: {
-      return color;
-    }
-    case 6: {
-      return color + 'ff';
-    }
-    case 4: {
-      return duplicate(color);
-    }
-    case 3: {
-      return duplicate(color) + 'ff';
-    }
+    case 8: return color;
+    case 6: return color + 'ff';
+    case 4: return duplicate(color);
+    case 3: return duplicate(color) + 'ff';
   }
 };

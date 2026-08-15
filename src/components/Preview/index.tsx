@@ -1,20 +1,20 @@
-import { useText } from 'jsx-dom-runtime';
+import { signal } from 'jsx-dom-runtime';
 import { Preset } from '../Preset';
 import { connect } from '../../store';
 import s from './styles.css';
 import { createFavicon } from './createFavicon';
 
 const favicon = document.querySelector<HTMLLinkElement>('link[rel="icon"]')!;
-const [color, setColor] = useText('');
-const [size, setSize] = useText(0);
+const colorLabel = signal('');
+const size = signal(0);
 
 let timeout: ReturnType<typeof setTimeout>;
 
 export const Preview: JSX.FC = () => {
   const ready: JSX.Ref<HTMLDivElement> = (node) =>
     connect('color', ({ bytes, color }) => {
-      setColor(color);
-      setSize(bytes.length);
+      colorLabel.set(color);
+      size.set(bytes.length);
       node.style.backgroundColor = color;
       clearTimeout(timeout);
       timeout = setTimeout(() => {
@@ -29,7 +29,7 @@ export const Preview: JSX.FC = () => {
   return (
     <div ref={ready} class={s.view} role="img" aria-label="Color preview">
       <output class={s.color} aria-label="Current color code">
-        {color}
+        {colorLabel}
       </output>
       <output class={s.size} aria-label="PNG image size">
         1x1 ({size} bytes)

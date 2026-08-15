@@ -35,8 +35,7 @@
     ]
   },
   "include": [
-    "src",
-    "tests"
+    "src"
   ],
   "exclude": [
     "tests"

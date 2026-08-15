@@ -1,13 +1,13 @@
-import { useText } from 'jsx-dom-runtime';
+import { signal } from 'jsx-dom-runtime';
 
 import s from './styles.css';
 
-const [stars, setStars] = useText('-');
+const stars = signal('-');
 
 if (process.env.NODE_ENV === 'production') {
   fetch('https://api.github.com/repos/shoonia/1x1')
     .then((response) => response.json())
-    .then((data) => setStars(data.stargazers_count || '-'));
+    .then((data) => stars.set(data.stargazers_count || '-'));
 }
 
 export const Stars: JSX.FC = () =>
