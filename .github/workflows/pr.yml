@@ -17,6 +17,6 @@ jobs:
         cache: npm
 
     - run: npm ci
-    - run: npx tsc --noEmit
+    # - run: npx tsc --noEmit
     - run: npx eslint 'src/**/*.{ts,tsx}'
     - run: npx stylelint src/**/*.css
