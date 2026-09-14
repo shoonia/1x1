@@ -92,6 +92,8 @@ export default ({ NODE_ENV }) => {
         nodeModulesDir,
       ],
       extensions: [
+        '.mjs',
+        '.cjs',
         '.js',
         '.ts',
         '.tsx',
@@ -107,7 +109,7 @@ export default ({ NODE_ENV }) => {
         {
           oneOf: [
             {
-              test: /\.(js|jsx|ts|tsx)$/,
+              test: /\.(js|mjs|cjs|jsx|ts|tsx)$/,
               use: {
                 loader: 'swc-loader',
                 options: {
