@@ -129,8 +129,8 @@ export default ({ NODE_ENV }) => {
                     experimental: {
                       plugins: [
                         ['swc-jsx-dom-runtime', {}],
-                        ['swc-plugin-evaluate-polyfills', { browser: true }],
-                      ],
+                        isProd && ['swc-plugin-evaluate-polyfills', { browser: true }],
+                      ].filter(Boolean),
                     },
                   },
                 },
