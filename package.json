@@ -6,11 +6,11 @@
   "type": "module",
   "packageManager": "^npm@11.4.0",
   "scripts": {
-    "start": "NODE_NO_WARNINGS=1 webpack serve --env NODE_ENV=development",
-    "build": "NODE_NO_WARNINGS=1 webpack build --env NODE_ENV=production",
+    "start": "webpack serve --env NODE_ENV=development",
+    "build": "webpack build --env NODE_ENV=production",
     "lint": "eslint src && stylelint src/**/*.css",
     "serve": "python3 -m http.server -d dist",
-    "test": "NODE_NO_WARNINGS=1 node --experimental-strip-types --test tests/**/*.spec.ts"
+    "test": "node --experimental-strip-types --test tests/**/*.spec.ts"
   },
   "dependencies": {
     "jsx-dom-runtime": "^0.85.1",
@@ -40,13 +40,13 @@
     "stylelint": "^17.15.0",
     "stylelint-config-css-modules": "^4.5.1",
     "stylelint-config-standard": "^40.0.0",
-    "swc-jsx-dom-runtime": "^0.1.4",
+    "swc-jsx-dom-runtime": "^0.1.6",
     "swc-loader": "^0.2.7",
     "swc-plugin-evaluate-polyfills": "^0.1.0",
     "terser-webpack-plugin": "^5.3.16",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.70.0",
-    "webpack": "^5.111.0",
+    "webpack": "^5.111.1",
     "webpack-cli": "^7.2.3",
     "webpack-dev-server": "^6.0.0"
   },
