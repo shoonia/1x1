@@ -95,6 +95,7 @@ export default ({ NODE_ENV }) => {
         '.mjs',
         '.cjs',
         '.js',
+        '.jsx',
         '.ts',
         '.tsx',
       ],
