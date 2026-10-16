@@ -1,14 +1,14 @@
 import { signal } from 'jsx-dom-runtime';
-import { Preset } from '../Preset';
 import { connect } from '../../store';
-import s from './styles.css';
+import { Preset } from '../Preset';
 import { createFavicon } from './createFavicon';
+import s from './styles.css';
 
 const favicon = document.querySelector<HTMLLinkElement>('link[rel="icon"]')!;
-const colorLabel = signal('');
+const colorLabel = signal();
 const size = signal(0);
 
-let timeout: ReturnType<typeof setTimeout>;
+let timeout: NodeJS.Timeout;
 
 export const Preview: JSX.FC = () => {
   const ready: JSX.Ref<HTMLDivElement> = (node) =>

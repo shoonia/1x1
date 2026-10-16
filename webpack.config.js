@@ -223,6 +223,9 @@ export default ({ NODE_ENV }) => {
       static: srcDir,
       port: 3000,
     },
+    stats: {
+      children: true,
+    },
   };
 };
 
