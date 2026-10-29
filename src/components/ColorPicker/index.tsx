@@ -7,13 +7,13 @@ import { connect, dispatch } from '../../store';
 
 customElements.define('color-picker', HexAlphaBase);
 
+const color = signal();
+
+connect('hex', (state) =>
+  color.set(state.color),
+);
+
 export const ColorPicker: JSX.FC = () => {
-  const color = signal();
-
-  connect('hex', (state) =>
-    color.set(state.color),
-  );
-
   const changed = (event: CustomEvent) =>
     dispatch('hex', event.detail.value.slice(1));
 

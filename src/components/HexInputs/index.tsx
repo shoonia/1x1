@@ -6,10 +6,18 @@ import { DataList } from './DataList';
 import { NOT_HEXADECIMAL, getHex } from '../../utils';
 import { connect, dispatch } from '../../store';
 
-export const HexInputs: JSX.FC = () => {
-  const color = signal();
-  const alpha = signal();
+const color = signal();
+const alpha = signal();
 
+connect('hex', (state) =>
+  color.set(state.hex.slice(0, 6)),
+);
+
+connect('a', (state) =>
+  alpha.set(state.hex.slice(6)),
+);
+
+export const HexInputs: JSX.FC = () => {
   const colorChanged: JSX.EventListener<HTMLInputElement> = (event) => {
     const hex = getHex(event.currentTarget.value);
 
@@ -29,14 +37,6 @@ export const HexInputs: JSX.FC = () => {
       val.length !== 2 ? 255 : parseInt(val, 16),
     ]);
   };
-
-  connect('hex', (state) =>
-    color.set(state.hex.slice(0, 6)),
-  );
-
-  connect('a', (state) =>
-    alpha.set(state.hex.slice(6)),
-  );
 
   return (
     <Group open title="HEX">
